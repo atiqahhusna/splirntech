@@ -39,8 +39,15 @@ if (
     $row['password'] === $password
 ) {
     // No changes in data
-    $success_message = "Tiada perubahan dalam data.";
-    echo "<script>alert('$success_message'); window.location.href = 'profile_sv.php';</script>";
+
+    echo '<center><script> 
+    Swal.fire({
+        title: "Tiada Perubahan",
+        text: "Tiada perubahan pada profil anda.",
+        icon: "success"
+    }).then(function() {
+        window.location.replace("profile_sv.php"); 
+    }); </script></center>';
     exit();
 }
 
@@ -60,8 +67,15 @@ if ($stmt->execute()) {
         window.location.replace("profile_sv.php"); 
     }); </script></center>';
 } else {
-    echo "<center><script> alert('Tidak berjaya dikemaskini.'); </script></center>";
-    echo "<meta http-equiv=\"refresh\" content=\"0;URL=updateTask_sv.php\">";
+
+    echo '<center><script> 
+    Swal.fire({
+        title: "Tidak Berjaya",
+        text: "Tidak berjaya dikemaskini.",
+        icon: "error"
+    }).then(function() {
+        window.location.replace("profile_sv.php"); 
+    }); </script></center>';
 }
 
 // Close the database connection

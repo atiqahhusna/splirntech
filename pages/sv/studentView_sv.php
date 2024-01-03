@@ -185,10 +185,10 @@ $sv_id = $_POST['sv_id'];
                                                         ?>
                                                     </td>
                                                     <td style="text-align: center;">
-                                                        <button type="button" class="btn btn-outline-info">
+                                                        <button type="button" class="btn btn-outline-info" data-toggle="tooltip" data-placement="top" title="Lihat">
                                                             <a href="studentActivityView_sv.php?student_id=<?php echo $student_id ?>&unique_week=<?php echo $unique_week ?>"><i class="fa fa-search"></i></a>
                                                         </button>
-                                                        <button type="button" class="btn btn-outline-info">
+                                                        <button type="button" class="btn btn-outline-info" data-toggle="tooltip" data-placement="top" title="Laporan">
                                                             <a href="laporan_sv.php?student_id=<?php echo $student_id ?>&unique_week=<?php echo $unique_week ?>" target="_blank"><i class="far fa-file-alt"></i></a>
                                                         </button>
                                                     </td>

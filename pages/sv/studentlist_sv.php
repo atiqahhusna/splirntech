@@ -113,7 +113,7 @@ include "../conn.php";
                         $num_rows = mysqli_num_rows($result);
 
                         if ($row = mysqli_fetch_array($result) == null) {
-                          echo "<tr style='text-align:center'><td colspan='5'>Tiada Pelajar dibawah Penyeliaan Anda</td></tr>";
+                          echo "<tr style='text-align:center'><td colspan='6'>Tiada Pelajar dibawah Penyeliaan Anda</td></tr>";
                         } else {
                           $result = mysqli_query($conn, $query);
                           $num_rows = mysqli_num_rows($result);
@@ -125,7 +125,7 @@ include "../conn.php";
                             echo "<td>" . $row["email"] . "</td>";
                             echo "<td>" . $row["status"] . "</td>";
                             $student_id = $row['student_id']; ?>
-                            <td style="text-align:center"><button type="button" class="btn btn-outline-info"><a href="studentView_sv.php?student_id=<?php echo $student_id; ?>"><i class="fa fa-search"></i></a></button>
+                            <td style="text-align:center"><button type="button" class="btn btn-outline-info" data-toggle="tooltip" data-placement="top" title="Lihat"><a href="studentView_sv.php?student_id=<?php echo $student_id; ?>"><i class="fa fa-search"></i></a></button>
                             </td>
                             </tr>
                             </tr>
@@ -171,7 +171,7 @@ include "../conn.php";
                         $num_rows = mysqli_num_rows($result);
 
                         if ($row = mysqli_fetch_array($result) == null) {
-                          echo "<tr style='text-align:center'><td colspan='5'>Tiada Pelajar dibawah Penyeliaan Anda</td></tr>";
+                          echo "<tr style='text-align:center'><td colspan='6'>Tiada Pelajar dibawah Penyeliaan Anda</td></tr>";
                         } else {
                           $result = mysqli_query($conn, $query);
                           $num_rows = mysqli_num_rows($result);

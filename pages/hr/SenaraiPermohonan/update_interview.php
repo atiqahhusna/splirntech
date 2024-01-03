@@ -10,6 +10,8 @@
 // Include database connection code
 include "../../conn.php";
 
+
+$interviewId = $_GET['id'];
 // Initialize variables
 $updateMessage = '';
 
@@ -18,14 +20,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Process the form when it is submitted
 
     // Validate and sanitize user input (You should perform proper validation)
-    $interviewId = $_POST['interview_id'];
+    // $interviewId = $_POST['interview_id'];
     $updatedName = $_POST['updated_name']; // Assuming $updatedName is the new name
     $updatedDate = $_POST['updated_date'];
     $updatedTime = $_POST['updated_time'];
-    $updatedLocation = $_POST['updated_location'];
+    $updatedLocation = $_POST['location'];
+    $updatedlink = $_POST['interview_link'];
 
     // Update the record in the interview table
-    $updateInterviewQuery = "UPDATE interview SET interview_date = '$updatedDate',interview_time = '$updatedTime',location = '$updatedLocation'
+    $updateInterviewQuery = "UPDATE interview SET interview_date = '$updatedDate',interview_time = '$updatedTime',location = '$updatedLocation', interview_link = '$updatedlink'
     WHERE ID = ?";
 
      $stmt = $conn->prepare($updateInterviewQuery);
@@ -42,14 +45,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             window.location.replace("list_apply.php");
         }); </script></center>';
     }
-} else {
+}
     // Display the form with the current values
 
     // Get the interview ID from the URL parameter
-    $interviewId = $_GET['id'];
+    // $interviewId = $_GET['id'];
 
     // Retrieve the current values from the database
-    $selectQuery = "SELECT interview.ID, student.name AS name, interview.interview_date, interview.interview_time, interview.location
+    $selectQuery = "SELECT interview.ID, student.name AS name, interview.interview_date, interview.interview_time, interview.location, interview.interview_link
                     FROM interview
                     JOIN student ON interview.student_id = student.id
                     WHERE interview.ID = '" . $interviewId . "'";
@@ -61,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $updateMessage = "Error fetching record: " . mysqli_error($conn);
     }
-}
+
 
 // Close the database connection
 mysqli_close($conn);
@@ -144,6 +147,7 @@ input[type="submit"]:hover {
             window.location.href = 'list_apply.php';
         </script>
     <?php endif; ?>
+
     <form action="update_interview.php?id=<?php echo $interviewId; ?>" method="post">
         <!-- Display the current values in the form -->
         <label for="updated_name">Name:</label>
@@ -155,17 +159,53 @@ input[type="submit"]:hover {
         <label for="updated_time">Time:</label>
         <input type="time" name="updated_time" value="<?php echo $row['interview_time']; ?>" required>
 
-        <label for="updated_location">Location:</label>
-        <select name="updated_location" required>
-            <option value="Online Meeting" <?php echo ($row['location'] == 'Online Meeting') ? 'selected' : ''; ?>>Online Meeting</option>
-            <option value="RN Technologies Sdn Bhd" <?php echo ($row['location'] == 'RN Technologies Sdn Bhd') ? 'selected' : ''; ?>>RN Technologies Sdn Bhd</option>
-        </select>
 
+        <div class="col-sm-10">
+            <select id="location" name="location" class="form-control" required>
+                <option value="Online Meeting" <?php echo ($row['location'] == 'Online Meeting') ? 'selected' : ''; ?>>Online Meeting</option>
+                <option value="RN Technologies Sdn Bhd" <?php echo ($row['location'] == 'RN Technologies Sdn Bhd') ? 'selected' : ''; ?>>RN Technologies Sdn Bhd</option>
+                <!-- Add more options as needed -->
+            </select>
+        </div>
+        <div class="form-group row" id="onlineMeetingLinkDiv" style="display: none;">
+            <label for="onlineMeetingLink" class="col-sm-2 col-form-label">Link:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="onlineMeetingLink" name="interview_link" value="<?php echo $row['interview_link']; ?>" required>
+            </div>
+        </div>
         <input type="hidden" name="interview_id" value="<?php echo $interviewId; ?>">
         <input type="submit" value="Kemaskini">
     
         <a href="list_apply.php" class="btn btn-success" style="margin: 5px;"><i style="font-size: 15px;">Kembali</i></a>
 
     </form>
+    <script>
+        // jQuery script to show/hide the input field based on the selected option
+        $(document).ready(function() {
+            // Initial check on page load
+            checkLocation();
+
+            // Bind the change event of the dropdown
+            $("#location").change(function() {
+                // Check whenever the dropdown changes
+                checkLocation();
+            });
+
+            function checkLocation() {
+                // Get the selected value
+                var selectedLocation = $("#location").val();
+
+                // Check if the selected location is "Online Meeting"
+                if (selectedLocation === "Online Meeting") {
+                    // If "Online Meeting" is selected, show the input field
+                    $("#onlineMeetingLinkDiv").show();
+                } else {
+                    // If any other option is selected, hide the input field
+                    $("#onlineMeetingLinkDiv").hide();
+                }
+            }
+        });
+    </script>
 </body>
+
 </html>

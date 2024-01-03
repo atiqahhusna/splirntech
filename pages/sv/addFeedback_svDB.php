@@ -37,7 +37,7 @@ $stmt->bind_param("ssssss", $sv_id, $studname, $aduan, $date, $time, $type);
 if ($stmt->execute()) {
 
     // Count the total feedback of type 'aduan' for the person
-    $sql_count = "SELECT COUNT(*) AS aduan_count FROM feedback WHERE person_name = ? AND feedback_type = 'aduan'";
+    $sql_count = "SELECT COUNT(*) AS aduan_count FROM feedback WHERE person_name = ? AND feedback_type = 'Aduan'";
     $stmt_count = $conn->prepare($sql_count);
     $stmt_count->bind_param("s", $studname);
     $stmt_count->execute();

@@ -187,7 +187,7 @@ include "../conn.php";
 											}
 											$unique_id = $row["id"];
 
-											echo "<td><center><button type='button' class='btn btn-outline-info'><a href='updateTask_sv.php?student_id=" . $student_id . "&unique_id=" . $unique_id . "'><i class='fas fa-pen'></i></a></button></center></td>";
+											echo "<td><center><button type='button' class='btn btn-outline-info' data-toggle='tooltip' data-placement='top' title='Komen'><a href='updateTask_sv.php?student_id=" . $student_id . "&unique_id=" . $unique_id . "'><i class='fas fa-pen'></i></a></button></center></td>";
 											echo "</tr>";
 										}
 									} else {

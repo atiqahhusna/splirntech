@@ -190,8 +190,8 @@
                                                     <label for="type">Jenis Aduan*</label>
                                                     <select name="type" id="type" class="form-control">
                                                         <option value=""> -- Pilih Jenis Aduan -- </option>
-                                                        <option value="maklumbalas"> Maklum Balas </option>
-                                                        <option value="aduan"> Aduan </option>
+                                                        <option value="Maklum Balas"> Maklum Balas </option>
+                                                        <option value="Aduan"> Aduan </option>
                                                     </select>
                                                 </p>
                                                 <p>

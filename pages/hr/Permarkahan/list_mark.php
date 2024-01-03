@@ -19,7 +19,10 @@ include "../../conn.php";
 <body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
 
-
+<!-- Loading indicator -->
+<div class="preloader flex-column justify-content-center align-items-center">
+      <img src="/splirnt/assets/img/loading.png" alt="Loading..." class="spinning-image">
+    </div>
 
 
 

@@ -151,8 +151,8 @@ include "../conn.php";
 											<label for="type">Jenis Aduan*</label>
 											<select name="type" id="type" class="form-control" required>
 												<option value=""> -- Pilih Jenis Aduan -- </option>
-												<option value="maklumbalas"> Maklumbalas </option>
-												<option value="aduan"> Aduan </option>
+												<option value="Maklumbalas"> Maklumbalas </option>
+												<option value="Aduan"> Aduan </option>
 											</select>
 										</p>
 										<p>

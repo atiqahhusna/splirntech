@@ -154,7 +154,7 @@ include "../conn.php";
                   <h3 class="card-title">
                     To Do List
                   </h3>
-                  <button type="button" class="btn btn-outline-info" style="float:right"><a href="addTodo_sv.php?"><i class="fas fa-plus"></i> Add</a></button>
+                  <button type="button" class="btn btn-outline-info" style="float:right" data-toggle="tooltip" data-placement="top" title="Tambah"><a href="addTodo_sv.php?"><i class="fas fa-plus"></i> Add</a></button>
                 </div>
 
                 <!-- TO-DO LIST -->
@@ -172,56 +172,61 @@ include "../conn.php";
                     </select>
                   </div>
 
-                  <table id="example2" class="table table-bordered table-striped">
-                    <thead>
-                      <tr style="text-align:center">
-                        <th>Bil.</th>
-                        <th>Tugasan</th>
-                      </tr>
-                    </thead>
-                    <tbody>
+                              <div class="table-responsive">
+                                <table id="example2" class="table table-bordered table-striped">
+                                  <thead>
+                                    <tr style="text-align:center">
+                                    <th>Bil.</th>
+                                    <th>Tugasan</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <?php
+                                    $i = 1;
+                                    $query = "SELECT * FROM todo_sv WHERE sv_id = '" . $sv_id . "'";
+                                    $result = mysqli_query($conn, $query);
+                                    $num_rows = mysqli_num_rows($result);
 
-                      <?php
-
-                      $i = 1;
-                      $query = "SELECT * FROM todo_sv WHERE sv_id = '" . $sv_id . "' ";
-                      $result = $conn->query($query);
-
-                      if ($result->num_rows > 0) {
-                        while ($row = mysqli_fetch_array($result)) {
-                          $todo_id = $row["todo_id"];
-                          if ($row['is_done'] != "done") {
-                      ?><tr>
-                              <td>
-                                <?php echo $i++; ?>
-                              </td>
-                              <td>
-                                <label style="padding-right:40px">
-                                  <span><?php echo $row['task']; ?></span>
-                                </label>
-                                <label style="padding-right:40px">
-                                  <?php
-                                  if ($row['is_done'] == 'on going') {
-                                  ?><small class="badge badge-warning"><span><?php echo date('d/m/Y', strtotime($row['due_date'])) . "</span></small>";
-                                                                            }
-                                                                            if ($row['is_done'] == 'not yet') {
-                                                                              ?><small class="badge badge-info"><span><?php echo date('d/m/Y', strtotime($row['due_date'])) . "</span></small>";
-                                                                                                                    }
-                                                                                                                      ?>
-                                </label>
-                                <span class="tools" style="float:right">
-                                  <button type="submit" class='btn btn-outline-info'><a href="updateTodo_sv.php?todo_id=<?php echo $todo_id; ?>"><i class="fas fa-edit"></i></a></button>
-                                </span>
-                              </td>
-                              </td>
-                            </tr>
-                      <?php }
-                        }
-                      } else {
-                        echo "<tr style='text-align:center'><td colspan='5'>Tiada Tugasan yang Disimpan</td></tr>";
-                      }
-
-                      ?>
+                                    if ($row = mysqli_fetch_array($result) == null) {
+                                      echo "<tr style='text-align:center'><td colspan='2'>Tiada Tugasan yang Disimpan</td></tr>";
+                                    } else {
+                                      $result = mysqli_query($conn, $query);
+                                      $num_rows = mysqli_num_rows($result);
+                                      while ($row = mysqli_fetch_array($result)) {
+                                        $todo_id = $row["todo_id"];
+                                        if ($row['is_done'] != "done") {
+                                    ?><tr>
+                                            <td>
+                                              <?php echo $i++; ?>
+                                            </td>
+                                            <td>
+                                              <label style="padding-right:40px">
+                                                <span><?php echo $row['task']; ?></span>
+                                              </label>
+                                              <label style="padding-right:40px">
+                                                <?php
+                                                if ($row['is_done'] == 'on going') {
+                                                ?><small class="badge badge-warning"><span><?php echo date('d/m/Y', strtotime($row['due_date'])) . "</span></small>";
+                                                                                          }
+                                                                                          if ($row['is_done'] == 'not yet') {
+                                                                                            ?><small class="badge badge-info"><span><?php echo date('d/m/Y', strtotime($row['due_date'])) . "</span></small>";
+                                                                                                                                  }
+                                                                                                                                    ?>
+                                              </label>
+                                              <span class="tools" style="float:right">
+                                                <button type="submit" class='btn btn-outline-info' data-toggle="tooltip" data-placement="top" title="Kemaskini"><a href="updateTodo_sv.php?todo_id=<?php echo $todo_id; ?>"><i class="fas fa-edit"></i></a></button>
+                                              </span>
+                                            </td>
+                                            </td>
+                                          </tr>
+                                    <?php }
+                                      }
+                                    }
+                                    ?>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div> <!-- TO-DO -->
                     </tbody>
                   </table>
                 </div>
@@ -256,31 +261,38 @@ include "../conn.php";
   <!-- Page specific script -->
   <script>
     $(function() {
-      $("#example1").DataTable({
-        "responsive": true,
-        "lengthChange": false,
-        "autoWidth": false,
-        "buttons": ["excel", "pdf", "colvis"]
-      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-      var table = $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "pageLength": 5, // tentukan satu page berapa data
-        "autoWidth": false,
-        "responsive": true,
-      });
+        $("#example1").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "buttons": ["excel", "pdf", "colvis"],
+            "language": {
+                "emptyTable": "Tiada Tugasan yang Disimpan"
+            }
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 
-      // Reinitialize DataTable when "Show Entries" dropdown changes
-      $('#entriesDropdown').on('change', function() {
-        var entries = $(this).val();
-        table.page.len(entries).draw();
-      });
+        var table = $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "pageLength": 5, // tentukan satu page berapa data
+            "autoWidth": false,
+            "responsive": true,
+            "language": {
+                "emptyTable": "Tiada Tugasan yang Disimpan"
+            }
+        });
+
+        // Reinitialize DataTable when "Show Entries" dropdown changes
+        $('#entriesDropdown').on('change', function() {
+            var entries = $(this).val();
+            table.page.len(entries).draw();
+        });
 
     });
-  </script>
+</script>
 
   <!-- <script>
 $(document).ready(function() {

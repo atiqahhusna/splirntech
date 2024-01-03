@@ -94,9 +94,9 @@ include "../../conn.php";
                                                     <?php
                                                     $bil = 1;
                                                     $query = "SELECT application_intern.*, student.name, student.phone_num, student.email, student.address, student.id AS studID
-                                                    FROM application_intern
-                                                    JOIN student ON application_intern.student_id = student.id
-                                                    WHERE application_intern.status = 'Baru'";
+                                                  FROM application_intern
+                                                  JOIN student ON application_intern.student_id = student.id
+                                                  WHERE application_intern.status = 'Baru'";
                                                     $result = mysqli_query($conn, $query);
                                                     $num_rows = mysqli_num_rows($result);
                                                     while ($myrow = mysqli_fetch_array($result)) {
@@ -110,7 +110,7 @@ include "../../conn.php";
                                                                 <?php
                                                                 $resumePath = $myrow['resume'];
                                                                 if (!empty($resumePath)) {
-                                                                    echo '<a href="../upload/' . $resumePath . '" target="_blank">[Lampiran]</a>';
+                                                                    echo '<a href="../../upload/' . $resumePath . '" target="_blank">[Lampiran]</a>';
                                                                 } else {
                                                                     echo 'N/A';
                                                                 }
@@ -118,6 +118,7 @@ include "../../conn.php";
                                                             </td>
                                                             <td class="text-center">
                                                                 <button class="btn btn-primary btn-sm" style="margin:2px;" data-toggle="modal" data-target="#viewUserDataModal_<?php echo $myrow['id']; ?>" data-placement="center" title="Lihat Maklumat Pengguna" data-id="<?php echo $myrow['id']; ?>"><i style='font-size:20px' class='fas fa-eye'></i></button>
+                                                                <!-- <button class="btn btn-primary btn-sm" style="margin:2px;" data-toggle="modal" data-target="#viewUserDataModal" data-placement="center" title="Lihat Maklumat Pengguna" data-id="<?php echo $myrow['id']; ?>"><i style='font-size:20px' class='fas fa-eye'></i></button> -->
                                                                 <button class="btn btn-warning btn-sm interview-button" style="margin:2px;" data-toggle="modal" data-target="#myModal_<?php echo $myrow['id']; ?>" data-placement="center" title="Temuduga" data-id="<?php echo $myrow['studID']; ?>"><i style='font-size:20px' class='fa'>&#xf508;</i></button>
                                                                 <a href="terimaStudent.php?id=<?php echo $myrow['studID']; ?>&notify=1" class="btn btn-success btn-sm" style="margin:2px;" data-toggle="tooltip" data-placement="top" title="Terima"><i style="font-size:20px" class="fa">&#xf00c;</i></a>
                                                                 <a href="tolakStudent.php?id=<?php echo $myrow['studID']; ?>&notify=1" class="btn btn-danger btn-sm" style="margin:2px;" data-toggle="tooltip" data-placement="top" title="Tolak"><i style="font-size:20px" class="fa">&#xf00d;</i></a>
@@ -333,10 +334,10 @@ include "../../conn.php";
                                     <label for="course">Course:</label>
                                     <input type="text" class="form-control" id="course" value="<?php echo $myrow['course']; ?>" readonly>
                                 </div>
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label for="mark">Mark:</label>
                                     <input type="text" class="form-control" id="mark" value="<?php echo $myrow['mark']; ?>" readonly>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
