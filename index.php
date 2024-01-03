@@ -45,7 +45,7 @@ include "pages/conn.php";
     <div class="container text-center text-md-left" data-aos="fade-up">
       <h1>SELAMAT DATANG KE</h1>
       <h2>SISTEM PENGURUSAN LATIHAN INDUSTRI RN TECHNOLOGIES</h2>
-      <a href="pages/login.php" class="btn-get-started scrollto">Log Masuk</a>
+      <a href="pages/login.php" class="btn-get-started scrollto">Log</a>
     </div>
   </section><!-- End Hero -->
 
