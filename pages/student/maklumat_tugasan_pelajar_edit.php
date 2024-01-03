@@ -59,7 +59,7 @@ include "../conn.php";
             </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="dashboard_student.php">Laman Utamaa</a></li>
+                <li class="breadcrumb-item"><a href="dashboard_student.php">Laman Utama</a></li>
                 <li class="breadcrumb-item"><a href="tugasan_pelajar.php">Kemaskini Tugasan</a></li>
 
                 <!--BELOW THE LOOP-->
