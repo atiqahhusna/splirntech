@@ -11,7 +11,7 @@
           <a href="dashboard_student.php" class="nav-link">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
-              Dashboard
+              Laman Utama
             </p>
           </a>
         </li>

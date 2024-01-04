@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>SPLI RN TECH | Senarai Pelajar</title>
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
     <link rel="stylesheet" href="../../dist/css/alt/splicss.css">
@@ -78,7 +79,7 @@
             // Set status and approved_by values
             $status = "Baru";  // Set the initial status to "mohon"
             $approved_by = 0;  // Set approved_by to null as it's not approved yet
-
+        
             // File upload handling
             $targetDirectory = "../upload/";
 
@@ -124,7 +125,7 @@
                     // Execute the query
                     if ($stmt->execute()) {
                         if (move_uploaded_file($_FILES["inputFile"]["tmp_name"], $targetDirectory . $targetFile)) {
-                            error_log('File moved successfully to: '  . $targetDirectory . $targetFile);
+                            error_log('File moved successfully to: ' . $targetDirectory . $targetFile);
                         } else {
                             error_log('Failed to move file to: ' . $targetDirectory . $targetFile);
                         }
@@ -170,44 +171,57 @@
                     <div class="row">
                         <div class="col-12">
                             <!-- Horizontal Form -->
-                            <div class="card card-info">
+                            <div class="card card-navy">
                                 <div class="card-header">
                                     <h3 class="card-title">Borang Permohonan Cuti</h3>
                                 </div>
                                 <!-- /.card-header -->
-                                <form id="cuti" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
+                                <form id="cuti" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"
+                                    method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
                                     <div class="card-body">
                                         <div class="form-group row">
-                                            <label for="title" class="col-sm-2 col-form-label">Sebab Cuti</label>
+                                            <label for="title" class="col-sm-2 col-form-label">Sebab Cuti<span
+                                                    style="color: red;">
+                                                    *</span></label></label>
                                             <div class="col-sm-10">
                                                 <input type="text" class="form-control" name="reason" placeholder="">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="dateleave" class="col-sm-2 col-form-label">Tarikh Dari</label>
+                                            <label for="dateleave" class="col-sm-2 col-form-label">Tarikh Dari<span
+                                                    style="color: red;">
+                                                    *</span></label></label>
                                             <div class="col-sm-4">
-                                                <input type="date" class="form-control" name="date_leave" placeholder="dd/mm/yy">
+                                                <input type="date" class="form-control" name="date_leave"
+                                                    placeholder="dd/mm/yy">
                                             </div>
-                                            <label for="dateend" class="col-sm-2 col-form-label">Tarikh hingga</label>
+                                            <label for="dateend" class="col-sm-2 col-form-label">Tarikh hingga<span
+                                                    style="color: red;">
+                                                    *</span></label></label>
                                             <div class="col-sm-4">
-                                                <input type="date" class="form-control" name="date_end" placeholder="dd/mm/yy">
+                                                <input type="date" class="form-control" name="date_end"
+                                                    placeholder="dd/mm/yy">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="lampiran" class="col-sm-2 col-form-label">Bukti(Disarankan)</label>
+                                            <label for="lampiran"
+                                                class="col-sm-2 col-form-label">Bukti(Disarankan)</label>
                                             <div class="input-group col-sm-10">
                                                 <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" id="inputFile" name="inputFile" accept=".pdf, .doc, .docx, .png, .jpeg, .jpg" onchange="displayFileName()">
+                                                    <input type="file" class="custom-file-input" id="inputFile"
+                                                        name="inputFile" accept=".pdf, .doc, .docx, .png, .jpeg, .jpg"
+                                                        onchange="displayFileName()">
                                                     <label class="custom-file-label" for="inputFile">Tidak Melebihi
                                                         5mb</label>
                                                 </div>
                                             </div>
                                         </div>
+                                        <div style="text-align: right; margin-right: 0px;">
+                                            <button type="submit" class="btn btn-primary" name="submit"
+                                                id="submit">Hantar</button>
+                                        </div>
                                     </div>
-                                    <!-- /.card-body -->
-                                    <div class="card-footer">
-                                        <button type="submit" class="btn btn-primary" name="submit" id="submit">Hantar</button>
-                                    </div>
+
                                 </form>
                                 <!-- /.form -->
                             </div>

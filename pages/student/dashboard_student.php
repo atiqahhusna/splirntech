@@ -65,12 +65,11 @@ if ($result->num_rows > 0) {
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0">Dashboard</h1>
+              <h1 class="m-0">Laman Utama</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="dashboard_student.php">Laman Utama</a></li>
-                <li class="breadcrumb-item active">Dashboard</li>
+                <li class="breadcrumb-item active">Laman Utama</li>
               </ol>
             </div>
           </div>
@@ -109,10 +108,10 @@ if ($result->num_rows > 0) {
                 echo "<div class='small-box bg-info'>
             <div class='inner'>
               <h3>{$daysPassed}/{$totalDays}</h3>
-              <p>HARI LATIHAN INDUSTRI</p>
+              <p>Hari Latihan Industri</p>
             </div>
             <div class='icon'>
-              <i class='ion-android-calendar'></i>
+              <i class='ion ion-android-calendar'></i>
             </div>
             <a href='#' class='small-box-footer'><i class='ion-calendar'></i></a>
           </div>";
@@ -152,10 +151,10 @@ if ($result->num_rows > 0) {
                 echo "<div class='small-box bg-success'>
             <div class='inner'>
               <h3>{$weeksPassed}/{$totalWeeks}</h3>
-              <p>MINGGU LATIHAN INDUSTRI</p>
+              <p>Minggu Latihan Industri</p>
             </div>
             <div class='icon'>
-              <i class='ion-stats-bars'></i>
+              <i class='ion ion-stats-bars'></i>
             </div>
             <a href='#' class='small-box-footer'><i class='ion-stats-bars'></i></a>
           </div>";
@@ -181,10 +180,10 @@ if ($result->num_rows > 0) {
                 echo "<div class='small-box bg-danger'>
             <div class='inner'>
               <h3>{$feedbackCount}</h3>
-              <p>ADUAN DIBUAT</p>
+              <p>Aduan Dibuat</p>
             </div>
             <div class='icon'>
-              <i class='ion-android-warning'></i>
+              <i class='ion ion-android-warning'></i>
             </div>
             <a href='#' class='small-box-footer'><i class='ion-android-alert'></i></a>
           </div>";
@@ -209,10 +208,10 @@ if ($result->num_rows > 0) {
                 echo "<div class='small-box bg-warning'>
             <div class='inner'>
               <h3>{$taskActivityCount}</h3>
-              <p>LAPORAN HARIAN</p>
+              <p>Laporan Harian</p>
             </div>
             <div class='icon'>
-              <i class='ion-compose'></i>
+              <i class='ion ion-compose'></i>
             </div>
             <a href='#' class='small-box-footer'><i class='ion-ios-compose'></i></a>
           </div>";
