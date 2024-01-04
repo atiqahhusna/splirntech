@@ -11,7 +11,15 @@ include "../conn.php";
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>SPLI RN TECH | Task</title>
+	<title>SPLI RNTECH | Task</title>
+	<link rel="stylesheet" href="../../plugins/sweetalert2/sweetalert2.min.css">
+<link rel="stylesheet" href="../../plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+
+<script src="../../plugins/jquery/jquery.min.js"></script>
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../dist/js/adminlte.min.js"></script>
+<script type="text/javascript" src="../../plugins/sweetalert2/sweetalert2.min.js"></script>
+<script src="../../dist/js/demo.js"></script>
 
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 	<link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
@@ -83,7 +91,7 @@ include "../conn.php";
 							while ($row = mysqli_fetch_array($result)) {
 						?>
 								<div class="card-body">
-									<form method='post' action='updateTask_svDB.php?unique_id=<?php echo $id; ?>&student_id=<?php echo $student_id ?>'>
+									<form id = "formupdate" method='post' action='updateTask_svDB.php?unique_id=<?php echo $id; ?>&student_id=<?php echo $student_id ?>' enctype="multipart/form-data">
 										<div class="form-group">
 											<div class="mb-3">
 												<label for="week">Minggu</label>
@@ -106,11 +114,11 @@ include "../conn.php";
 											</div>
 
 											<div class="mb-3">
-												<label for="comment">Maklumbalas*</label>
-												<input type="text" class="form-control" name="comment" value="<?php echo $row['comment']; ?>" required>
+												<label for="comment">Maklumbalas</label><label style="color:red">*</label>
+												<input type="text" class="form-control" id="id" name="comment" value="<?php echo $row['comment']; ?>" required>
 											</div>
 											<div cclass="mb-3">
-												<label for="level">Peringkat*</label>
+												<label for="level">Peringkat</label><label style="color:red">*</label>
 												<p class="padding-left:95px;">
 													<input type="radio" name="level" id="level" value="Sangat Tidak Memuaskan" required>&emsp;Sangat Tidak Memuaskan&emsp;&emsp;
 													<input type="radio" name="level" id="level" value="Tidak Memuaskan" required>&emsp;Tidak Memuaskan&emsp;&emsp;
@@ -118,9 +126,8 @@ include "../conn.php";
 													<input type="radio" name="level" id="level" value="Sangat Memuaskan" required>&emsp;Sangat Memuaskan&emsp;&emsp;
 												</p>
 											</div>
-
-											<button type="submit" name="submit" class="btn btn-danger" onclick="return confirmUpdate()">Simpan</button>
-											<a href="studentActivityView_sv.php?student_id=<?php echo $student_id ?>&unique_week=<?php echo $row['week']; ?>" class="btn btn-warning">Kembali</a>
+											<button class="btn btn-secondary" style="float:right"><a href="studentActivityView_sv.php?student_id=<?php echo $student_id ?>&unique_week=<?php echo $row['week']; ?>" style="color:white">Kembali</a></button>
+											<button type="submit" id="submit" class="btn btn-primary" style="float:right; margin-right:5px">Simpan</button>
 
 										</div>
 									</form>
@@ -143,6 +150,53 @@ include "../conn.php";
 
 
 	</div>
+<!-- Add this script in the head section or include it in a separate external script file -->
+<script>
+    // Function to show SweetAlert confirmation
+
+    // Add event listener to the submit button
+    document.getElementById('submit').addEventListener('click', function () {
+        Swal.fire({
+            title: 'Anda pasti mahu simpan?',
+            text: 'Perubahan akan disimpan!',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, simpan!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Trigger form submission if confirmed
+                document.getElementById('formupdate').submit();
+            }
+        });
+    });
+
+	$('.btn-primary').click(function(e) {
+    e.preventDefault();
+    var form = $(this).parents('form'); // Get the form element
+
+    Swal.fire({
+        title: 'Anda pasti mahu simpan?',
+        text: 'Perubahan akan disimpan!',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya, simpan!',
+        cancelButtonText: 'Batal'
+    }).then((result) => {
+        // Check if the user clicked "Ya, simpan!"
+        if (result.isConfirmed) {
+            form.submit(); // Submit the form
+        }
+    });
+});
+
+</script>
+
+
 
 	<script src="../../plugins/jquery/jquery.min.js"></script>
 	<script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
