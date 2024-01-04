@@ -16,7 +16,7 @@ include "../../conn.php";
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SPLI RN TECH | Senarai Permohonan</title>
+    <title>SPLI RNTECH | Senarai Permohonan</title>
 
     <?php include "../includes/styles.php"; ?>
 
