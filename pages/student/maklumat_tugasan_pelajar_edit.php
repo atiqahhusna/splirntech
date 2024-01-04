@@ -114,9 +114,11 @@ include "../conn.php";
                   </div>
 
                   <!-- <button type="submit" name="submit" class="btn btn-danger" onclick="return confirmUpdate()">Simpan</button> -->
-                  <button type="submit" class="btn btn-danger" onclick="return confirmUpdate()">Simpan</a></button>
-                  <a href="tugasan.php?student_id=<?php echo $student_id ?>&unique_week=<?php echo $row['week']; ?>" class="btn btn-warning">Kembali</a>
+                  <div class="d-flex justify-content-end">
 
+                    <button type="submit" class="btn btn-primary" style="margin:5px;" onclick="return confirmUpdate()">Simpan</a></button>
+                    <a href="tugasan.php?student_id=<?php echo $student_id ?>&unique_week=<?php echo $row['week']; ?>" style="margin:5px;" class="btn btn-secondary">Kembali</a>
+                  </div>
                 </div>
               </form>
             </div>

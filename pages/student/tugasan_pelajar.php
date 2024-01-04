@@ -21,6 +21,7 @@ include "../conn.php";
     <link rel="stylesheet" href="../../dist/css/alt/splicss.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    
 
 </head>
 
@@ -153,7 +154,7 @@ include "../conn.php";
                                     </div>
                                     <div class="col-md-8 text-right">
                                         <!-- add week-->
-                                        <a href="maklumat_tugasan_pelajar.php" class="btn btn-success"><i class="ion ion-plus-round">Tambah Minggu</i></a>
+                                        <a href="maklumat_tugasan_pelajar.php" class="btn btn-primary"><i class="ion ion-plus-round">Tambah Minggu</i></a>
                                     </div>
                                 </div>
 
@@ -173,7 +174,7 @@ include "../conn.php";
                                                     <tr>
                                                         <th width="5%">Bil</th>
                                                         <th width="30%">Minggu</th>
-                                                        <th width="30%">Lampiran</th>
+                                                        <!-- <th width="30%">Lampiran</th> -->
                                                         <th width="5%">Tindakan</th>
                                                     </tr>
                                                 </thead>
@@ -187,34 +188,6 @@ include "../conn.php";
                                                                 echo "<td>" . $i++ . "</td>";
                                                                 ?>
                                                                 <td>Minggu&ensp;&ensp;<?php echo $myrowAktif["unique_week"]; ?></td>
-
-                                                                <td>
-                                                                    <form action="tugasanUpload.php?student_id=<?php echo $_SESSION['id']; ?>&unique_week=<?php echo $myrowAktif["unique_week"]; ?>" method="post" enctype="multipart/form-data">
-                                                                        <?php
-                                                                        if ($myrowAktif["add_doc"] != null) {
-                                                                            // File input and submit button will be disabled if add_doc has data
-                                                                            $disabledAttribute = 'disabled';
-                                                                        } else {
-                                                                            // File input and submit button will be enabled if add_doc is null
-                                                                            $disabledAttribute = '';
-                                                                        }
-                                                                        ?>
-                                                                        <input type="file" name="pdfFile" id="pdfFile" <?php echo $disabledAttribute; ?>>
-                                                                        <input type="submit" value="Muatnaik" name="submit" <?php echo $disabledAttribute; ?>>
-
-
-
-                                                                        <!-- <input type="file" name="pdfFile" id="pdfFile">
-                                                                    <input type="submit" value="Muatnaik" name="submit"> -->
-                                                                        <?php
-                                                                        if ($myrowAktif["add_doc"] != null) {
-                                                                            echo '<button type="button" class="btn"><a href="../upload/' . $myrowAktif['add_doc'] . '" target="_blank">' . $myrowAktif["add_doc"] . '</a></button>';
-                                                                        } else {
-                                                                            echo "Tiada Dokumen";
-                                                                        }
-                                                                        ?>
-                                                                    </form>
-                                                                </td>
 
                                                                 <td style="text-align: center;">
 
