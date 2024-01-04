@@ -81,7 +81,7 @@ include "../conn.php";
                                     <div class="col-md-5 text-right">
                                         <div class="col-md-12 text-right">
                                             <!-- add week-->
-                                            <a href="maklumat_tugasan_pelajar_tambah.php?unique_week=<?php echo $unique_week; ?>" class="btn btn-primary"><i class="fa fa-plus">Tambah Aktiviti</i></a>
+                                            <a href="maklumat_tugasan_pelajar_tambah.php?unique_week=<?php echo $unique_week; ?>" class="btn btn-success"><i class="fa fa-plus">Tambah Aktiviti</i></a>
                                         </div>
                                     </div>
                                     <!-- /.card-header -->
