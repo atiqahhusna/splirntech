@@ -83,7 +83,7 @@
         </li>
 
         <li class="nav-item">
-          <a href="/splirntech/pages/hr/Hebahan/hebahan_li.php" class="nav-link">
+          <a href="/splirntech/pages/hr/Hebahan/hebahan_list.php" class="nav-link">
             <i class="nav-icon fas fa-bullhorn"></i>
             <p>
               Hebahan Tawaran
