@@ -6,9 +6,9 @@ if (isset($_SESSION['name']) == '') {
 
 include "../../conn.php";
 
-$sql = "SELECT * FROM `hr` WHERE name = ?";
+$sql = "SELECT * FROM `hr` WHERE id = ?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $_SESSION['name']);
+$stmt->bind_param("i", $_SESSION['id']);
 $stmt->execute();
 $result = $stmt->get_result();
 
