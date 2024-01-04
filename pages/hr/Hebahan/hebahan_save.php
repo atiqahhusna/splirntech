@@ -38,12 +38,12 @@ if ($stmt->execute()) {
             text: "Mesej hebahan berjaya di hantar.",
             icon: "success"
         }).then(function() {
-            window.location.replace("hebahan_li.php"); 
+            window.location.replace("hebahan_list.php"); 
         }); </script></center>';
 
 } else {
     echo "<center><script> alert('Tidak Berjaya Ditambah.'); </script></center>";
-    echo "<meta http-equiv=\"refresh\" content=\"0;URL=hebahan_li.php\">";
+    echo "<meta http-equiv=\"refresh\" content=\"0;URL=hebahan_list.php\">";
 }
 
 // Close the statement and connection
