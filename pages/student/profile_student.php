@@ -32,7 +32,8 @@ if ($result->num_rows > 0) {
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>SPLI RN TECH | Profil Pengguna</title>
 
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 	<link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
 	<link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 	<link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
@@ -81,29 +82,34 @@ if ($result->num_rows > 0) {
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-12">
-							<div class="card card-warning">
+							<div class="card card-navy">
 								<div class="card-header">
 									<h3 class="card-title">Maklumat Profil Pelajar</h3>
 								</div>
 								<!-- /.card-header -->
 								<div class="card-body">
-									<form id="form-edit" action="update_profile.php" method="post" enctype="multipart/form-data" class="p-4">
+									<form id="form-edit" action="update_profile.php" method="post"
+										enctype="multipart/form-data" class="p-4">
 										<div class="container">
 											<div class="row justify-content-center">
 												<div class="col-md-12">
 													<div class="mb-3">
 														<label for="name" class="form-label"> Nama:</label>
 														<div class="input-group">
-															<span class="input-group-text"><i class="bi bi-person-fill"></i></span>
-															<input type="text" class="form-control" id="name" name="name" value="<?php echo $name ?>" <?php echo isset($_GET['edit']) ? '' : 'disabled' ?>>
+															<span class="input-group-text"><i
+																	class="bi bi-person-fill"></i></span>
+															<input type="text" class="form-control" id="name"
+																name="name" value="<?php echo $name ?>" <?php echo isset($_GET['edit']) ? '' : 'disabled' ?>>
 														</div>
 													</div>
 
 													<div class="mb-3">
 														<label for="email" class="form-label"> Emel Pengguna:</label>
 														<div class="input-group">
-															<span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
-															<input type="email" class="form-control" id="email" name="email" value="<?php echo $email ?>" <?php echo isset($_GET['edit']) ? '' : 'disabled' ?>>
+															<span class="input-group-text"><i
+																	class="bi bi-envelope-fill"></i></span>
+															<input type="email" class="form-control" id="email"
+																name="email" value="<?php echo $email ?>" <?php echo isset($_GET['edit']) ? '' : 'disabled' ?>>
 														</div>
 													</div>
 
@@ -113,25 +119,36 @@ if ($result->num_rows > 0) {
 															<span class="input-group-text" id="togglePassword">
 																<i class="fas fa-eye"></i>
 															</span>
-															<input type="password" class="form-control" id="password" name="password" value="<?php echo $password ?>" <?php echo isset($_GET['edit']) ? '' : 'disabled' ?>>
+															<input type="password" class="form-control" id="password"
+																name="password" value="<?php echo $password ?>" <?php echo isset($_GET['edit']) ? '' : 'disabled' ?>>
 														</div>
 													</div>
 
 													<div class="mb-3">
-														<label for="phone_num" class="form-label">Nombor Telefon:</label>
+														<label for="phone_num" class="form-label">Nombor
+															Telefon:</label>
 														<div class="input-group">
-															<span class="input-group-text"><i class="bi bi-telephone-fill"></i></span>
-															<input type="tel" class="form-control" id="phone_num" name="phone_num" value="<?php echo $phone_num ?>" <?php echo isset($_GET['edit']) ? '' : 'disabled' ?>>
+															<span class="input-group-text"><i
+																	class="bi bi-telephone-fill"></i></span>
+															<input type="tel" class="form-control" id="phone_num"
+																name="phone_num" value="<?php echo $phone_num ?>" <?php echo isset($_GET['edit']) ? '' : 'disabled' ?>>
 														</div>
 													</div>
 
-													<div class="text-center">
+													<div>
 														<?php if (isset($_GET['edit'])) { ?>
-															<button type="submit" class="btn btn-warning">Simpan</button>
-															<input type="hidden" id="id_edit" name="id_edit" value="<?php echo $id_edit ?>">
-															<a href="javascript:history.back()" class="btn btn-secondary mx-2">Kembali</a>
+															<div style="text-align: right; margin-right:0px;">
+																<button type="submit"
+																	class="btn btn-primary">Simpan</button>
+																<input type="hidden" id="id_edit" name="id_edit"
+																	value="<?php echo $id_edit ?>">
+																<a href="javascript:history.back()"
+																	class="btn btn-secondary">Kembali</a>
+															</div>
 														<?php } else { ?>
-															<a href="?edit=true" class="btn btn-primary">Kemaskini</a>
+															<div style="text-align: right; margin-right:0px;">
+																<a href="?edit=true" class="btn btn-primary">Kemaskini</a>
+															</div>
 														<?php } ?>
 													</div>
 												</div>
@@ -181,12 +198,12 @@ if ($result->num_rows > 0) {
 		}
 	</script>
 	<script>
-		document.addEventListener("DOMContentLoaded", function() {
+		document.addEventListener("DOMContentLoaded", function () {
 			const passwordField = document.getElementById("password");
 			const togglePassword = document.getElementById("togglePassword");
 
 			if (passwordField && togglePassword) {
-				togglePassword.addEventListener("click", function() {
+				togglePassword.addEventListener("click", function () {
 					const type = passwordField.getAttribute("type") === "password" ? "text" : "password";
 					passwordField.setAttribute("type", type);
 					this.querySelector("i").classList.toggle("bi-eye");

@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="../../dist/css/alt/splicss.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 
     <script src="../../plugins/jquery/jquery.min.js"></script>
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -136,7 +137,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12">
-                            <div class="card card-danger">
+                            <div class="card card-navy">
                                 <!-- Horizontal Form -->
 
                                 <div class="card-header">
@@ -145,14 +146,17 @@
                                 <!-- /.card-header -->
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <form id="formID" method='post' action='addFeedback_stDB.php' enctype="multipart/form-data" onsubmit="return validateForm()">
+                                        <form id="formID" method='post' action='addFeedback_stDB.php'
+                                            enctype="multipart/form-data" onsubmit="return validateForm()">
                                             <div class="form-group">
                                                 <p>
                                                     <label for="name">Pengadu</label>
-                                                    <input class="form-control" name="pengadu" id="pengadu" value="<?php echo $name; ?>" readonly>
+                                                    <input class="form-control" name="pengadu" id="pengadu"
+                                                        value="<?php echo $name; ?>" readonly>
                                                 </p>
                                                 <p>
-                                                    <label for="date">Nama Pelajar Atau Penyelia*</label>
+                                                    <label for="date">Nama Pelajar Atau Penyelia<span
+                                                            style="color: red;"> *</span></label>
                                                     <select name="name" id="name" class="form-control">
                                                         <option value=""> -- Pilih Nama -- </option>
                                                         <?php
@@ -175,28 +179,35 @@
                                                     $Date = gmdate('Y-m-d');
                                                     $currenttime = date('h:i A');
                                                     ?>
-                                                    <label for="aduan">Aduan*</label>
-                                                    <input class="form-control" name="aduan" id="aduan" placeholder="Aduan yang ingin dikenakan">
+                                                    <label for="aduan">Aduan<span style="color: red;"> *</span></label>
+                                                    <input class="form-control" name="aduan" id="aduan"
+                                                        placeholder="Aduan yang ingin dikenakan">
                                                 </p>
                                                 <p>
-                                                    <label for="date">Tarikh Aduan*</label>
-                                                    <input type="form-control" class="form-control" name="date" id="date" value="<?php echo date('d/m/Y', strtotime($Date)); ?>" readonly>
+                                                    <label for="date">Tarikh Aduan</label>
+                                                    <input type="form-control" class="form-control" name="date"
+                                                        id="date" value="<?php echo date('d/m/Y', strtotime($Date)); ?>"
+                                                        readonly>
                                                 </p>
                                                 <p>
-                                                    <label for="masa">Masa Aduan*</label>
-                                                    <input type="form-control" class="form-control" name="time" id="time" value="<?php echo $currenttime; ?>" placeholder="<?php echo $currenttime; ?>" readonly>
+                                                    <label for="masa">Masa Aduan</label>
+                                                    <input type="form-control" class="form-control" name="time"
+                                                        id="time" value="<?php echo $currenttime; ?>"
+                                                        placeholder="<?php echo $currenttime; ?>" readonly>
                                                 </p>
                                                 <p>
-                                                    <label for="type">Jenis Aduan*</label>
+                                                    <label for="type">Jenis Aduan<span style="color: red;">
+                                                            *</span></label>
                                                     <select name="type" id="type" class="form-control">
                                                         <option value=""> -- Pilih Jenis Aduan -- </option>
                                                         <option value="Maklum Balas"> Maklum Balas </option>
                                                         <option value="Aduan"> Aduan </option>
                                                     </select>
                                                 </p>
-                                                <p>
-                                                    <input type='submit' name='submit' value='Hantar' class='btn btn-primary'>
-                                                </p>
+                                                <div style="text-align: right; margin-right: 0px;">
+                                                    <input type='submit' name='submit' value='Hantar'
+                                                        class='btn btn-primary'>
+                                                </div>
                                             </div>
                                         </form>
                                     </div> <!-- END OF FORM -->
