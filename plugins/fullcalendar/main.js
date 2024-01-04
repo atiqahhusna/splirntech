@@ -488,7 +488,7 @@ var FullCalendar = (function (exports) {
             contentWidthEl.getBoundingClientRect().width;
     }
 
-    var DAY_IDS = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+    var DAY_IDS = ['Ahd', 'Ins', 'Sel', 'Rab', 'Kha', 'Jum', 'Sab'];
     // Adding
     function addWeeks(m, n) {
         var a = dateToUtcArray(m);
@@ -4190,39 +4190,39 @@ var FullCalendar = (function (exports) {
         },
         direction: 'ltr',
         buttonText: {
-            prev: 'prev',
-            next: 'next',
-            prevYear: 'prev year',
-            nextYear: 'next year',
-            year: 'year',
-            today: 'today',
-            month: 'month',
-            week: 'week',
-            day: 'day',
-            list: 'list',
+            prev: 'Sebelum',
+            next: 'Seterusnya',
+            prevYear: 'Tahun Sebelum',
+            nextYear: 'Tahun Berikut',
+            year: 'Tahun',
+            today: 'Hari Ini',
+            month: 'Bulan',
+            week: 'Minggu',
+            day: 'Hari',
+            list: 'Senarai',
         },
         weekText: 'W',
-        weekTextLong: 'Week',
-        closeHint: 'Close',
-        timeHint: 'Time',
-        eventHint: 'Event',
-        allDayText: 'all-day',
-        moreLinkText: 'more',
-        noEventsText: 'No events to display',
+        weekTextLong: 'Minggu',
+        closeHint: 'Tutup',
+        timeHint: 'Masa',
+        eventHint: 'Aktiviti',
+        allDayText: 'Sepanjang Hari',
+        moreLinkText: 'Lebih',
+        noEventsText: 'Tiada Aktivit',
     };
     var RAW_EN_LOCALE = __assign(__assign({}, MINIMAL_RAW_EN_LOCALE), { 
         // Includes things we don't want other locales to inherit,
         // things that derive from other translatable strings.
         buttonHints: {
-            prev: 'Previous $0',
-            next: 'Next $0',
+            prev: '$0 Sebelum',
+            next: '$0 Seterusnya',
             today: function (buttonText, unit) {
                 return (unit === 'day')
-                    ? 'Today'
-                    : "This " + buttonText;
+                    ? 'Hari Ini'
+                    : "Ini " + buttonText;
             },
-        }, viewHint: '$0 view', navLinkHint: 'Go to $0', moreLinkHint: function (eventCnt) {
-            return "Show " + eventCnt + " more event" + (eventCnt === 1 ? '' : 's');
+        }, viewHint: 'Lihat $0', navLinkHint: 'Pergi ke $0', moreLinkHint: function (eventCnt) {
+            return "Lihat " + eventCnt + " Lebih Aktiviti" + (eventCnt === 1 ? '' : 's');
         } });
     function organizeRawLocales(explicitRawLocales) {
         var defaultCode = explicitRawLocales.length > 0 ? explicitRawLocales[0].code : 'en';

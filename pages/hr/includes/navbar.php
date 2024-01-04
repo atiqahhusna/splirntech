@@ -34,7 +34,7 @@
 	  <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right custom-dropdown">
 		<div class="dropdown-header">
 		  <div class="profile-info">
-			<img src="/splirnt/assets/img/profile.png" alt="Profile Image">
+			<img src="/splirntech/assets/img/profile.png" alt="Profile Image">
 			<span class="name">
 			          <?php echo strtoupper($_SESSION['name']); ?>
 
@@ -42,12 +42,12 @@
 		  </div>
 		</div>
 		<div class="dropdown-divider"></div>
-		<a href="/splirnt/pages/hr/Profil/profile.php" class="dropdown-item">
+		<a href="/splirntech/pages/hr/Profil/profile.php" class="dropdown-item">
 		  <i class="far fa-id-badge"></i>
 		  Profil
 		</a>
 		<div class="dropdown-divider"></div>
-		<a href="/splirnt/index.php" class="dropdown-item">
+		<a href="/splirntech/index.php" class="dropdown-item">
 		  <i class="fas fa-sign-out-alt"></i>
 		  Log Keluar
 		</a>

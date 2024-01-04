@@ -12,7 +12,7 @@
           <a href="/splirntech/pages/hr/dashboard_hr.php" class="nav-link">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
-              Dashboard
+              Laman Utama
             </p>
           </a>
         </li>
