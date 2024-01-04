@@ -108,8 +108,8 @@ if (isset($_GET['id'])) {
                                             </tbody>
                                         </table>
                                         <div class="text-right mt-3">
-                                            <a href="javascript:history.back()" class="btn btn-info">Kembali</a>
-                                            <button type="submit" class="btn btn-success">Simpan</button>
+                                            <a href="javascript:history.back()" class="btn btn-secondary">Kembali</a>
+                                            <button type="submit" class="btn btn-primary">Simpan</button>
                                         </div>
                                     </form>
                                 </div>

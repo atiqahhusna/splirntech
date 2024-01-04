@@ -117,7 +117,7 @@ if ($result->num_rows > 0) {
 
 													<div class="text-center">
 														<?php if (isset($_GET['edit'])) { ?>
-															<button type="submit" class="btn btn-warning">Simpan</button>
+															<button type="submit" class="btn btn-primary">Simpan</button>
 															<input type="hidden" id="id_edit" name="id_edit" value="<?php echo $id_edit ?>">
 															<a href="javascript:history.back()" class="btn btn-secondary mx-2">Kembali</a>
 														<?php } else { ?>
