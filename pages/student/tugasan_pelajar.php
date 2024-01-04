@@ -154,7 +154,7 @@ include "../conn.php";
                                     </div>
                                     <div class="col-md-8 text-right">
                                         <!-- add week-->
-                                        <a href="maklumat_tugasan_pelajar.php" class="btn btn-primary"><i class="ion ion-plus-round">Tambah Minggu</i></a>
+                                        <a href="maklumat_tugasan_pelajar.php" class="btn btn-success"><i class="fa fa-plus">Tambah Minggu</i></a>
                                     </div>
                                 </div>
 
