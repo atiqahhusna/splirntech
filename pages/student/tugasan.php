@@ -19,6 +19,7 @@ include "../conn.php";
     <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
     <link rel="stylesheet" href="../../dist/css/alt/splicss.css">
 
@@ -80,7 +81,7 @@ include "../conn.php";
                                     <div class="col-md-5 text-right">
                                         <div class="col-md-12 text-right">
                                             <!-- add week-->
-                                            <a href="maklumat_tugasan_pelajar_tambah.php?unique_week=<?php echo $unique_week; ?>" class="btn btn-success"><i class="fa fa-plus">Tambah Aktiviti</i></a>
+                                            <a href="maklumat_tugasan_pelajar_tambah.php?unique_week=<?php echo $unique_week; ?>" class="btn btn-primary"><i class="fa fa-plus">Tambah Aktiviti</i></a>
                                         </div>
                                     </div>
                                     <!-- /.card-header -->
@@ -138,11 +139,8 @@ include "../conn.php";
 
                                                                         <!-- Action buttons -->
                                                                         <div class="btn-group">
-                                                                            <a href="maklumat_tugasan_pelajar_edit.php?unique_id=<?php echo $myrowAktif['id']; ?>&unique_week<?php echo $unique_week; ?>" class="btn btn-info btn-sm" style="margin:5px;" title="Update"><i style="font-size:20px" class="fa">&#xf15c;</i></a>
-
-                                                                            <a href="tugasanDelete.php?unique_id=<?php echo $myrowAktif['id']; ?>&unique_week=<?php echo $unique_week; ?>" class="btn btn-warning btn-sm" style="margin:5px;" title="delete"><i style="font-size:20px" id="delete" class="fa">&#xf00d;</i></a>
-
-
+                                                                            <a href="maklumat_tugasan_pelajar_edit.php?unique_id=<?php echo $myrowAktif['id']; ?>&unique_week<?php echo $unique_week; ?>" class="btn btn-primary" style="margin:1px;" title="Kemaskini"><i style="font-size:20px" class="fa">&#xf15c;</i></a>
+                                                                            <a href="tugasanDelete.php?unique_id=<?php echo $myrowAktif['id']; ?>&unique_week=<?php echo $unique_week; ?>" class="btn btn-danger" style="margin:1px;" title="Padam"><i style="font-size:20px" id="delete" class="fa">&#xf1f8;</i></a>
                                                                         </div>
 
                                                                     </td>
