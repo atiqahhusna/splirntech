@@ -68,6 +68,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				$_SESSION['id'] = strtoupper($hrRow['id']);
                 $_SESSION['name'] = strtoupper($hrRow['name']);
                 $_SESSION['phone_num'] = $hrRow['phone_num'];
+                $_SESSION['profile_pic'] = $hrRow['profile_pic'];
+
 
                 header("Location: hr/dashboard_hr.php");
                 exit();
