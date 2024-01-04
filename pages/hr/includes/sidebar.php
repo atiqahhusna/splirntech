@@ -1,7 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <a href="#" class="brand-link">
-    <img src="/splirnt/assets/img/corporation.png" alt="Icon" class="logo-image icon">
-    <img src="/splirnt/assets/img/rntech.png" alt="RNTech Logo" class="logo-image">
+    <img src="/splirntech/assets/img/corporation.png" alt="Icon" class="logo-image icon">
+    <img src="/splirntech/assets/img/rntech.png" alt="RNTech Logo" class="logo-image">
   </a>
 
 
@@ -9,7 +9,7 @@
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item">
-          <a href="/splirnt/pages/hr/dashboard_hr.php" class="nav-link">
+          <a href="/splirntech/pages/hr/dashboard_hr.php" class="nav-link">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
               Dashboard
@@ -18,7 +18,7 @@
         </li>
 
         <li class="nav-item">
-          <a href="/splirnt/pages/hr/SenaraiPelajar/list_student.php" class="nav-link">
+          <a href="/splirntech/pages/hr/SenaraiPelajar/list_student.php" class="nav-link">
             <i class="nav-icon fas fa-users"></i>
             <p>
               Senarai Pelajar
@@ -29,7 +29,7 @@
         </li>
 
         <li class="nav-item">
-          <a href="/splirnt/pages/hr/SenaraiPermohonan/list_apply.php" class="nav-link">
+          <a href="/splirntech/pages/hr/SenaraiPermohonan/list_apply.php" class="nav-link">
             <i class="nav-icon fas fa-clipboard"></i>
             <p>
               Senarai Permohonan
@@ -47,7 +47,7 @@
         </li>
 
         <li class="nav-item">
-          <a href="/splirnt/pages/hr/PermohonanCuti/list_mc.php" class="nav-link">
+          <a href="/splirntech/pages/hr/PermohonanCuti/list_mc.php" class="nav-link">
             <i class="nav-icon fas fa-suitcase"></i>
             <p>
               Permohonan Cuti
@@ -65,7 +65,7 @@
         </li>
 
         <li class="nav-item">
-          <a href="/splirnt/pages/hr/Aduan/aduan.php" class="nav-link">
+          <a href="/splirntech/pages/hr/Aduan/aduan.php" class="nav-link">
             <i class="nav-icon far fa-comments"></i>
             <p>
               Aduan Maklum Balas
@@ -83,7 +83,7 @@
         </li>
 
         <li class="nav-item">
-          <a href="/splirnt/pages/hr/Hebahan/hebahan_li.php" class="nav-link">
+          <a href="/splirntech/pages/hr/Hebahan/hebahan_li.php" class="nav-link">
             <i class="nav-icon fas fa-bullhorn"></i>
             <p>
               Hebahan Tawaran
@@ -103,7 +103,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="/splirnt/pages/hr/Profil/profile.php" class="nav-link">
+              <a href="/splirntech/pages/hr/Profil/profile.php" class="nav-link">
                 <i class="far fa-circle nav-icon" style="color: yellow;"></i>
                 <p>Profil</p>
               </a>
@@ -111,7 +111,7 @@
           </ul>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="/splirnt/pages/hr/Pengguna/list_user.php" class="nav-link">
+              <a href="/splirntech/pages/hr/Pengguna/list_user.php" class="nav-link">
                 <i class="far fa-circle nav-icon" style="color: yellow;"></i>
                 <p>Pengguna</p>
               </a>
@@ -119,7 +119,7 @@
           </ul>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="/splirnt/pages/hr/Permarkahan/list_mark.php" class="nav-link">
+              <a href="/splirntech/pages/hr/Permarkahan/list_mark.php" class="nav-link">
                 <i class="far fa-circle nav-icon" style="color: yellow;"></i>
                 <p>Permarkahan </p>
               </a>
