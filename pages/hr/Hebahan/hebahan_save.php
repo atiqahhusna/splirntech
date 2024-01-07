@@ -19,14 +19,13 @@ $title = $_POST['title'];
     $post_time = $_POST['post_time'];
     $date_from = $_POST['date_from'];
     $date= $_POST['date_to'];
-    $limit_apply = $_POST['limit_apply'];
 
-$sql = "INSERT INTO intern_post (title, description, post_date, post_time, date_from, date_to, limit_apply)
-        VALUES (?,?,?,?,?,?,?)";
+$sql = "INSERT INTO intern_post (title, description, post_date, post_time, date_from, date_to)
+        VALUES (?,?,?,?,?,?)";
 $stmt = $conn->prepare($sql);
 
 // Bind parameters
-$stmt->bind_param("sssssss", $title, $description, $post_date, $post_time, $date_from, $date, $limit_apply);
+$stmt->bind_param("ssssss", $title, $description, $post_date, $post_time, $date_from, $date);
 
 // Execute the statement
 if ($stmt->execute()) {
@@ -38,12 +37,12 @@ if ($stmt->execute()) {
             text: "Mesej hebahan berjaya di hantar.",
             icon: "success"
         }).then(function() {
-            window.location.replace("hebahan_li.php"); 
+            window.location.replace("hebahan_list.php"); 
         }); </script></center>';
 
 } else {
     echo "<center><script> alert('Tidak Berjaya Ditambah.'); </script></center>";
-    echo "<meta http-equiv=\"refresh\" content=\"0;URL=hebahan_li.php\">";
+    echo "<meta http-equiv=\"refresh\" content=\"0;URL=hebahan_list.php\">";
 }
 
 // Close the statement and connection
