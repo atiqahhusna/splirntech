@@ -25,6 +25,16 @@ include "../conn.php";
   <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <link rel="stylesheet" href="../../plugins/daterangepicker/daterangepicker.css">
   <link rel="stylesheet" href="../../plugins/summernote/summernote-bs4.min.css">
+
+  <link rel="stylesheet" href="../../plugins/sweetalert2/sweetalert2.min.css">
+<link rel="stylesheet" href="../../plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+
+<script src="../../plugins/jquery/jquery.min.js"></script>
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../dist/js/adminlte.min.js"></script>
+<script type="text/javascript" src="../../plugins/sweetalert2/sweetalert2.min.js"></script>
+<script src="../../dist/js/demo.js"></script>
+
 </head>
 
 <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
@@ -90,7 +100,7 @@ include "../conn.php";
               <h3 class="card-title">Maklumat Aktiviti Tugasan</h3>
             </div>
             <div class="card-body">
-              <form method='post' action='maklumat_tugasan_pelajar_db.php?student_id=<?php echo $student_id; ?>&unique_id=<?php echo $unique_id; ?>$unique_week=<?php echo $row["week"]; ?>'>
+              <form method='post' id="update" action='maklumat_tugasan_pelajar_db.php?student_id=<?php echo $student_id; ?>&unique_id=<?php echo $unique_id; ?>$unique_week=<?php echo $row["week"]; ?>'>
                 <div class="form-group">
                   <div class="mb-3">
                     <label for="week">Minggu</label>
@@ -116,7 +126,7 @@ include "../conn.php";
                   <!-- <button type="submit" name="submit" class="btn btn-danger" onclick="return confirmUpdate()">Simpan</button> -->
                   <div class="d-flex justify-content-end">
 
-                    <button type="submit" class="btn btn-primary" style="margin:5px;" onclick="return confirmUpdate()">Simpan</a></button>
+                    <button type="submit" id="submit" class="btn btn-primary" style="margin:5px;" onclick="return confirmUpdate()">Simpan</a></button>
                     <a href="tugasan.php?student_id=<?php echo $student_id ?>&unique_week=<?php echo $row['week']; ?>" style="margin:5px;" class="btn btn-secondary">Kembali</a>
                   </div>
                 </div>
@@ -157,10 +167,32 @@ include "../conn.php";
       return 1;
     }
     ?>
-
-
   </div>
 
+  <script>
+
+        $('.btn-primary').click(function(e) {
+          e.preventDefault();
+          var form = $(this).parents('form'); // Get the form element
+
+          Swal.fire({
+              title: 'Anda pasti mahu simpan?',
+              text: 'Perubahan akan disimpan!',
+              icon: 'question',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Ya, simpan!',
+              cancelButtonText: 'Batal'
+          }).then((result) => {
+              // Check if the user clicked "Ya, simpan!"
+              if (result.isConfirmed) {
+                  form.submit(); // Submit the form
+            
+              }
+          });
+      });
+  </script>
   <script src="../../plugins/jquery/jquery.min.js"></script>
   <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
   <script>

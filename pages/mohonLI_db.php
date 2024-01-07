@@ -51,16 +51,17 @@ if (isset($_POST['submit'])) {
             $stmtStudent->execute();
             $stmtStudent->close();
 
-            $getID = "SELECT id FROM student WHERE name = '" . $student_name . "' AND email = '" . $student_email . "'";
-            $result = $conn->query($getID);
+            $queryID = "SELECT * FROM student WHERE name = ? AND email = ?";
+            $stmtID = $conn->prepare($queryID);
 
-            if ($result->num_rows > 0) {
+            // Bind parameters
+            $stmtID->bind_param("ss", $student_name, $student_email);
+            $stmtID->execute();
+            $result = $stmtID->get_result();
+
             // output data of each row
             while($row = $result->fetch_assoc()) {
                 $studentNo_ID = $row['id'];
-            }
-            } else {
-            echo "0 results";
             }
 
 
