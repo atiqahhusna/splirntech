@@ -137,7 +137,7 @@ if (isset($_GET['id'])) {
                     </tbody>
                   </table>
                   <div class="text-right mt-3">
-                    <a href="javascript:history.back()" class="btn btn-info">Kembali</a>
+                    <a href="javascript:history.back()" class="btn btn-secondary">Kembali</a>
                   </div>
                 </div>
               </div>

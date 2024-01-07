@@ -94,11 +94,6 @@ include "../../conn.php";
                           <input type="date" class="form-control" name="date_to" placeholder="dd/mm/yy" required>
                         </div>
                       </div>
-                      <div class="form-group row">
-                        <label for="limit" class="col-sm-2 col-form-label">Had Permohonan</label>
-                        <div class="col-sm-10">
-                          <input type="number" class="form-control" name="limit_apply" placeholder="Masukkan had permohonan" required>
-                        </div>
                       </div>
                     </div>
                     <input type="hidden" name="post_time" value="<?php echo $currenttime; ?>">

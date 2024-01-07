@@ -206,7 +206,7 @@ if (isset($_GET['student_id'])) {
 													<?php if (isset($_GET['edit'])) { ?>
 														<!-- Add the additional back button before the "Kemaskini" button -->
 													<?php } else { ?>
-														<a href="javascript:history.back()" class="btn btn-info">Kembali</a>
+														<a href="javascript:history.back()" class="btn btn-secondary">Kembali</a>
 
 													<?php } ?>
 												</div>

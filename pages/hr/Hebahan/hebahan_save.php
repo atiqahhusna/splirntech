@@ -19,14 +19,13 @@ $title = $_POST['title'];
     $post_time = $_POST['post_time'];
     $date_from = $_POST['date_from'];
     $date= $_POST['date_to'];
-    $limit_apply = $_POST['limit_apply'];
 
-$sql = "INSERT INTO intern_post (title, description, post_date, post_time, date_from, date_to, limit_apply)
-        VALUES (?,?,?,?,?,?,?)";
+$sql = "INSERT INTO intern_post (title, description, post_date, post_time, date_from, date_to)
+        VALUES (?,?,?,?,?,?)";
 $stmt = $conn->prepare($sql);
 
 // Bind parameters
-$stmt->bind_param("sssssss", $title, $description, $post_date, $post_time, $date_from, $date, $limit_apply);
+$stmt->bind_param("ssssss", $title, $description, $post_date, $post_time, $date_from, $date);
 
 // Execute the statement
 if ($stmt->execute()) {

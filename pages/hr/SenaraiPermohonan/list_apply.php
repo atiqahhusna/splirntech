@@ -255,7 +255,7 @@ include "../../conn.php";
                                                                                     }
                                                                                     ?>
                                                                                 </select>
-                                                                                <button id="doneChoosingSupervisorBtn" class="btn btn-success ml-2">Done</button>
+                                                                                <button id="doneChoosingSupervisorBtn" class="btn btn-primary ml-2">Selesai</button>
                                                                                 <!-- Add a hidden input to store the student ID -->
                                                                                 <div class="form-group d-flex">
                                                                         </form>
@@ -402,7 +402,7 @@ include "../../conn.php";
                                     <input type="hidden" id="student_id" name="id" value="<?php echo $myrow['student_id']; ?>">
                                     <div class="form-group row">
                                         <div class="col-sm-10 offset-sm-2">
-                                            <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+                                            <button type="submit" class="btn btn-primary" name="submit">Hantar</button>
                                         </div>
                                     </div>
                                 </div>
