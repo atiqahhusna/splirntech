@@ -22,6 +22,10 @@ include "../conn.php";
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
     <link rel="stylesheet" href="../../dist/css/alt/splicss.css">
+    <link rel="stylesheet" href="../../plugins/sweetalert2/sweetalert2.min.css">
+    <link rel="stylesheet" href="../../plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+
+    <script type="text/javascript" src="../../plugins/sweetalert2/sweetalert2.min.js"></script>
 
 </head>
 
@@ -139,8 +143,8 @@ include "../conn.php";
 
                                                                         <!-- Action buttons -->
                                                                         <div class="btn-group">
-                                                                            <a href="maklumat_tugasan_pelajar_edit.php?unique_id=<?php echo $myrowAktif['id']; ?>&unique_week<?php echo $unique_week; ?>" class="btn btn-primary" style="margin:1px;" title="Kemaskini"><i style="font-size:20px" class="fa">&#xf15c;</i></a>
-                                                                            <a href="tugasanDelete.php?unique_id=<?php echo $myrowAktif['id']; ?>&unique_week=<?php echo $unique_week; ?>" class="btn btn-danger" style="margin:1px;" title="Padam"><i style="font-size:20px" id="delete" class="fa">&#xf1f8;</i></a>
+                                                                            <a href="maklumat_tugasan_pelajar_edit.php?unique_id=<?php echo $myrowAktif['id']; ?>&unique_week<?php echo $unique_week; ?>" class="btn btn-primary" style="margin:1px;" title="Kemaskini"><i class="fas fa-pen"></i></a>
+                                                                            <a href="tugasanDelete.php?unique_id=<?php echo $myrowAktif['id']; ?>&unique_week=<?php echo $unique_week; ?>" class="btn btn-danger" style="margin:1px;" title="Padam"><i style="font-size:20px" id="delete" class="fa fa-trash-o"></i></a>
                                                                         </div>
 
                                                                     </td>
@@ -162,6 +166,8 @@ include "../conn.php";
                                                             var activeTab = document.querySelector('div:not([style="display:none"])');
                                                             localStorage.setItem('tidak-aktif-tab', 'Your data from ' + activeTab.id);
                                                         });
+
+                                                        
                                                     </script>
                                                 </table>
                                             </div>
@@ -312,7 +318,51 @@ $(document).ready(function() {
                     });
                 });
             });
+
+            $('.btn-danger').click(function(e) {
+				e.preventDefault();
+				var deleteURL = $(this).attr('href');
+
+				Swal.fire({
+					title: 'Adakah anda pasti?',
+					text: 'Data akan di padam dari sistem!',
+					icon: 'warning',
+					showCancelButton: true,
+					confirmButtonColor: '#3085d6',
+					cancelButtonColor: '#d33',
+					confirmButtonText: 'Ya, Padam!',
+					cancelButtonText: 'Batal'
+				}).then((result) => {
+					if (result.isConfirmed) {
+						$.ajax({
+							type: 'GET',
+							url: deleteURL, // Replace this URL with your delete endpoint
+							success: function(response) {
+								Swal.fire({
+									title: 'Dihapuskan!',
+									text: 'Maklumat telah berjaya dipadam.',
+									icon: 'success'
+								}).then(() => {
+									location.reload(); // Refresh the page after successful deletion
+								});
+							},
+							error: function() {
+								Swal.fire({
+									title: 'Ralat!',
+									text: 'Gagal memadam maklumat.',
+									icon: 'error'
+								});
+							}
+						});
+					}
+				});
+            });
         });
+
+        
+
+           
+
     </script>
 
 

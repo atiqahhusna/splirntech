@@ -126,7 +126,7 @@ include "../conn.php";
                   <!-- <button type="submit" name="submit" class="btn btn-danger" onclick="return confirmUpdate()">Simpan</button> -->
                   <div class="d-flex justify-content-end">
 
-                    <button type="submit" id="submit" class="btn btn-primary" style="margin:5px;" onclick="return confirmUpdate()">Simpan</a></button>
+                    <button type="submit" id="hantar" class="btn btn-primary" style="margin:5px;" onclick="return confirmUpdate()">Simpan</a></button>
                     <a href="tugasan.php?student_id=<?php echo $student_id ?>&unique_week=<?php echo $row['week']; ?>" style="margin:5px;" class="btn btn-secondary">Kembali</a>
                   </div>
                 </div>
@@ -171,7 +171,7 @@ include "../conn.php";
 
   <script>
 
-        $('.btn-primary').click(function(e) {
+          $(document).on('click', 'form button[type="submit"]', function(e) {
           e.preventDefault();
           var form = $(this).parents('form'); // Get the form element
 
