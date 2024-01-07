@@ -277,6 +277,7 @@ include "../conn.php";
 				table.page.len(entries).draw();
 			});
 		});
+		
 	</script>
 
 	<!-- <script>
