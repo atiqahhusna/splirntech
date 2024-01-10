@@ -6,8 +6,8 @@ if (isset($_SESSION['name']) == '') {
 
 include "../../conn.php";
 
-if (isset($_GET['student_id'])) {
-	$user_id = $_GET['student_id'];
+if (isset($_GET['id'])) {
+	$user_id = $_GET['id'];
 
 	// Query to fetch student data by ID
 	$query = "SELECT * FROM `student` WHERE `student_id` = '" . $user_id . "'";

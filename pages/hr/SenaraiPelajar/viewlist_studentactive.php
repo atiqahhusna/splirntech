@@ -6,8 +6,8 @@ if (isset($_SESSION['name']) == '') {
 
 include "../../conn.php";
 
-if (isset($_GET['student_id'])) {
-	$user_id = $_GET['student_id'];
+if (isset($_GET['id'])) {
+	$user_id = $_GET['id'];
 
 	// Query to fetch student data by ID
 	$query = "SELECT * FROM `student` WHERE `student_id` = '" . $user_id . "'";
@@ -31,7 +31,7 @@ if (isset($_GET['student_id'])) {
 		$supervisor_data = mysqli_fetch_assoc($result_supervisor);
 		$supervisor_name = $supervisor_data['name'];
 	} else {
-		$supervisor_name = "Unknown Supervisor"; // Set default value if supervisor not found
+		$supervisor_name = "Tiada Penyelia Industri"; // Set default value if supervisor not found
 	}
 
 	$query_university = "SELECT * FROM `application_intern` WHERE `student_id` = '" . $user_id . "'";
@@ -45,8 +45,6 @@ if (isset($_GET['student_id'])) {
 		$resume = $university_data['resume'];
 		$last_intern = $university_data['last_intern'];
 		$start_intern = $university_data['start_intern'];
-		$start_intern_formatted = date('d/m/Y', strtotime($start_intern));
-		$last_intern_formatted = date('d/m/Y', strtotime($last_intern));
 	}
 }
 ?>
@@ -59,6 +57,8 @@ if (isset($_GET['student_id'])) {
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>SPLI RN TECH | Maklumat Pengguna</title>
+
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 	<?php include "../includes/styles.php"; ?>
 
@@ -105,7 +105,7 @@ if (isset($_GET['student_id'])) {
 								</div>
 								<!-- /.card-header -->
 								<div class="card-body">
-									<form id="form-edit" action="update_student.php" method="post" enctype="multipart/form-data" class="p-4">
+									<form id="formedit" action="update_studentactive.php?student_id=<?php echo $user_id; ?>" method="post" enctype="multipart/form-data" class="p-4">
 										<div class="container" style="max-width: 3000px;">
 											<div class="row">
 												<div class="col-md-6">
@@ -157,7 +157,7 @@ if (isset($_GET['student_id'])) {
 														<label for="uni_name" class="form-label">Nama Universiti:</label>
 														<div class="input-group">
 															<span class="input-group-text"><i class="bi bi-building"></i></span>
-															<input type="text" class="form-control" id="uni_name" name="uni_name" value="<?php echo $uni_name ?>" readonly>
+															<input type="text" class="form-control" id="uni_name" name="uni_name" value="<?php echo $uni_name ?>" <?php echo isset($_GET['edit']) ? '' : 'disabled' ?>>
 														</div>
 													</div>
 
@@ -165,7 +165,7 @@ if (isset($_GET['student_id'])) {
 														<label for="uni_phone" class="form-label">Nombor Telefon Universiti:</label>
 														<div class="input-group">
 															<span class="input-group-text"><i class="bi bi-telephone-fill"></i></span>
-															<input type="tel" class="form-control" id="uni_phone" name="uni_phone" value="<?php echo $uni_phone ?>" readonly>
+															<input type="tel" class="form-control" id="uni_phone" name="uni_phone" value="<?php echo $uni_phone ?>" <?php echo isset($_GET['edit']) ? '' : 'disabled' ?>>
 														</div>
 													</div>
 
@@ -173,7 +173,7 @@ if (isset($_GET['student_id'])) {
 														<label for="course" class="form-label">Kursus:</label>
 														<div class="input-group">
 															<span class="input-group-text"><i class="bi bi-book-fill"></i></span>
-															<input type="text" class="form-control" id="course" name="course" value="<?php echo $course ?>" readonly>
+															<input type="text" class="form-control" id="course" name="course" value="<?php echo $course ?>" <?php echo isset($_GET['edit']) ? '' : 'disabled' ?>>
 														</div>
 													</div>
 
@@ -181,7 +181,7 @@ if (isset($_GET['student_id'])) {
 														<label for="resume" class="form-label">Resume:</label>
 														<div class="input-group">
 															<span class="input-group-text"><i class="bi bi-file-earmark-text-fill"></i></span>
-															<input type="text" class="form-control" id="resume" name="resume" value="<?php echo $resume ?>" readonly>
+															<input type="text" class="form-control" id="resume" name="resume" value="<?php echo $resume ?>" <?php echo isset($_GET['edit']) ? '' : 'disabled' ?>>
 															<?php
 															// Check if $resume is not empty
 															if (!empty($resume)) {
@@ -192,22 +192,39 @@ if (isset($_GET['student_id'])) {
 														</div>
 													</div>
 
-													<div class="mb-3">
-														<label for="intern_period" class="form-label">Tempoh Latihan Industri:</label>
-														<div class="input-group">
-															<span class="input-group-text"><i class="bi bi-calendar-check-fill"></i></span>
-															<input type="text" class="form-control" id="intern_period" name="intern_period" value="<?php echo $start_intern_formatted . ' Hingga ' . $last_intern_formatted; ?>" readonly>
+													<div class="col-md-12">
+														<div class="row">
+															<!-- University details and date inputs -->
+															<div class="col-md-6">
+																<label for="start_intern" class="form-label">Mula Latihan Industri:</label>
+																<div class="input-group">
+																	<span class="input-group-text"><i class="bi bi-calendar-check-fill"></i></span>
+																	<input type="date" class="form-control" id="start_intern" name="start_intern" value="<?php echo date('Y-m-d', strtotime($start_intern)); ?>" <?php echo isset($_GET['edit']) ? '' : 'disabled' ?>>
+
+																</div>
+															</div>
+															<div class="col-md-6">
+																<label for="last_intern" class="form-label">Tamat Latihan Industri:</label>
+																<div class="input-group">
+																	<span class="input-group-text"><i class="bi bi-calendar-check-fill"></i></span>
+																	<input type="date" class="form-control" id="last_intern" name="last_intern" value="<?php echo date('Y-m-d', strtotime($last_intern)); ?>" min="<?php echo date('Y-m-d', strtotime($start_intern_formatted)); ?>" <?php echo isset($_GET['edit']) ? '' : 'disabled' ?>>
+																</div>
+															</div>
 														</div>
 													</div>
+
 
 
 												</div>
 												<div class="text-center">
 													<?php if (isset($_GET['edit'])) { ?>
+														<button type="submit" id="submitEditButton" class="btn btn-warning">Simpan</button>
+														<input type="hidden" id="id_edit" name="id_edit" value="<?php echo $user_id ?>">
+														<a href="javascript:history.back()" class="btn btn-secondary mx-2">Kembali</a>
 														<!-- Add the additional back button before the "Kemaskini" button -->
 													<?php } else { ?>
-														<a href="javascript:history.back()" class="btn btn-secondary">Kembali</a>
-
+														<a href="?edit=true&id=<?php echo $user_id; ?>" class="btn btn-primary" >Kemaskini</a>
+														<a href="list_student.php" class="btn btn-info">Kembali</a>
 													<?php } ?>
 												</div>
 											</div>
@@ -235,19 +252,62 @@ if (isset($_GET['student_id'])) {
 	</div>
 
 
-	<script src="../../../plugins/jquery/jquery.min.js"></script>
-	<script src="../../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="../../../plugins/datatables/jquery.dataTables.min.js"></script>
-	<script src="../../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-	<script src="../../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-	<script src="../../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-	<script src="../../../plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-	<script src="../../../plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-	<script src="../../../plugins/jszip/jszip.min.js"></script>
-	<script src="../../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-	<script src="../../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-	<script src="../../../dist/js/adminlte.min.js"></script>
-	<script src="../pengguna/pengguna.js"></script>
+    <script src="../../../plugins/jquery/jquery.min.js"></script>
+    <script src="../../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="../../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="../../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="../../../plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="../../../plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="../../../plugins/jszip/jszip.min.js"></script>
+    <script src="../../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="../../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <script src="../../../dist/js/adminlte.min.js"></script>
+    <script src="../SenaraiPelajar/pelajar.js"></script>
+	
+
+<script>
+$('#submitEditButton').click(function(e) {
+	e.preventDefault();
+	var kemaskiniURL = $(this).attr('href');
+
+	Swal.fire({
+		title: 'Anda pasti mahu simpan?',
+		text: 'Perubahan akan disimpan!',
+		icon: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Ya, simpan!',
+		cancelButtonText: 'Batal'
+	}).then((result) => {
+		if (result.isConfirmed) {
+			$.ajax({
+				type: 'GET',
+				url: kemaskiniURL, // Replace this URL with your delete endpoint
+				success: function(response) {
+					Swal.fire({
+						title: 'Berjaya Dikemaskini!',
+						text: 'Maklumat telah berjaya dikemaskini.',
+						icon: 'success'
+					}).then(() => {
+						$('#formedit').submit(); // Refresh the page after successful deletion
+					});
+				},
+				error: function() {
+					Swal.fire({
+						title: 'Ralat!',
+						text: 'Gagal kemaskini maklumat.',
+						icon: 'error'
+					});
+				}
+			});
+		}
+	});
+});
+</script>
+
 
 </body>
 
