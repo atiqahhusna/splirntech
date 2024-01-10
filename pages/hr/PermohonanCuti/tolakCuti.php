@@ -61,23 +61,22 @@ if (isset($_GET['notify']) && isset($_SESSION['id'])) {
                 $mail->Username = 'splirnta@gmail.com';
                 $mail->Password = 'rhgirgmvnpjrrnol';
 
-                // Prepare the email content for rejection
                 $mail->isHTML(true);
-                $mail->Subject = 'Notification: Leave Application Rejected';
+                $mail->Subject = 'Pemberitahuan: Permohonan Cuti Ditolak';
                 $mail->Body = "
-                    <p>Dear $name,</p>
-
-                    <p>We regret to inform you that your leave application has been rejected by HR.</p>
-
-                    <p>Details:</p>
+                    <p>Tuan/Puan $name yang dihormati,</p>
+                
+                    <p>Dengan segala hormatnya, kami ingin memaklumkan bahawa permohonan cuti anda telah ditolak oleh pihak Pengurusan Sumber Manusia (HR).</p>
+                
+                    <p>Butiran:</p>
                     <ul>
-                        <li>Date of Leave: $date_leave</li>
+                        <li>Tarikh Cuti: $date_leave</li>
                     </ul>
-
-                    <p>Thank you.</p>
-                    <p>Best regards,<br>RN Technologies</p>
+                
+                    <p>Terima kasih.</p>
+                    <p>Sekian, <br>RN Technologies Sdn Bhd </p>
                 ";
-
+                
                 // Sender and recipient
                 $mail->setFrom('splirnta@gmail.com', 'Admin RN Tech');
                 $mail->addAddress($email, $name);
