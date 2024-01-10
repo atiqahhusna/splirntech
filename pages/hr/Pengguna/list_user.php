@@ -57,7 +57,7 @@ include "../../conn.php";
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-12">
-							<div class="card card-warning">
+							<div class="card card-navy">
 								<div class="card-header">
 									<h3 class="card-title">Senarai Pengguna Sistem</h3>
 									<a href="add_user.php" class="btn btn-navy btn-sm float-right">
@@ -98,13 +98,13 @@ include "../../conn.php";
 													<td style="background-color: <?php echo $status_color; ?>"><?php echo $status; ?></td>
 													<td>
 														<center>
-															<a href="#changePasswordModal" class="btn btn-success btn-sm change-password" data-toggle="modal" data-user-id="<?php echo $student_row['id']; ?>" data-user-type="student" data-toggle="tooltip" data-placement="top" title="Tukar Kata Laluan">
+															<a href="#changePasswordModal" class="btn btn-outline-primary btn-sm change-password" data-toggle="modal" data-user-id="<?php echo $student_row['id']; ?>" data-user-type="student" data-toggle="tooltip" data-placement="top" title="Tukar Kata Laluan">
 																<i class="fas fa-user-lock"></i>
 															</a>
-															<a href="padamUser.php?id=<?php echo $student_row['id']; ?>&notify=1&category=student" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Padam Pengguna">
+															<a href="padamUser.php?id=<?php echo $student_row['id']; ?>&notify=1&category=student" class="btn btn-outline-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Padam Pengguna">
 																<i class="fas fa-trash-alt"></i>
 															</a>
-															<a href="view_user_student.php?id=<?php echo $student_row['student_id']; ?>&notify=1" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Lihat Maklumat Pengguna">
+															<a href="view_user_student.php?id=<?php echo $student_row['student_id']; ?>&notify=1" class="btn btn-outline-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Lihat Maklumat Pengguna">
 																<i class="fas fa-eye"></i>
 															</a>
 														</center>
@@ -128,13 +128,13 @@ include "../../conn.php";
 													<td style="background-color: <?php echo $status_color; ?>"><?php echo $status; ?></td>
 													<td>
 														<center>
-															<a href="#changePasswordModal" class="btn btn-success btn-sm change-password" data-toggle="modal" data-user-id="<?php echo $supervisor_row['id']; ?>" data-user-type="supervisor" data-toggle="tooltip" data-placement="top" title="Tukar Kata Laluan">
+															<a href="#changePasswordModal" class="btn btn-outline-primary btn-sm change-password" data-toggle="modal" data-user-id="<?php echo $supervisor_row['id']; ?>" data-user-type="supervisor" data-toggle="tooltip" data-placement="top" title="Tukar Kata Laluan">
 																<i class="fas fa-user-lock"></i>
 															</a>
-															<a href="padamUser.php?id=<?php echo $supervisor_row['id']; ?>&notify=1&category=supervisor" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Padam Pengguna">
+															<a href="padamUser.php?id=<?php echo $supervisor_row['id']; ?>&notify=1&category=supervisor" class="btn btn-outline-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Padam Pengguna">
 																<i class="fas fa-trash-alt"></i>
 															</a>
-															<a href="view_user_sv.php?id=<?php echo $supervisor_row['id']; ?>&notify=1" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Lihat Maklumat Pengguna">
+															<a href="view_user_sv.php?id=<?php echo $supervisor_row['id']; ?>&notify=1" class="btn btn-outline-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Lihat Maklumat Pengguna">
 																<i class="fas fa-eye"></i>
 															</a>
 														</center>

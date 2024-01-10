@@ -202,17 +202,18 @@ if (isset($_GET['id'])) {
 
 
 												</div>
-												<div class="text-center">
+												<div class="col-md-12 text-right"> <!-- Changed class to "text-right" -->
 													<?php if (isset($_GET['edit'])) { ?>
-														<button type="button" id="submitEditButton" class="btn btn-warning">Simpan</button>
+														<button type="button" id="submitEditButton" class="btn btn-primary">Simpan</button>
 														<input type="hidden" id="id_edit" name="id_edit" value="<?php echo $user_id ?>">
 														<a href="javascript:history.back()" class="btn btn-secondary mx-2">Kembali</a>
 														<!-- Add the additional back button before the "Kemaskini" button -->
 													<?php } else { ?>
 														<a href="?edit=true&id=<?php echo $user_id; ?>" class="btn btn-primary">Kemaskini</a>
-														<a href="list_user.php" class="btn btn-info">Kembali</a>
+														<a href="list_user.php" class="btn btn-secondary">Kembali</a>
 													<?php } ?>
 												</div>
+
 											</div>
 										</div>
 									</form>
