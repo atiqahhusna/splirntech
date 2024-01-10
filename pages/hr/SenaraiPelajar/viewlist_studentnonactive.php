@@ -202,7 +202,7 @@ if (isset($_GET['id'])) {
 
 
 												</div>
-												<div class="text-center">
+												<div class="col-md-12 text-right"> <!-- Changed class to "text-right" -->
 													<?php if (isset($_GET['edit'])) { ?>
 														<!-- Add the additional back button before the "Kemaskini" button -->
 													<?php } else { ?>

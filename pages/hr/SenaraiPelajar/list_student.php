@@ -87,7 +87,7 @@ include "../../conn.php";
 														<th>No. Telefon</th>
 														<th>E-mel</th>
 														<th>Penyelia Industri</th>
-														<th width="5%"> Tindakan</th>
+														<th width="11%"> Tindakan</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -104,16 +104,12 @@ include "../../conn.php";
 																<td><?php echo $myrowAktif['email']; ?></td>
 																<td><?php echo empty($myrowAktif['supervisor_name']) ? 'Tiada Penyelia Industri' : $myrowAktif['supervisor_name']; ?></td>
 																<td>
-
-																	<!-- Action buttons for Tidak Aktif students -->
-																	<div class="btn-group">
-
-																		<a href="viewlist_studentactive.php?id=<?php echo $myrowAktif['student_id']; ?>&notify=1" class="btn btn-primary btn-sm" style="margin:2px;" data-toggle="tooltip" data-placement="top" title="Lihat"><i style="font-size:20px" class="fa">&#xf002; </i></a>
-																		<a href="nonactive_student.php?student_id=<?php echo $myrowAktif['student_id']; ?>&notify=1" class="btn btn-warning btn-sm" style="margin:2px;" data-toggle="tooltip" data-placement="top" title="Tidak Aktif" id="btnnonactive"><i style="font-size:20px" class="fa">&#xf00d;</i></a>
-																		<a href="padam_student.php?student_id=<?php echo $myrowAktif['student_id']; ?>&notify=1" class="btn btn-danger btn-sm" style="margin:2px;" data-toggle="tooltip" data-placement="top" title="Padam" id="btnpadam"><i style="font-size:20px" class="fa">&#xf1f8;</i></a>
-																	</div>
-
+																	<a href="viewlist_studentactive.php?id=<?php echo $myrowAktif['student_id']; ?>&notify=1" class="btn btn-outline-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Lihat"><i class="fas fa-search"></i></a>
+																	<a href="nonactive_student.php?student_id=<?php echo $myrowAktif['student_id']; ?>&notify=1" class="btn btn-outline-primary btn-sm"  data-toggle="tooltip" data-placement="top" title="Tidak Aktif" id="btnnonactive"><i class="fas fa-times"></i></a>
+																	<a href="padam_student.php?student_id=<?php echo $myrowAktif['student_id']; ?>&notify=1" class="btn btn-outline-primary btn-sm"  data-toggle="tooltip" data-placement="top" title="Padam" id="btnpadam"><i class="fas fa-trash-alt"></i></a>
 																</td>
+
+
 															</tr>
 														<?php
 															$bil++; // Increment the counter for the next row
@@ -143,13 +139,13 @@ include "../../conn.php";
 											<table id="example2" class="table table-bordered table-striped">
 												<thead>
 													<tr>
-														<th>Bil</th>
+													<th>Bil</th>
 														<th>ID</th>
 														<th>Nama</th>
 														<th>No. Telefon</th>
 														<th>E-mel</th>
-														<th width="8%">Penyelia Industri</th>
-														<th width="3%">Tindakan</th>
+														<th>Penyelia Industri</th>
+														<th width="11%"> Tindakan</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -167,14 +163,12 @@ include "../../conn.php";
 																<td><?php echo empty($myrowTidakAktif['supervisor_name']) ? 'Tiada Penyelia Industri' : $myrowTidakAktif['supervisor_name']; ?></td>
 
 																<td>
+																	<a href="viewlist_studentnonactive.php?id=<?php echo $myrowTidakAktif['student_id']; ?>&notify=1" class="btn btn-outline-primary btn-sm"  data-toggle="tooltip" data-placement="top" title="Lihat"><i class="fas fa-search"></i></a>
+																	<a href="active_student.php?student_id=<?php echo $myrowTidakAktif['student_id']; ?>&notify=1" class="btn btn-outline-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Aktif" id="btnaktif"><i class="fas fa-check"></i></a>
+																    <a href="padam_student.php?student_id=<?php echo $myrowTidakAktif['student_id']; ?>&notify=1" class="btn btn-outline-primary btn-sm"  data-toggle="tooltip" data-placement="top" title="Padam" id="btnpadamtidakaktif"><i class="fas fa-trash-alt"></i></a>
 
-																	<!-- Action buttons for Tidak Aktif students -->
-																	<div class="btn-group">
-																		<a href="viewlist_studentnonactive.php?id=<?php echo $myrowTidakAktif['student_id']; ?>&notify=1" class="btn btn-primary btn-sm" style="margin:2px;" data-toggle="tooltip" data-placement="top" title="Lihat"><i style="font-size:20px" class="fa">&#xf002; </i></a>
-																		<a href="active_student.php?student_id=<?php echo $myrowTidakAktif['student_id']; ?>&notify=1" class="btn btn-success btn-sm" style="margin:2px;" data-toggle="tooltip" data-placement="top" title="Aktif" id="btnaktif"><i style="font-size:20px" class="fa">&#xf00c;</i></a>
-																		<a href="padam_student.php?student_id=<?php echo $myrowTidakAktif['student_id']; ?>&notify=1" class="btn btn-danger btn-sm" style="margin:2px;" data-toggle="tooltip" data-placement="top" title="Padam" id="btnpadamtidakaktif"><i style="font-size:20px" class="fa">&#xf1f8;</i></a>
-																	</div>
 																</td>
+
 															</tr>
 														<?php
 															$bil++; // Increment the counter for the next row
@@ -222,21 +216,7 @@ include "../../conn.php";
 	<script src="../../../dist/js/adminlte.min.js"></script>
 	<script src="../SenaraiPelajar/pelajar.js"></script>
 
-	<script>
-		$(function() {
-			// Check if the DataTable for #example2 exists and destroy it
-			if ($.fn.DataTable.isDataTable('#example2')) {
-				$('#example2').DataTable().destroy();
-			}
 
-			// Initialize DataTable for the second table
-			$('#example2').DataTable({
-				"paging": true, // Enable pagination
-				"lengthChange": true, // Enable entries dropdown
-				"searching": true, // Enable search box
-			});
-		});
-	</script>
 
 <script>
 
