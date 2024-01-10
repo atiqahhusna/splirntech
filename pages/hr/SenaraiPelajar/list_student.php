@@ -102,15 +102,15 @@ include "../../conn.php";
 																<td><?php echo $myrowAktif['name']; ?></td>
 																<td><?php echo $myrowAktif['phone_num']; ?></td>
 																<td><?php echo $myrowAktif['email']; ?></td>
-																<td><?php echo $myrowAktif['supervisor_name']; ?></td>
+																<td><?php echo empty($myrowAktif['supervisor_name']) ? 'Tiada Penyelia Industri' : $myrowAktif['supervisor_name']; ?></td>
 																<td>
 
 																	<!-- Action buttons for Tidak Aktif students -->
 																	<div class="btn-group">
 
-																		<a href="viewlist_studentactive.php?student_id=<?php echo $myrowAktif['student_id']; ?>&notify=1" class="btn btn-primary btn-sm" style="margin:2px;" data-toggle="tooltip" data-placement="top" title="Lihat"><i style="font-size:20px" class="fa">&#xf002; </i></a>
-																		<a href="nonactive_student.php?student_id=<?php echo $myrowAktif['student_id']; ?>&notify=1" class="btn btn-warning btn-sm" style="margin:2px;" data-toggle="tooltip" data-placement="top" title="Tidak Aktif"><i style="font-size:20px" class="fa">&#xf00d;</i></a>
-																		<a href="padam_student.php?student_id=<?php echo $myrowAktif['student_id']; ?>&notify=1" class="btn btn-danger btn-sm" style="margin:2px;" data-toggle="tooltip" data-placement="top" title="Padam"><i style="font-size:20px" class="fa">&#xf1f8;</i></a>
+																		<a href="viewlist_studentactive.php?id=<?php echo $myrowAktif['student_id']; ?>&notify=1" class="btn btn-primary btn-sm" style="margin:2px;" data-toggle="tooltip" data-placement="top" title="Lihat"><i style="font-size:20px" class="fa">&#xf002; </i></a>
+																		<a href="nonactive_student.php?student_id=<?php echo $myrowAktif['student_id']; ?>&notify=1" class="btn btn-warning btn-sm" style="margin:2px;" data-toggle="tooltip" data-placement="top" title="Tidak Aktif" id="btnnonactive"><i style="font-size:20px" class="fa">&#xf00d;</i></a>
+																		<a href="padam_student.php?student_id=<?php echo $myrowAktif['student_id']; ?>&notify=1" class="btn btn-danger btn-sm" style="margin:2px;" data-toggle="tooltip" data-placement="top" title="Padam" id="btnpadam"><i style="font-size:20px" class="fa">&#xf1f8;</i></a>
 																	</div>
 
 																</td>
@@ -134,9 +134,9 @@ include "../../conn.php";
 											<?php
 											// $queryTidakAktif = "SELECT * FROM `student` WHERE `status`='Tidak Aktif'";
 											$queryTidakAktif = "SELECT student.*, supervisor.name AS supervisor_name
-										FROM student
-										LEFT JOIN supervisor ON student.sv_id = supervisor.sv_id
-										WHERE student.status = 'Tidak Aktif'";
+												FROM student
+												LEFT JOIN supervisor ON student.sv_id = supervisor.sv_id
+												WHERE student.status = 'Tidak Aktif'";
 
 											$resultTidakAktif = mysqli_query($conn, $queryTidakAktif);
 											?>
@@ -164,14 +164,15 @@ include "../../conn.php";
 																<td><?php echo $myrowTidakAktif['name']; ?></td>
 																<td><?php echo $myrowTidakAktif['phone_num']; ?></td>
 																<td><?php echo $myrowTidakAktif['email']; ?></td>
-																<td><?php echo $myrowTidakAktif['supervisor_name']; ?></td>
+																<td><?php echo empty($myrowTidakAktif['supervisor_name']) ? 'Tiada Penyelia Industri' : $myrowTidakAktif['supervisor_name']; ?></td>
+
 																<td>
 
 																	<!-- Action buttons for Tidak Aktif students -->
 																	<div class="btn-group">
-																		<a href="viewlist_studentnonactive.php?student_id=<?php echo $myrowTidakAktif['student_id']; ?>&notify=1" class="btn btn-primary btn-sm" style="margin:2px;" data-toggle="tooltip" data-placement="top" title="Lihat"><i style="font-size:20px" class="fa">&#xf002; </i></a>
-																		<a href="active_student.php?student_id=<?php echo $myrowTidakAktif['student_id']; ?>&notify=1" class="btn btn-success btn-sm" style="margin:2px;" data-toggle="tooltip" data-placement="top" title="Aktif"><i style="font-size:20px" class="fa">&#xf00c;</i></a>
-																		<a href="padam_student.php?student_id=<?php echo $myrowTidakAktif['student_id']; ?>&notify=1" class="btn btn-danger btn-sm" style="margin:2px;" data-toggle="tooltip" data-placement="top" title="Padam"><i style="font-size:20px" class="fa">&#xf1f8;</i></a>
+																		<a href="viewlist_studentnonactive.php?id=<?php echo $myrowTidakAktif['student_id']; ?>&notify=1" class="btn btn-primary btn-sm" style="margin:2px;" data-toggle="tooltip" data-placement="top" title="Lihat"><i style="font-size:20px" class="fa">&#xf002; </i></a>
+																		<a href="active_student.php?student_id=<?php echo $myrowTidakAktif['student_id']; ?>&notify=1" class="btn btn-success btn-sm" style="margin:2px;" data-toggle="tooltip" data-placement="top" title="Aktif" id="btnaktif"><i style="font-size:20px" class="fa">&#xf00c;</i></a>
+																		<a href="padam_student.php?student_id=<?php echo $myrowTidakAktif['student_id']; ?>&notify=1" class="btn btn-danger btn-sm" style="margin:2px;" data-toggle="tooltip" data-placement="top" title="Padam" id="btnpadamtidakaktif"><i style="font-size:20px" class="fa">&#xf1f8;</i></a>
 																	</div>
 																</td>
 															</tr>
@@ -237,6 +238,130 @@ include "../../conn.php";
 		});
 	</script>
 
+<script>
+
+// Function to handle deletion
+$('#btnpadam').click(function(e) {
+	e.preventDefault();
+	var padamURL = $(this).attr('href');
+
+	Swal.fire({
+		title: 'Adakah anda pasti?',
+		text: 'Data akan di padam dari sistem!',
+		icon: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Ya, Padam!',
+		cancelButtonText: 'Batal'
+	}).then((result) => {
+		if (result.isConfirmed) {
+			$.ajax({
+				type: 'GET',
+				url: padamURL, // Replace this URL with your delete endpoint
+				success: function(response) {
+					Swal.fire({
+						title: 'Dihapuskan!',
+						text: 'Maklumat telah berjaya dipadam.',
+						icon: 'success'
+					}).then(() => {
+						location.reload(); // Refresh the page after successful deletion
+					});
+				},
+				error: function() {
+					Swal.fire({
+						title: 'Ralat!',
+						text: 'Gagal memadam maklumat.',
+						icon: 'error'
+					});
+				}
+			});
+		}
+	});
+});
+</script>
+
+<script>
+$('#btnpadamtidakaktif').click(function(e) {
+	e.preventDefault();
+	var padamtidakaktifURL = $(this).attr('href');
+
+	Swal.fire({
+		title: 'Adakah anda ingin teruskan?',
+		text: 'Maklumat ini akan dinyahaktifkan!',
+		icon: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Ya, dinyahaktif!',
+		cancelButtonText: 'Batal'
+	}).then((result) => {
+		if (result.isConfirmed) {
+			$.ajax({
+				type: 'GET',
+				url: padamtidakaktifURL, // Replace this URL with your delete endpoint
+				success: function(response) {
+					Swal.fire({
+						title: 'Berjaya dinyahaktifkan!',
+						text: 'Maklumat telah berjaya dinyahaktifkan.',
+						icon: 'success'
+					}).then(() => {
+						location.reload(); // Refresh the page after successful deletion
+					});
+				},
+				error: function() {
+					Swal.fire({
+						title: 'Ralat!',
+						text: 'Gagal hapus maklumat.',
+						icon: 'error'
+					});
+				}
+			});
+		}
+	});
+});
+</script>
+
+<script>
+$('#btnaktif').click(function(e) {
+	e.preventDefault();
+	var aktiffURL = $(this).attr('href');
+
+	Swal.fire({
+		title: 'Adakah anda pasti?',
+		text: 'Data akan diaktifkan!',
+		icon: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Ya, Aktifkan!',
+		cancelButtonText: 'Batal'
+	}).then((result) => {
+		if (result.isConfirmed) {
+			$.ajax({
+				type: 'GET',
+				url: aktiffURL, // Replace this URL with your delete endpoint
+				success: function(response) {
+					Swal.fire({
+						title: 'Berjaya diaktifkan!',
+						text: 'Maklumat telah berjaya diaktifkan.',
+						icon: 'success'
+					}).then(() => {
+						location.reload(); // Refresh the page after successful deletion
+					});
+				},
+				error: function() {
+					Swal.fire({
+						title: 'Ralat!',
+						text: 'Gagal  aktifkan maklumat.',
+						icon: 'error'
+					});
+				}
+			});
+		}
+	});
+});
+</script>
 
 </body>
 

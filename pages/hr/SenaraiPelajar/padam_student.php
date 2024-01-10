@@ -24,7 +24,7 @@ if (isset($_GET['student_id']) && !empty($_GET['student_id'])) {
     if ($stmt->execute()) {
         //  Insertion successful
         echo '<center><script> 
-        Swal.fre({
+        Swal.fire({
             title: "Berjaya",
             text: "Berjaya dipadam",
             icon: "success"
