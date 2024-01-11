@@ -71,46 +71,43 @@ include "../../conn.php";
                   <table id="example1" class="table table-bordered table-striped">
                     <thead>
                       <tr>
-					  	<th width="5%">Bil.</th>
-						<th>Tajuk</th>
-						<th>Keterangan</th>
-						<th>Tarikh Akhir Permohonan </th>
-						<th width="5%"> Tindakan</th>
+                          <th width="5%">Bil.</th>
+                          <th>Tajuk</th>
+                          <th>Keterangan</th>
+                          <th>Tarikh Akhir Permohonan </th>
+                          <th width="5%" style="text-align: center;"> Tindakan</th>
                       </tr>
                     </thead>
                     <tbody>
-					<?php
-						$bil = 1; // Initialize the counter
-						if (mysqli_num_rows($resulthebahan) > 0) {
-							while ($myrowhebahan = mysqli_fetch_array($resulthebahan)) {
-						?>
-                       <tr>
-							<td><?php echo $bil; ?></td>
-							<td><?php echo $myrowhebahan['title']; ?></td>
-							<td><?php echo $myrowhebahan['description']; ?></td>
-							<td><?php echo date('d/m/Y', strtotime($myrowhebahan['date_to'])); ?></td>
-							<td>
-
-								<!-- Action buttons for Tidak Aktif students -->
-								<div class="btn-group">
-
-									<a href="update_hebahan.php?id=<?php echo $myrowhebahan['id']; ?>&notify=1" class="btn btn-primary btn-sm" style="margin:5px;" data-toggle="tooltip" data-placement="top" title="View"><i style="font-size:20px" class="fas">&#xf044; </i></a>
-									<a href="padam_hebahan.php?id=<?php echo $myrowhebahan['id']; ?>&notify=1" class="btn btn-danger btn-sm" style="margin:5px;" data-toggle="tooltip" data-placement="top" title="Padam"><i style="font-size:20px" class="fa">&#xf1f8;</i></a>
-								</div>
-
-							</td>
-						</tr>
-						<?php
-								$bil++; // Increment the counter for the next row
-							}
-						} else {
-							?>
-							<tr>
-								<td colspan="6">Tiada data</td>
-							</tr>
-						<?php
-						}
-						?>
+                        <?php
+                        $bil = 1; // Initialize the counter
+                        if (mysqli_num_rows($resulthebahan) > 0) {
+                          while ($myrowhebahan = mysqli_fetch_array($resulthebahan)) {
+                        ?>
+                                  <tr >
+                                      <td><?php echo $bil; ?></td>
+                                      <td><?php echo $myrowhebahan['title']; ?></td>
+                                      <td><?php echo $myrowhebahan['description']; ?></td>
+                                      <td><?php echo date('d/m/Y', strtotime($myrowhebahan['date_to'])); ?></td>
+                                      <td>
+                                        <!-- Action buttons for Tidak Aktif students -->
+                                        <div class="btn-group" style="text-align: center;">
+                                          <a href="update_hebahan.php?id=<?php echo $myrowhebahan['id']; ?>&notify=1" class="btn btn-outline-primary btn-sm"  style="margin:5px;" data-toggle="tooltip" data-placement="top" title="View"><i style="font-size:20px" class="fas">&#xf044; </i></a>
+                                          <a href="padam_hebahan.php?id=<?php echo $myrowhebahan['id']; ?>&notify=1" class="btn btn-outline-primary btn-sm"  style="margin:5px;" data-toggle="tooltip" data-placement="top" title="Padam"><i style="font-size:20px" class="fa">&#xf1f8;</i></a>
+                                        </div>
+                                      </td>
+						                       </tr>
+                                <?php
+                                    $bil++; // Increment the counter for the next row
+                                  }
+                                } else {
+                                  ?>
+                                  <tr>
+                                    <td colspan="6">Tiada data</td>
+                                  </tr>
+                                <?php
+                                }
+                                ?>
                     </tbody>
                   </table>
                 </div>
