@@ -78,27 +78,29 @@ if ($result->num_rows > 0) {
 								</div>
 								<!-- /.card-header -->
 								<div class="card-body">
+									<!-- <form id="form-edit" action="profile_edit_save.php" method="post" enctype="multipart/form-data" class="p-4"> -->
 									<form id="form-edit" action="profile_edit_save.php" method="post" enctype="multipart/form-data" class="p-4">
+
 										<div class="container">
 											<div class="row justify-content-center">
 												<div class="col-md-12">
-												<div class="mb-3 text-center">
-    <?php if(isset($profile_pic) && !empty($profile_pic)) { ?>
-        <div class="mt-2">
-            <img src="../../upload/<?php echo $profile_pic; ?>" alt="Profile Picture" class="img-fluid img-thumbnail" style="max-width: 150px;">
-        </div>
-    <?php } else { ?>
-        <div class="mt-2">
-            <img src="../../../assets/img/profile.png" alt="Default Profile Picture" class="img-fluid img-thumbnail" style="max-width: 160px;">
-        </div>
-    <?php } ?>
-    <?php if (isset($_GET['edit'])) { ?>
-        <div class="mt-3">
-            <label for="new_profile_pic" class="form-label">Upload New Profile Picture:</label>
-            <input type="file" class="form-control" id="new_profile_pic" name="new_profile_pic">
-        </div>
-    <?php } ?>
-</div>
+													<div class="mb-3 text-center">
+														<?php if(isset($profile_pic) && !empty($profile_pic)) { ?>
+															<div class="mt-2">
+																<img src="../../upload/<?php echo $profile_pic; ?>" alt="Profile Picture" class="img-fluid img-thumbnail" style="max-width: 150px;">
+															</div>
+														<?php } else { ?>
+															<div class="mt-2">
+																<img src="../../../assets/img/profile.png" alt="Default Profile Picture" class="img-fluid img-thumbnail" style="max-width: 160px;">
+															</div>
+														<?php } ?>
+														<?php if (isset($_GET['edit'])) { ?>
+															<div class="mt-3">
+																<label for="new_profile_pic" class="form-label">Muat Naik Gambar Profil:</label>
+																<input type="file" class="form-control" id="new_profile_pic" name="new_profile_pic">
+															</div>
+														<?php } ?>
+													</div>
 
 													<div class="mb-3">
 														<label for="name" class="form-label"> Nama:</label>
@@ -136,11 +138,11 @@ if ($result->num_rows > 0) {
 
 													<div class="text-center d-flex justify-content-end">
 														<?php if (isset($_GET['edit'])) { ?>
-															<button type="submit" class="btn btn-primary">Simpan</button>
+															<button type="submit" class="btn btn-primary" id="simpanButton">Simpan</button>
 															<input type="hidden" id="id_edit" name="id_edit" value="<?php echo $id_edit ?>">
 															<a href="javascript:history.back()" class="btn btn-secondary mx-2">Kembali</a>
 														<?php } else { ?>
-															<a href="?edit=true" class="btn btn-primary">Kemaskini</a>
+															<a href="?edit=true" class="btn btn-primary" id="kemaskiniButton">Kemaskini</a>
 														<?php } ?>
 													</div>
 
@@ -181,5 +183,38 @@ if ($result->num_rows > 0) {
 	<script src="../Profil/profil.js"></script>
 
 </body>
+<script>
+  // Function to trigger SweetAlert for confirmation
+  function confirmSave() {
+    Swal.fire({
+      title: 'Anda Pasti?',
+	  text: 'Untuk Kemaskini Data',
+      showCancelButton: true,
+      confirmButtonText: 'Ya',
+      cancelButtonText: 'Tidak'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // If user clicks 'Yes', submit the form
+        document.getElementById('form-edit').submit();
+      }
+    });
+  }
+
+  // Function to show success message after updating data
+  function showSuccessMessage() {
+    swal(
+		'!',
+		'Your file has been deleted.',
+		'success'
+	);
+  }
+  
+  // Adding event listener when the 'Simpan' button is clicked
+  document.getElementById('simpanButton').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent default form submission
+    confirmSave(); // Show confirmation before submitting
+  });
+</script>
+
 
 </html>
