@@ -75,7 +75,7 @@ include "../../conn.php";
                           <th>Tajuk</th>
                           <th>Keterangan</th>
                           <th>Tarikh Akhir Permohonan </th>
-                          <th width="5%" style="text-align: center;"> Tindakan</th>
+                          <th width="10%" style="text-align: center;"> Tindakan</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -89,12 +89,9 @@ include "../../conn.php";
                                       <td><?php echo $myrowhebahan['title']; ?></td>
                                       <td><?php echo $myrowhebahan['description']; ?></td>
                                       <td><?php echo date('d/m/Y', strtotime($myrowhebahan['date_to'])); ?></td>
-                                      <td>
-                                        <!-- Action buttons for Tidak Aktif students -->
-                                        <div class="btn-group" style="text-align: center;">
-                                          <a href="update_hebahan.php?id=<?php echo $myrowhebahan['id']; ?>&notify=1" class="btn btn-outline-primary btn-sm"  style="margin:5px;" data-toggle="tooltip" data-placement="top" title="View"><i style="font-size:20px" class="fas">&#xf044; </i></a>
-                                          <a href="padam_hebahan.php?id=<?php echo $myrowhebahan['id']; ?>&notify=1" class="btn btn-outline-primary btn-sm"  style="margin:5px;" data-toggle="tooltip" data-placement="top" title="Padam"><i style="font-size:20px" class="fa">&#xf1f8;</i></a>
-                                        </div>
+                                      <td style="text-align: center;">
+                                          <a href="update_hebahan.php?id=<?php echo $myrowhebahan['id']; ?>&notify=1" class="btn btn-outline-primary btn-sm"  style="margin:5px;" data-toggle="tooltip" data-placement="top" title="View" ><i style="font-size:20px" class="fas">&#xf044; </i></a>
+                                          <a href="padam_hebahan.php?id=<?php echo $myrowhebahan['id']; ?>&notify=1" class="btn btn-outline-primary btn-sm"  style="margin:5px;" data-toggle="tooltip" data-placement="top" title="Padam" id="btnpadam"><i style="font-size:20px" class="fas fa-trash-alt"></i></a>
                                       </td>
 						                       </tr>
                                 <?php
@@ -131,6 +128,48 @@ include "../../conn.php";
   <script src="../../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
   <script src="../../../plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
   <script src="js/list_mark.js"></script>
+
+  <script>
+  $('#btnpadam').click(function(e) {
+	e.preventDefault();
+	var padamURL = $(this).attr('href');
+
+	Swal.fire({
+		title: 'Adakah anda pasti?',
+		text: 'Data akan di padam dari sistem!',
+		icon: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Ya, Padam!',
+		cancelButtonText: 'Batal'
+	}).then((result) => {
+		if (result.isConfirmed) {
+			$.ajax({
+				type: 'GET',
+				url: padamURL, // Replace this URL with your delete endpoint
+				success: function(response) {
+					Swal.fire({
+						title: 'Dihapuskan!',
+						text: 'Maklumat telah berjaya dipadam.',
+						icon: 'success'
+					}).then(() => {
+						location.reload(); // Refresh the page after successful deletion
+					});
+				},
+				error: function() {
+					Swal.fire({
+						title: 'Ralat!',
+						text: 'Gagal memadam maklumat.',
+						icon: 'error'
+					});
+				}
+			});
+		}
+	});
+});
+</script>
+
 
 
 

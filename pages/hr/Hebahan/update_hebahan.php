@@ -26,7 +26,7 @@ if (isset($_GET['id'])) {
     }
 } else {
     // Redirect if ID is not provided
-    header("Location: hebahn_list.php");
+    header("Location: hebahan_list.php");
     exit();
 }
 ?>
@@ -109,7 +109,7 @@ if (isset($_GET['id'])) {
                                         </table>
                                         <div class="text-right mt-3">
                                             <a href="javascript:history.back()" class="btn btn-secondary">Kembali</a>
-                                            <button type="submit" class="btn btn-primary">Simpan</button>
+                                            <button type="submit" class="btn btn-primary" id="btnkemaskini" >Simpan</button>
                                         </div>
                                     </form>
                                 </div>
@@ -144,6 +144,28 @@ if (isset($_GET['id'])) {
     <script src="../../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
     <script src="../../../dist/js/adminlte.min.js"></script>
 
+    <script>
+  $('#btnkemaskini').click(function(e) {
+	e.preventDefault();
+    var form = $(this).parents('form'); // Get the form element
+
+	Swal.fire({
+		title: 'Adakah anda pasti?',
+		text: 'Data akan dikemaskini dari sistem!',
+		icon: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Ya, Kemaskini!',
+		cancelButtonText: 'Batal'
+	}).then((result) => {
+		// Check if the user clicked "Ya, simpan!"
+        if (result.isConfirmed) {
+					$('#editForm').submit(); // Submit the form
+        };
+    });
+});
+</script>
 </body>
 
 </html>

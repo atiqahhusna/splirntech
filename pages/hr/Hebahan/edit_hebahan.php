@@ -34,7 +34,7 @@ if ($stmt->execute()) {
         text: "Tugasan ini telah berjaya dikemaskini.",
         icon: "success"
     }).then(function() {
-        window.location.replace("hebahan_list.php"); 
+        window.location.replace("update_hebahan.php?id=' . $hebahan_id . '"); 
     }); </script></center>';
 } else {
     echo "<center><script> alert('Tidak berjaya dikemaskini.'); </script></center>";

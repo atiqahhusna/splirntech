@@ -89,7 +89,7 @@ include "../../conn.php";
                                                         <th>Universiti</th>
                                                         <!-- <th>Markah</th> -->
                                                         <th>Lampiran</th>
-                                                        <th width="19%">Tindakan</th>
+                                                        <th width="19%" style="text-align: center;">Tindakan</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
