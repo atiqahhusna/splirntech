@@ -42,27 +42,24 @@ if (isset($_POST['submit'])) {
     if (isset($_FILES['resumeFile']) && isset($_FILES['uniFile']) && isset($_FILES['icFile']) &&
         !empty($_FILES['resumeFile']['name']) && !empty($_FILES['uniFile']['name']) && !empty($_FILES['icFile']['name'])) {
 
-
-        // resume file name ---------------------------------------------------------- //
+        // -----------------------------get file name --------------------------------------- //
+        // resume file name//
         $resumeFileName = $_FILES['resumeFile']['name'];
         $resumeTempName = $_FILES['resumeFile']['tmp_name'];
 
-        // rename resume file --------
-        $newResumeFile = $student_name . "_resume_" . $resumeFileName;
-    
-
-        // university letter file name ---------------------------------------------------------- //
+        // university letter file name//
         $uniFileName = $_FILES['uniFile']['name'];
         $uniTempName = $_FILES['uniFile']['tmp_name'];
 
-        // rename uni letter file --------
-        $newUniFile = $student_name . "_uniLetter_" . $uniFileName;
-
-
-        // ic file name ---------------------------------------------------------- //
+        // ic file name//
         $icFileName = $_FILES['icFile']['name'];
         $icTempName = $_FILES['icFile']['tmp_name'];
-
+        
+        // ------------------- rename file attachment --------------------------------------- //
+        // rename resume file --------
+        $newResumeFile = $student_name . "_resume_" . $resumeFileName;
+        // rename uni letter file --------
+        $newUniFile = $student_name . "_uniLetter_" . $uniFileName;
         // rename ic file --------
         $newICFile = $student_name . "_IC_" . $icFileName;
         
@@ -90,7 +87,7 @@ if (isset($_POST['submit'])) {
         // echo "<br>directory path for file uni letter name:" . $uploadPathUni;
         // echo "<br>directory path for file ic name:" . $uploadPathIC;
 
-        // Move the file attachment to the specified directory:- $uploadPathResume,  $uploadPathUni, $uploadPathIC
+        // Move the file attachment to the specified directory:- $uploadPathResume,  $uploadPathUni, $uploadPathIC -------------------------------------------------------------- //
         if (move_uploaded_file($resumeTempName, $uploadPathResume) && move_uploaded_file($uniTempName, $uploadPathUni) && move_uploaded_file($icTempName, $uploadPathIC)) {
             // Insert data into the student table
             $password = generatePassword();
