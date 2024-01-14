@@ -1,6 +1,8 @@
 <link rel="stylesheet" href="@sweetalert2/themes/dark/dark.css">
 <script src="sweetalert2/dist/sweetalert2.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
 
 
@@ -87,7 +89,7 @@ include "../../conn.php";
                                                         <th>Universiti</th>
                                                         <!-- <th>Markah</th> -->
                                                         <th>Lampiran</th>
-                                                        <th width="19%">Tindakan</th>
+                                                        <th width="19%" style="text-align: center;">Tindakan</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -117,11 +119,11 @@ include "../../conn.php";
                                                                 ?>
                                                             </td>
                                                             <td class="text-center">
-                                                                <button class="btn btn-primary btn-sm" style="margin:2px;" data-toggle="modal" data-target="#viewUserDataModal_<?php echo $myrow['id']; ?>" data-placement="center" title="Lihat Maklumat Pengguna" data-id="<?php echo $myrow['id']; ?>"><i style='font-size:20px' class='fas fa-eye'></i></button>
+                                                                <button class="btn btn-outline-primary btn-sm" style="margin:2px;" data-toggle="modal" data-target="#viewUserDataModal_<?php echo $myrow['id']; ?>" data-placement="center" title="Lihat Maklumat Pengguna" data-id="<?php echo $myrow['id']; ?>"><i style='font-size:20px' class='fas fa-eye'></i></button>
                                                                 <!-- <button class="btn btn-primary btn-sm" style="margin:2px;" data-toggle="modal" data-target="#viewUserDataModal" data-placement="center" title="Lihat Maklumat Pengguna" data-id="<?php echo $myrow['id']; ?>"><i style='font-size:20px' class='fas fa-eye'></i></button> -->
-                                                                <button class="btn btn-warning btn-sm interview-button" style="margin:2px;" data-toggle="modal" data-target="#myModal_<?php echo $myrow['id']; ?>" data-placement="center" title="Temuduga" data-id="<?php echo $myrow['studID']; ?>"><i style='font-size:20px' class='fa'>&#xf508;</i></button>
-                                                                <a href="terimaStudent.php?id=<?php echo $myrow['studID']; ?>&notify=1" class="btn btn-success btn-sm" style="margin:2px;" data-toggle="tooltip" data-placement="top" title="Terima"><i style="font-size:20px" class="fa">&#xf00c;</i></a>
-                                                                <a href="tolakStudent.php?id=<?php echo $myrow['studID']; ?>&notify=1" class="btn btn-danger btn-sm" style="margin:2px;" data-toggle="tooltip" data-placement="top" title="Tolak"><i style="font-size:20px" class="fa">&#xf00d;</i></a>
+                                                                <button class="btn btn-outline-primary btn-sm" style="margin:2px;" data-toggle="modal" data-target="#myModal_<?php echo $myrow['id']; ?>" data-placement="center" title="Temuduga" data-id="<?php echo $myrow['studID']; ?>"><i style='font-size:20px' class='fas fa-user-tie'></i></button>
+                                                                <a href="terimaStudent.php?id=<?php echo $myrow['studID']; ?>&notify=1" class="btn btn-outline-primary btn-sm" style="margin:2px;" data-toggle="tooltip" data-placement="top" title="Terima"><i style="font-size:20px" class='fas fa-check'></i></a>
+                                                                <a href="tolakStudent.php?id=<?php echo $myrow['studID']; ?>&notify=1" class="btn btn-outline-primary btn-sm" style="margin:2px;" data-toggle="tooltip" data-placement="top" title="Tolak"><i style="font-size:20px" class="fa">&#xf00d;</i></a>
                                                             </td>
                                                         </tr>
                                                     <?php
@@ -275,7 +277,6 @@ include "../../conn.php";
                                                 </tbody>
                                             </table>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
