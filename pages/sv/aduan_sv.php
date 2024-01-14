@@ -299,8 +299,7 @@ include "../conn.php";
 				table.page.len(entries).draw();
 			});
 		});
-		</script>
-
+</script>
 
 <script>
 	$(document).ready(function () {

@@ -19,6 +19,7 @@ if ($result->num_rows > 0) {
 		$email = $row['email'];
 		$phone_num = $row['phone_num'];
 		$password = $row['password'];
+		$profile_pic =$row['profile_pic'];
 	}
 }
 ?>
@@ -30,7 +31,7 @@ if ($result->num_rows > 0) {
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>SPLI RN TECH | Profil</title>
+	<title>SPLI RNTECH | Profil</title>
 
 	<?php include "../includes/styles.php"; ?>
 
@@ -71,7 +72,7 @@ if ($result->num_rows > 0) {
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-12">
-							<div class="card card-warning">
+							<div class="card card-navy">
 								<div class="card-header">
 									<h3 class="card-title">Profil Pengguna</h3>
 								</div>
@@ -81,6 +82,24 @@ if ($result->num_rows > 0) {
 										<div class="container">
 											<div class="row justify-content-center">
 												<div class="col-md-12">
+												<div class="mb-3 text-center">
+    <?php if(isset($profile_pic) && !empty($profile_pic)) { ?>
+        <div class="mt-2">
+            <img src="../../upload/<?php echo $profile_pic; ?>" alt="Profile Picture" class="img-fluid img-thumbnail" style="max-width: 150px;">
+        </div>
+    <?php } else { ?>
+        <div class="mt-2">
+            <img src="../../../assets/img/profile.png" alt="Default Profile Picture" class="img-fluid img-thumbnail" style="max-width: 160px;">
+        </div>
+    <?php } ?>
+    <?php if (isset($_GET['edit'])) { ?>
+        <div class="mt-3">
+            <label for="new_profile_pic" class="form-label">Upload New Profile Picture:</label>
+            <input type="file" class="form-control" id="new_profile_pic" name="new_profile_pic">
+        </div>
+    <?php } ?>
+</div>
+
 													<div class="mb-3">
 														<label for="name" class="form-label"> Nama:</label>
 														<div class="input-group">
@@ -115,15 +134,16 @@ if ($result->num_rows > 0) {
 														</div>
 													</div>
 
-													<div class="text-center">
+													<div class="text-center d-flex justify-content-end">
 														<?php if (isset($_GET['edit'])) { ?>
-															<button type="submit" class="btn btn-warning">Simpan</button>
+															<button type="submit" class="btn btn-primary">Simpan</button>
 															<input type="hidden" id="id_edit" name="id_edit" value="<?php echo $id_edit ?>">
 															<a href="javascript:history.back()" class="btn btn-secondary mx-2">Kembali</a>
 														<?php } else { ?>
 															<a href="?edit=true" class="btn btn-primary">Kemaskini</a>
 														<?php } ?>
 													</div>
+
 												</div>
 											</div>
 										</div>

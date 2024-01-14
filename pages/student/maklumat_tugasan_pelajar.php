@@ -25,6 +25,10 @@ include "../conn.php";
   <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <link rel="stylesheet" href="../../plugins/daterangepicker/daterangepicker.css">
   <link rel="stylesheet" href="../../plugins/summernote/summernote-bs4.min.css">
+  <link rel="stylesheet" href="../../plugins/sweetalert2/sweetalert2.min.css">
+  <link rel="stylesheet" href="../../plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+
+  <script type="text/javascript" src="../../plugins/sweetalert2/sweetalert2.min.js"></script>
 </head>
 
 <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
@@ -85,18 +89,18 @@ include "../conn.php";
 
                   <div class="mb-3">
                     <label for="description">Keterangan</label>
-                    <textarea class="form-control" name="description" style="height: 150px;"></textarea>
+                    <textarea class="form-control" name="description" style="height: 150px;" required></textarea>
                   </div>
 
                   <div class="mb-3">
                     <label for="date">Tarikh</label>
-                    <input type="date" class="form-control" name="date" value="">
+                    <input type="date" class="form-control" name="date" value="" required>
                   </div>
 
                   <div class="mb-3">
                     <label for="time">Jumlah Masa</label>
                     <!-- <input type="time" class="form-control" name="time" value="">  -->
-                    <input type="number" class="form-control" id="quantity" name="quantity" min="0" max="100">
+                    <input type="number" class="form-control" id="quantity" name="quantity" min="0" max="100" required>
                   </div>
 
                   <!-- <div class="mb-3">
@@ -111,7 +115,7 @@ include "../conn.php";
                     <!-- <label for="pdfFile">Choose a file:</label> -->
                     <!-- <input type="file" name="pdfFile" id="pdfFile" accept=".pdf"> -->
                     <br>
-                    <button type="submit" class="btn btn-primary" style="margin:5px;" name="submit">Simpan</button>
+                    <button type="submit" id="btnSave" class="btn btn-primary" style="margin:5px;" name="submit">Simpan</button>
                     <a href="tugasan_pelajar.php?>" class="btn btn-secondary" style="margin:5px;">Kembali</a>
 
                   </div>
@@ -172,6 +176,60 @@ include "../conn.php";
   <script src="../../dist/js/adminlte.js"></script>
   <script src="../../dist/js/demo.js"></script>
   <script src="../../dist/js/pages/dashboard.js"></script>
+
+  <script>
+    $(document).on('click', '#btnSave', function (e) {
+        e.preventDefault();
+        var form = $(this).closest('form'); // Get the form element
+
+        // Check for required fields
+        var requiredFields = form.find('[required]');
+        var isValid = true;
+
+        requiredFields.each(function () {
+            if ($(this).val().trim() === '') {
+                isValid = false;
+                return false; // Stop the loop if any required field is empty
+            }
+        });
+
+        if (!isValid) {
+            // Show a warning if any required field is empty
+            Swal.fire({
+                icon: 'warning',
+                title: 'Isi Semua Ruang yang Diperlukan',
+                text: 'Sila pastikan semua ruang yang diperlukan diisi.',
+            });
+            return;
+        }
+
+        // Proceed with the SweetAlert confirmation
+        Swal.fire({
+            title: 'Anda pasti mahu simpan?',
+            text: 'Perubahan akan disimpan!',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, simpan!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            // Check if the user clicked "Ya, simpan!"
+            if (result.isConfirmed) {
+                form.submit(); // Submit the form
+            }
+        });
+
+        function clearForm() {
+            $('#formIDAduan')[0].reset();
+        }
+
+        // Attach the clearForm function to the "Clear Form" button click event
+        $(document).on('click', '#btnClear', function () {
+            clearForm();
+        });
+    });
+</script>
 </body>
 
 </html>

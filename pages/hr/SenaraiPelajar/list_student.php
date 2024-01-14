@@ -108,9 +108,9 @@ include "../../conn.php";
 																	<!-- Action buttons for Tidak Aktif students -->
 																	<div class="btn-group">
 
-																		<a href="viewlist_studentactive.php?student_id=<?php echo $myrowAktif['student_id']; ?>&notify=1" class="btn btn-primary btn-sm" style="margin:5px;" data-toggle="tooltip" data-placement="top" title="View"><i style="font-size:20px" class="fa">&#xf002; </i></a>
-																		<a href="nonactive_student.php?student_id=<?php echo $myrowAktif['student_id']; ?>&notify=1" class="btn btn-warning btn-sm" style="margin:5px;" data-toggle="tooltip" data-placement="top" title="non-active"><i style="font-size:20px" class="fa">&#xf00d;</i></a>
-																		<a href="padam_student.php?student_id=<?php echo $myrowAktif['student_id']; ?>&notify=1" class="btn btn-danger btn-sm" style="margin:5px;" data-toggle="tooltip" data-placement="top" title="Padam"><i style="font-size:20px" class="fa">&#xf1f8;</i></a>
+																		<a href="viewlist_studentactive.php?student_id=<?php echo $myrowAktif['student_id']; ?>&notify=1" class="btn btn-primary btn-sm" style="margin:2px;" data-toggle="tooltip" data-placement="top" title="Lihat"><i style="font-size:20px" class="fa">&#xf002; </i></a>
+																		<a href="nonactive_student.php?student_id=<?php echo $myrowAktif['student_id']; ?>&notify=1" class="btn btn-warning btn-sm" style="margin:2px;" data-toggle="tooltip" data-placement="top" title="Tidak Aktif"><i style="font-size:20px" class="fa">&#xf00d;</i></a>
+																		<a href="padam_student.php?student_id=<?php echo $myrowAktif['student_id']; ?>&notify=1" class="btn btn-danger btn-sm" style="margin:2px;" data-toggle="tooltip" data-placement="top" title="Padam"><i style="font-size:20px" class="fa">&#xf1f8;</i></a>
 																	</div>
 
 																</td>
@@ -148,8 +148,8 @@ include "../../conn.php";
 														<th>Nama</th>
 														<th>No. Telefon</th>
 														<th>E-mel</th>
-														<th>Penyelia Industri</th>
-														<th width="5%">Tindakan</th>
+														<th width="8%">Penyelia Industri</th>
+														<th width="3%">Tindakan</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -169,9 +169,9 @@ include "../../conn.php";
 
 																	<!-- Action buttons for Tidak Aktif students -->
 																	<div class="btn-group">
-																		<a href="viewlist_studentnonactive.php?student_id=<?php echo $myrowTidakAktif['student_id']; ?>&notify=1" class="btn btn-primary btn-sm" style="margin:5px;" data-toggle="tooltip" data-placement="top" title="View"><i style="font-size:20px" class="fa">&#xf002; </i></a>
-																		<a href="active_student.php?student_id=<?php echo $myrowTidakAktif['student_id']; ?>&notify=1" class="btn btn-success btn-sm" style="margin:5px;" data-toggle="tooltip" data-placement="top" title="active"><i style="font-size:20px" class="fa">&#xf00c;</i></a>
-																		<a href="padam_student.php?student_id=<?php echo $myrowTidakAktif['student_id']; ?>&notify=1" class="btn btn-danger btn-sm" style="margin:5px;" data-toggle="tooltip" data-placement="top" title="Padam"><i style="font-size:20px" class="fa">&#xf1f8;</i></a>
+																		<a href="viewlist_studentnonactive.php?student_id=<?php echo $myrowTidakAktif['student_id']; ?>&notify=1" class="btn btn-primary btn-sm" style="margin:2px;" data-toggle="tooltip" data-placement="top" title="Lihat"><i style="font-size:20px" class="fa">&#xf002; </i></a>
+																		<a href="active_student.php?student_id=<?php echo $myrowTidakAktif['student_id']; ?>&notify=1" class="btn btn-success btn-sm" style="margin:2px;" data-toggle="tooltip" data-placement="top" title="Aktif"><i style="font-size:20px" class="fa">&#xf00c;</i></a>
+																		<a href="padam_student.php?student_id=<?php echo $myrowTidakAktif['student_id']; ?>&notify=1" class="btn btn-danger btn-sm" style="margin:2px;" data-toggle="tooltip" data-placement="top" title="Padam"><i style="font-size:20px" class="fa">&#xf1f8;</i></a>
 																	</div>
 																</td>
 															</tr>
