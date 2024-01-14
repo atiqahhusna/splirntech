@@ -66,6 +66,7 @@
 
         include "../conn.php";
 
+
         $sql = "SELECT * FROM `student` WHERE name = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $_SESSION['name']);
@@ -80,17 +81,17 @@
         }
 
         $query = "SELECT * FROM `leave_app` WHERE student_id = ?";
-        $stmt = $conn->prepare($query);
+        $stmtMain = $conn->prepare($query);
 
         // Check if the prepare statement was successful
-        if (!$stmt) {
+        if (!$stmtMain) {
             echo "Error in preparing the statement: " . $conn->error;
             exit();
         }
 
-        $stmt->bind_param("s", $_SESSION['id']);
-        $stmt->execute();
-        $result = $stmt->get_result();
+        $stmtMain->bind_param("s", $_SESSION['id']);
+        $stmtMain->execute();
+        $resultMain = $stmtMain->get_result();
 
         // Check if the form is submitted
         if (isset($_POST['submitUpdate'])) {
@@ -110,10 +111,11 @@
             $updateStmt = $conn->prepare($updateSql);
             $updateStmt->bind_param("sssis", $reason, $dateLeave, $dateEnd, $rowsId, $_SESSION['id']);
             if ($updateStmt->execute()) {
+
                 echo '<center><script> 
                 Swal.fire({
                     title: "Berjaya",
-                    text: "Cuti anda berjaya dikemaskini.",
+                    text: "Permohonan cuti anda berjaya dikemaskini.",
                     icon: "success"
                 }).then(function() {
                     window.location.replace("' . $_SERVER["PHP_SELF"] . '");
@@ -126,7 +128,6 @@
             //  Close the statement
             $updateStmt->close();
         }
-
 
         //attachment pulak
         if (isset($_POST['submitAttachment'])) {
@@ -249,9 +250,9 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                        if (mysqli_num_rows($result) > 0) {
+                                        if (mysqli_num_rows($resultMain) > 0) {
                                             $counter = 1;
-                                            while ($row = mysqli_fetch_assoc($result)) {
+                                            while ($row = mysqli_fetch_assoc($resultMain)) {
                                                 // Set class and icon based on status
                                                 $statusClass = '';
                                                 $updateButton = '';
@@ -278,20 +279,20 @@
                                                 }
                                                 // Add the update button only if the status is not 'Lulus'
                                                 if ($row['status'] !== 'Lulus') {
-                                                    $updateButton = "<button type ='button' class='btn btn-outline-primary btn-lg update-details-btn' data-toggle='modal' data-target='#modalKemaskini' data-placement='center' title='Kemaskini'
+                                                    $updateButton = "<button type ='button' class='btn btn-primary btn-lg update-details-btn' data-placement='center' title='Kemaskini'
                                                                     data-reason='{$row['reason']}'
                                                                     data-date-leave='{$row['date_leave']}'
                                                                     data-date-end='{$row['date_end']}'
                                                                     data-id='{$row['id']}'>
-                                                                    <i class='fas fa-edit'></i></button>";
+                                                                    <i class='fas fa-pen'></i></button>";
 
-                                                    $attachmentButton ="<button type='button' class='btn btn-outline-success btn-lg update-attachment-btn' data-toggle='modal' data-target='#modalBukti' data-placement='center' title='Bukti'
+                                                    $attachmentButton = "<button type='button' class='btn btn-warning btn-lg update-attachment-btn' data-toggle='modal' data-target='#modalBukti' data-placement='center' title='Bukti'
                                                                     data-reason='{$row['reason']}'
                                                                     data-date-leave='{$row['date_leave']}'
                                                                     data-date-end='{$row['date_end']}'
                                                                     data-input-file='{$row['support_doc']}'
                                                                     data-id='{$row['id']}'>
-                                                                    <a href = '#'><i class='fa fa-file-text'></a></i></button>";
+                                                                    <i class='fa fa-file-text'></i></button>";
                                                 }
 
                                                 echo "<tr>
@@ -329,43 +330,43 @@
                 </div>
             </section>
         </div>
+    </div>
 
-        <!--update-->
-        <div class="modal fade" id="modalKemaskini" tabindex="-1" role="dialog" aria-labelledby="modalKemaskiniLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modalKemaskiniLabel">Kemaskini Aduan</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Form to display aduan details -->
-                        <form id="aduanKemaskiniForm" method="post" action="sejarah_permohonan.php"
-                            enctype="multipart/form-data">
-                            <div class="form-group">
-                                <label for="reason">Sebab:</label>
-                                <input type="text" class="form-control" id="updateReason" name="updateReason">
-                            </div>
-                            <div class="form-group">
-                                <label for="date_leave">Tarikh dari:</label>
-                                <input type="date" class="form-control" id="updateDate_leave" name="updateDate_leave">
-                            </div>
-                            <div class="form-group">
-                                <label for="date_end">Tarikh hingga:</label>
-                                <input type="date" class="form-control" id="updateDate_end" name="updateDate_end">
-                            </div>
-                            <div class="form-group">
-                                <input type="hidden" class="form-control" id="updateId" name="updateId">
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary" name="submitUpdate"
-                                    id="submitUpdate">Hantar</button>
-                            </div>
-                        </form>
-                    </div>
+    <!--update-->
+    <div class="modal fade" id="modalKemaskini" tabindex="-1" role="dialog" aria-labelledby="modalKemaskiniLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalKemaskiniLabel">Kemaskini Aduan</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Form to display aduan details -->
+                    <form id="aduanKemaskiniForm" method="post" action="sejarah_permohonan.php"
+                        enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="reason">Sebab Cuti:</label>
+                            <input type="text" class="form-control" id="updateReason" name="updateReason">
+                        </div>
+                        <div class="form-group">
+                            <label for="date_leave">Tarikh dari:</label>
+                            <input type="date" class="form-control" id="updateDate_leave" name="updateDate_leave">
+                        </div>
+                        <div class="form-group">
+                            <label for="date_end">Tarikh hingga:</label>
+                            <input type="date" class="form-control" id="updateDate_end" name="updateDate_end">
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" class="form-control" id="updateId" name="updateId">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary" name="submitUpdate"
+                                id="submitUpdate">Hantar</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -396,7 +397,7 @@
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" id="inputFile" name="inputFile"
                                         accept=".pdf, .doc, .docx, .png, .jpeg, .jpg" onchange="displayFileName()">
-                                    <label class="custom-file-label" id="inputFile" for="inputFile" value></label>
+                                    <label class="custom-file-label" id="input" for="input" value></label>
                                 </div>
                             </div>
                         </div>
@@ -446,15 +447,12 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
 
-    </div>
-
-    </div>
     <?php
     include("includes/footer.php");
     ?>
@@ -510,33 +508,62 @@
 
             // Open the modal for updating details
             $('#example1 tbody').on('click', '.update-details-btn', function () {
+
                 // Get the data attributes from the clicked button
                 var reason = $(this).data('reason');
                 var dateLeave = $(this).data('date-leave');
                 var dateEnd = $(this).data('date-end');
-                var inputFile = $(this).data('input-file');
                 var rowId = $(this).data('id');
 
                 console.log("Reason: ", reason);
                 console.log("Date Leave: ", dateLeave);
                 console.log("Date End: ", dateEnd);
-                console.log("Input File: ", inputFile);
                 console.log("Id: ", rowId);
 
-                // Set the form values based on the data attributes
-                $('#updateReason').val(reason);
-                $('#updateDate_leave').val(dateLeave);
-                $('#updateDate_end').val(dateEnd);
-                $('#updateInputFile').val(inputFile);
-                $('#updateId').val(rowId);
+                Swal.fire({
+                    title: 'Anda pasti untuk kemaskini?',
+                    text: 'Kemaskini akan disimpan!',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, kemaskini!',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Set the form values based on the data attributes
+                        $('#updateReason').val(reason);
+                        $('#updateDate_leave').val(dateLeave);
+                        $('#updateDate_end').val(dateEnd);
+                        $('#updateId').val(rowId);
 
-                // Show the modal
-                $('#modalKemaskini').modal('show');
+                        // Show the modal
+                        $('#modalKemaskini').modal('show');
+                    }
+                });
+
             });
 
             $('#aduanKemaskiniForm').submit(function (e) {
-                console.log('Form is being submitted.');
-                return true;
+                
+                var form = $('#aduanKemaskiniForm')[0];
+                var reason = document.getElementById('updateReason').value.trim();;
+                var dateLeave = document.getElementById('updateDate_leave').value.trim();;
+                var dateEnd = document.getElementById('updateDate_end').value.trim();;
+                var rowId = document.getElementById('updateId').value.trim();
+
+                // Check if any of the fields are empty
+                if (reason === '' || dateLeave === '' || dateEnd === '' || rowId === '') {
+                    // Show error message using SweetAlert
+                    Swal.fire({
+                        icon: "error",
+                        title: "Borang Tidak Lengkap",
+                        text: "Sila Lengkapkan Borang permohonan Cuti",
+                    });
+                    return false;
+                } else {
+                    return true;
+                }
             });
 
             // Open the modal for attachment details

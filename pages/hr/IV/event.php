@@ -16,7 +16,7 @@ $events = array();
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
     $events[] = array(
-      'title' => 'Interview', 
+      'title' => 'Temuduga', 
       'start' => $row['interview_date'] . 'T' . $row['interview_time'], 
       'student_id' => $row['student_id'], 
       'student_name' => $row['student_name'], 

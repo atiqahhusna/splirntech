@@ -63,34 +63,34 @@ if (isset($_GET['notify']) && isset($_SESSION['id'])) {
                 $mail->Username = 'splirnta@gmail.com';
                 $mail->Password = 'rhgirgmvnpjrrnol';
     
-                // Prepare the email content
                 $mail->isHTML(true);
-                $mail->Subject = 'Confirmation of Leave Application Approval';
-    
-                // Adjust the date display based on the presence of date_end
+                $mail->Subject = 'Pengesahan Kelulusan Permohonan Cuti';
+                
+                // Sesuaikan paparan tarikh berdasarkan kehadiran date_end
                 if ($date_end !== null) {
                     $mail->Body = "
-                        <p>Dear $name,</p>
-                        <p>Your leave application has been approved by HR.</p>
-                        <p>Details:</p>
+                        <p>Tuan/Puan $name,</p>
+                        <p>Permohonan cuti anda telah diluluskan oleh pihak Pengurusan Sumber Manusia (HR).</p>
+                        <p>Butiran:</p>
                         <ul>
-                            <li>Date of Leave: $date_leave until $date_end</li>
+                            <li>Tarikh Cuti: $date_leave hingga $date_end</li>
                         </ul>
-                        <p>Thank you.</p>
-                        <p>Best regards,<br>RN Technologies</p>
+                        <p>Terima kasih.</p>
+                        <p>Sekian, <br>Technologies RN</p>
                     ";
                 } else {
                     $mail->Body = "
-                        <p>Dear $name,</p>
-                        <p>Your leave application has been approved by HR.</p>
-                        <p>Details:</p>
+                        <p>Tuan/Puan $name,</p>
+                        <p>Permohonan cuti anda telah diluluskan oleh pihak Pengurusan Sumber Manusia (HR).</p>
+                        <p>Butiran:</p>
                         <ul>
-                            <li>Date of Leave: $date_leave</li>
+                            <li>Tarikh Cuti: $date_leave</li>
                         </ul>
-                        <p>Thank you.</p>
-                        <p>Best regards,<br>RN Technologies</p>
+                        <p>Terima kasih.</p>
+                        <p>Sekian, <br>RN Technologies Sdn Bhd</p>
                     ";
                 }
+                
     
                 // Sender and recipient
                 $mail->setFrom('splirnta@gmail.com', 'Admin RN Tech');
