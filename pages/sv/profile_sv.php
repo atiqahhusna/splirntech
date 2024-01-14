@@ -79,20 +79,16 @@ if ($result->num_rows > 0) {
 
 			<section class="content">
 				<div class="container-fluid">
-					<div class="row">
 						<div class="col-12">
-							<div class="card card-warning">
+							<div class="card card-navy">
 								<div class="card-header">
 									<h3 class="card-title">Maklumat Profil Penyelia</h3>
 								</div>
 								<!-- /.card-header -->
 								<div class="card-body">
 									<form id="form-edit" action="updateprofile_svDB.php" method="post" enctype="multipart/form-data" class="p-4">
-										<div class="container">
-											<div class="row justify-content-center">
-												<div class="col-md-12">
 													<div class="mb-3">
-														<label for="name" class="form-label"> Nama:</label>
+														<label for="name" class="form-label">Nama:</label>
 														<div class="input-group">
 															<span class="input-group-text"><i class="bi bi-person-fill"></i></span>
 															<input type="text" class="form-control" id="name" name="name" value="<?php echo $name ?>" <?php echo isset($_GET['edit']) ? '' : 'disabled' ?>>
@@ -100,7 +96,7 @@ if ($result->num_rows > 0) {
 													</div>
 
 													<div class="mb-3">
-														<label for="email" class="form-label"> Emel Pengguna:</label>
+														<label for="email" class="form-label">Emel Pengguna:</label>
 														<div class="input-group">
 															<span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
 															<input type="email" class="form-control" id="email" name="email" value="<?php echo $email ?>" <?php echo isset($_GET['edit']) ? '' : 'disabled' ?>>
@@ -127,22 +123,18 @@ if ($result->num_rows > 0) {
 
 													<div class="text-center">
 														<?php if (isset($_GET['edit'])) { ?>
-															<button type="submit" class="btn btn-warning">Simpan</button>
+															<button type="submit" class="btn btn-primary">Simpan</button>
 															<input type="hidden" id="id_edit" name="id_edit" value="<?php echo $id_edit; ?>">
 															<a href="javascript:history.back()" class="btn btn-secondary mx-2">Kembali</a>
 														<?php } else { ?>
 															<a href="?edit=true" class="btn btn-primary">Kemaskini</a>
 														<?php } ?>
 													</div>
-												</div>
-											</div>
-										</div>
 									</form>
 								</div>
 								<!-- /.card-body -->
 							</div>
 						</div>
-					</div>
 				</div>
 			</section>
 

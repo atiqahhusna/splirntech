@@ -12,7 +12,7 @@ include "../conn.php";
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>SPLI RN TECH | Profile</title>
+	<title>SPLI RNTECH | Profile</title>
 
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 	<link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
@@ -93,7 +93,7 @@ include "../conn.php";
 												<div class="card-text">
 													<p><strong>Nama Pelajar:</strong> <?php echo $row["name"]; ?></p>
 													<p><strong>Nombor Telefon:</strong> <?php echo $row["phone_num"]; ?></p>
-													<p><strong>Email:</strong> <?php echo $row["email"]; ?></p>
+													<p><strong>Emel:</strong> <?php echo $row["email"]; ?></p>
 													<p><strong>Alamat:</strong> <?php echo $row["address"]; ?></p>
 												</div>
 											<?php
@@ -148,12 +148,12 @@ include "../conn.php";
 						<div class="card-body">
 							<table class="table table-bordered table-striped">
 								<thead>
-									<tr style="text-align:center">
+									<tr>
 										<th>Bil.</th>
 										<th>Tarikh</th>
 										<th width="50%">Tugasan</th>
 										<th>Maklumbalas</th>
-										<th>Tindakan</th>
+										<th style="text-align:center">Tindakan</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -196,8 +196,8 @@ include "../conn.php";
 									?>
 								</tbody>
 							</table><br>
-							<button type="button" class="btn btn-warning">
-								<a href="studentView_sv.php?student_id=<?php echo $student_id ?>" style="text-decoration: none; color: #000000;">Kembali</a>
+							<button type="button" class="btn btn-secondary" style="float:right">
+								<a href="studentView_sv.php?student_id=<?php echo $student_id ?>" style="text-decoration: none; color:white;">Kembali</a>
 							</button>
 
 						</div><!-- /.card-body -->
