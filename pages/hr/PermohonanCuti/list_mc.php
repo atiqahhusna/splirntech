@@ -53,7 +53,7 @@ include "../../conn.php";
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-12">
-							<div class="card card-info">
+							<div class="card card-navy">
 								<div class="card-header">
 									<ul class="nav nav-tabs" id="custom-tabs-two-tab" role="tablist">
 										<li class="nav-item">
@@ -89,7 +89,7 @@ include "../../conn.php";
 														<th width="15%">Tarikh Mohon</th>
 														<th width="20%">Tarikh Cuti</th>
 														<th width="20%">Sebab</th>
-														<th width="13%">Tindakan</th>
+														<th width="13%" style="text-align: center;">Tindakan</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -115,11 +115,12 @@ include "../../conn.php";
 																</td>
 																<td><?php echo $myrowBaru['reason']; ?></td>
 																<td>
-																	<a href="terimaCuti.php?id=<?php echo $myrowBaru['id']; ?>&notify=1" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Terima"><i class="fas fa-check"></i></a>
-																	<a href="tolakCuti.php?id=<?php echo $myrowBaru['id']; ?>&notify=1" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Tolak"><i class="fas fa-times"></i></a>
-																	<a href="padamCuti.php?id=<?php echo $myrowBaru['id']; ?>&notify=1" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Padam"><i class="fas fa-trash-alt"></i></a>
-																	<a href="viewCuti.php?id=<?php echo $myrowBaru['id']; ?>&notify=1" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Lihat Maklumat"><i class="fas fa-eye"></i></a>
+																	<a href="terimaCuti.php?id=<?php echo $myrowBaru['id']; ?>&notify=1" class="btn btn-outline-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Terima"><i class="fas fa-check"></i></a>
+																	<a href="tolakCuti.php?id=<?php echo $myrowBaru['id']; ?>&notify=1" class="btn btn-outline-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Tolak"><i class="fas fa-times"></i></a>
+																	<a href="padamCuti.php?id=<?php echo $myrowBaru['id']; ?>&notify=1" class="btn btn-outline-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Padam"><i class="fas fa-trash-alt"></i></a>
+																	<a href="viewCuti.php?id=<?php echo $myrowBaru['id']; ?>&notify=1" class="btn btn-outline-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Lihat Maklumat"><i class="fas fa-eye"></i></a>
 																</td>
+
 															</tr>
 														<?php
 															$rowNumber1++;
@@ -155,7 +156,7 @@ include "../../conn.php";
 														<th width="15%">Tarikh Mohon</th>
 														<th width="20%">Tarikh Cuti</th>
 														<th width="20%">Sebab</th>
-														<th width="10%">Tindakan</th>
+														<th width="10%" style="text-align: center;">Tindakan</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -181,11 +182,11 @@ include "../../conn.php";
 																</td>
 																<td><?php echo $myrowLulus['reason']; ?></td>
 																<td>
-																	<a href="editCuti.php?id=<?php echo $myrowLulus['id']; ?>&notify=1" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-																	<a href="padamCuti.php?id=<?php echo $myrowLulus['id']; ?>&notify=1" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Padam"><i class="fas fa-trash-alt"></i></a>
-																	<a href="viewCuti.php?id=<?php echo $myrowLulus['id']; ?>&notify=1" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Lihat Maklumat"><i class="fas fa-eye"></i></a>
-
+																	<a href="editCuti.php?id=<?php echo $myrowLulus['id']; ?>&notify=1" class="btn btn-outline-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-pencil-alt"></i></a>
+																	<a href="padamCuti.php?id=<?php echo $myrowLulus['id']; ?>&notify=1" class="btn btn-outline-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Padam"><i class="fas fa-trash-alt"></i></a>
+																	<a href="viewCuti.php?id=<?php echo $myrowLulus['id']; ?>&notify=1" class="btn btn-outline-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Lihat Maklumat"><i class="fas fa-eye"></i></a>
 																</td>
+
 															</tr>
 														<?php
 															$rowNumber2++;
@@ -226,7 +227,7 @@ include "../../conn.php";
 														<th width="15%">Tarikh Mohon</th>
 														<th width="20%">Tarikh Cuti</th>
 														<th width="20%">Sebab</th>
-														<th width="10%">Tindakan</th>
+														<th width="10%" style="text-align: center;">Tindakan</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -252,9 +253,9 @@ include "../../conn.php";
 																</td>
 																<td><?php echo $myrowTerdahulu['reason']; ?></td>
 																<td>
-																	<a href="editCuti.php?id=<?php echo $myrowTerdahulu['id']; ?>&notify=1" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-																	<a href="padamCuti.php?id=<?php echo $myrowTerdahulu['id']; ?>&notify=1" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Padam"><i class="fas fa-trash-alt"></i></a>
-																	<a href="viewCuti.php?id=<?php echo $myrowTerdahulu['id']; ?>&notify=1" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Lihat Maklumat"><i class="fas fa-eye"></i></a>
+																	<a href="editCuti.php?id=<?php echo $myrowTerdahulu['id']; ?>&notify=1" class="btn btn-outline-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-pencil-alt"></i></a>
+																	<a href="padamCuti.php?id=<?php echo $myrowTerdahulu['id']; ?>&notify=1" class="btn btn-outline-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Padam"><i class="fas fa-trash-alt"></i></a>
+																	<a href="viewCuti.php?id=<?php echo $myrowTerdahulu['id']; ?>&notify=1" class="btn btn-outline-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Lihat Maklumat"><i class="fas fa-eye"></i></a>
 
 
 																</td>
@@ -335,9 +336,7 @@ include "../../conn.php";
 												<br>
 												<form action="list_mc.php" method="post" enctype="multipart/form-data">
 													<input type="file" name="pdfFile" id="pdfFile">
-													<!-- <input type="submit" value="Muatnaik" name="submit"> -->
 													<br>
-													<!-- <a href ="submit" value="MuatTurun" name="download"> -->
 												</form>
 											</td><br>
 											</td>
@@ -368,23 +367,6 @@ include "../../conn.php";
 	<script src="../../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 	<script src="../../../plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
 	<script src="../PermohonanCuti/cuti.js"></script>
-	<script>
-		$(function() {
-			// Check if the DataTable for #example2 exists and destroy it
-			if ($.fn.DataTable.isDataTable('#example2')) {
-				$('#example2').DataTable().destroy();
-			}
-
-			// Initialize DataTable for the second table
-			$('#example2').DataTable({
-				"paging": true, // Enable pagination
-				"lengthChange": true, // Enable entries dropdown
-				"searching": true, // Enable search box
-
-			});
-		});
-	</script>
-
 
 </body>
 
