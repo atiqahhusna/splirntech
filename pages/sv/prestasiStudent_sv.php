@@ -160,7 +160,7 @@ $sv_id = $_POST['sv_id'];
 
                                 <div class="col-md-6">
                                     <div class="card-header">
-                                        <h3 class="card-title">Line Chart</h3>
+                                        <h3 class="card-title">Graf Prestasi Tugasan Pelajar</h3>
                                     </div>
                                     <div class="card-body">
                                         <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
@@ -193,7 +193,7 @@ $sv_id = $_POST['sv_id'];
                                 <!-- ----------------------------------------------------------- ADUAN PELAJAR ----------------------------------------------------------- -->
                                 <div class="col-md-6">
                                     <div class="card-header">
-                                        <h3 class="card-title">Aduan</h3>
+                                        <h3 class="card-title">Aduan yang Dikenakan</h3>
                                     </div>
 
                                     <div class="card-body">
@@ -237,18 +237,16 @@ $sv_id = $_POST['sv_id'];
                                             </tbody>
                                         </table>
 
-                                    </div> <!-- END OF ADUAN TABLE -->
+                                    </div> <!-- /.card-body -->
 
-                                </div> <!-- END OF CLASS ROW -->
+                                </div> <!-- END OF ADUAN TABLE -->
 
 
                                 <!-- Back button -->
-                                <p></p>
-                                <button type="button" class="btn btn-warning">
-                                    <a href="prestasiAll_sv.php" style="text-decoration: none; color: #000000;">Kembali</a>
-                                </button>
-                            </div><!-- /.card-body -->
-                        </div><!-- /.card -->
+                                    
+                            </div><!-- END OF CLASS ROW -->
+                            <button class="btn btn-secondary" style="margin:5px; float:right;"><a href="prestasiAll_sv.php" style="color:white">Kembali</a></button>
+                        </div><!-- /.card-body -->
                     </div><!-- /.container-fluid -->
             </section><!-- Section 2 -->
             <br><br>

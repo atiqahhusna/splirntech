@@ -24,30 +24,81 @@ if (isset($_POST['submit'])) {
     $uni_name = $_POST['universiti'];
     $uni_phone = $_POST['phoneNumU'];
     $course = $_POST['course'];
-    // $resume = $_POST['resume'];
     $last_intern = $_POST['dateEnd'];
     $start_intern = $_POST['dateStart'];
-    $post_id = $_GET['post_id'];
+    $bankName = $_POST['bank_name'];
+    $bankAcc = $_POST['bank_acc'];
+
+
+    $post_id = $_GET['post_id']; // get post_id of the tawaran post
+
+    $start_datetime = new DateTime($start_intern); 
+    $diff = $start_datetime->diff(new DateTime($last_intern)); 
+    $tempoh = $diff->m;
+
+
 
     // Check if the file input is set and not empty
-    if (isset($_FILES['pdfFile']) && !empty($_FILES['pdfFile']['name'])) {
-        $pdfFileName = $_FILES['pdfFile']['name'];
-        $pdfTempName = $_FILES['pdfFile']['tmp_name'];
+    if (isset($_FILES['resumeFile']) && isset($_FILES['uniFile']) && isset($_FILES['icFile']) &&
+        !empty($_FILES['resumeFile']['name']) && !empty($_FILES['uniFile']['name']) && !empty($_FILES['icFile']['name'])) {
 
+
+        // resume file name ---------------------------------------------------------- //
+        $resumeFileName = $_FILES['resumeFile']['name'];
+        $resumeTempName = $_FILES['resumeFile']['tmp_name'];
+
+        // rename resume file --------
+        $newResumeFile = $student_name . "_resume_" . $resumeFileName;
+    
+
+        // university letter file name ---------------------------------------------------------- //
+        $uniFileName = $_FILES['uniFile']['name'];
+        $uniTempName = $_FILES['uniFile']['tmp_name'];
+
+        // rename uni letter file --------
+        $newUniFile = $student_name . "_uniLetter_" . $uniFileName;
+
+
+        // ic file name ---------------------------------------------------------- //
+        $icFileName = $_FILES['icFile']['name'];
+        $icTempName = $_FILES['icFile']['tmp_name'];
+
+        // rename ic file --------
+        $newICFile = $student_name . "_IC_" . $icFileName;
+        
+        // ------------------------------------------------------------------------------------------------------------------------------------- //
+
+        // folder name for new application
+        $folderName = 'permohonanfile';
         
 
-        // Define the directory path where you want to save the PDF file
-        $uploadPath = __DIR__ . '/upload/' . $pdfFileName;
+        // directory path the file attachment it will be saved
+        $directoryPath = __DIR__ . '/upload/' . $folderName;
 
-        // Move the uploaded file to the specified directory
-        if (move_uploaded_file($pdfTempName, $uploadPath)) {
+        // Check if the directory doesn't exist
+        if (!is_dir($directoryPath)) {
+            // The directory doesn't exist, so create it
+            mkdir($directoryPath);
+        }
+
+        // directory path for each file attachment
+        $uploadPathResume = $directoryPath . '/' . $newResumeFile;
+        $uploadPathUni = $directoryPath . '/' . $newUniFile;
+        $uploadPathIC = $directoryPath . '/' . $newICFile;
+
+        // echo "<br>directory path for file resume name:" . $uploadPathResume;
+        // echo "<br>directory path for file uni letter name:" . $uploadPathUni;
+        // echo "<br>directory path for file ic name:" . $uploadPathIC;
+
+        // Move the file attachment to the specified directory:- $uploadPathResume,  $uploadPathUni, $uploadPathIC
+        if (move_uploaded_file($resumeTempName, $uploadPathResume) && move_uploaded_file($uniTempName, $uploadPathUni) && move_uploaded_file($icTempName, $uploadPathIC)) {
             // Insert data into the student table
             $password = generatePassword();
-            $queryStudent = "INSERT INTO student (name, phone_num, email, password, address, sv_id, status, student_id) VALUES (?,?,?,?,?,'SV000','Baru', 'IS000')";
+            $queryStudent = "INSERT INTO student (name, phone_num, email, password, address, sv_id, status, student_id, bank, account, slip_ic) VALUES (?,?,?,?,?,'SV000','Baru', 'IS000',?,?,?)";
             $stmtStudent = $conn->prepare($queryStudent);
 
             // Bind parameters
-            $stmtStudent->bind_param("sssss", $student_name, $student_phone, $student_email, $password, $student_address);
+            $stmtStudent->bind_param("ssssssss", $student_name, $student_phone, $student_email, $password, $student_address, $bankName, $bankAcc, $newICFile);
             $stmtStudent->execute();
             $stmtStudent->close();
 
@@ -66,11 +117,11 @@ if (isset($_POST['submit'])) {
 
 
             // Insert data into the application_intern table
-            $query = "INSERT INTO application_intern (student_id, apply_date, apply_time, uni_name, uni_phone, course, resume, last_intern, start_intern, intern_post_id, status) VALUES (?,?,?,?,?,?,?,?,?,?, 'Baru')";
+            $query = "INSERT INTO application_intern (student_id, apply_date, apply_time, uni_name, uni_phone, course, resume, uni_letter, last_intern, start_intern, intern_post_id, status, tempoh_intern) VALUES (?,?,?,?,?,?,?,?,?,?,?, 'Baru',?)";
             $stmt = $conn->prepare($query);
 
             // Bind parameters
-            $stmt->bind_param("issssssssi", $studentNo_ID, $apply_date, $apply_time, $uni_name, $uni_phone, $course, $pdfFileName, $last_intern, $start_intern, $post_id);
+            $stmt->bind_param("isssssssssis", $studentNo_ID, $apply_date, $apply_time, $uni_name, $uni_phone, $course, $newResumeFile, $newUniFile, $last_intern, $start_intern, $post_id, $tempoh);
             $updateResult = mysqli_stmt_execute($stmt);
 
             if ($updateResult) {
@@ -88,9 +139,9 @@ if (isset($_POST['submit'])) {
                 // If there is an error, display the error message
                 echo 'Error: ' . mysqli_error($conn);
             }
-} else {
-echo "Error uploading file.";
-}
+        } else {
+        echo "Error uploading file.";
+        }
 } else {
     echo '<center><script> 
             Swal.fire({

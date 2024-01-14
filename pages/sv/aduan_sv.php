@@ -330,15 +330,26 @@ include "../conn.php";
         var requiredFields = form.find('[required]');
         var isValid = true;
 
-		// Remove any existing error messages "Sila isi ruangan ini"
+		// Remove any existing error messages=
 		form.find('.error-message').remove();
 
-        requiredFields.each(function () {
-            if ($(this).val().trim() === '') {
-                isValid = false;
-                $(this).after('<span class="error-message" style="color:red">Sila isi ruangan ini*</span>');
-            }
-        });
+        // print message on id studentName if the field is empty
+		if ($('#studentName').val().trim() === '') {
+			isValid = false;
+			$('#studentName').after('<span class="error-message" style="color:red">Sila pilih pelajar*</span>');
+		}
+
+		// print message on id aduan if the field is empty
+		if ($('#aduan').val().trim() === '') {
+			isValid = false;
+			$('#aduan').after('<span class="error-message" style="color:red">Sila isi aduan yang ingin dikenakan*</span>');
+		}
+
+		// print message on id type if the field is empty
+		if ($('#type').val().trim() === '') {
+			isValid = false;
+			$('#type').after('<span class="error-message" style="color:red">Sila pilih jenis aduan*</span>');
+		}
 
         if (!isValid) {
             return;

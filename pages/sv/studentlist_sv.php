@@ -11,7 +11,7 @@ include "../conn.php";
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SPLI RN TECH | Senarai Pelajar</title>
+  <title>SPLI RNTECH | Senarai Pelajar</title>
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
@@ -76,10 +76,12 @@ include "../conn.php";
                   <a class="nav-link" id="tidak-aktif-tab" data-toggle="pill" href="#tidak-aktif" role="tab" aria-controls="tidak-aktif" aria-selected="false">Senarai Terdahulu</a>
                 </li>
               </ul>
-            </div>
-            <!-- ./card-header -->
+            </div><!-- ./card-header -->
+            
+
             <div class="card-body">
               <div class="tab-content" id="custom-tabs-two-tabContent">
+
                 <div class="tab-pane fade show active" id="aktif" role="tabpanel" aria-labelledby="aktif-tab">
 
                   <div class="col-md-3 ml-3">
@@ -96,13 +98,13 @@ include "../conn.php";
                   <div class="table-responsive">
                     <table id="example2" class="table table-bordered table-striped">
                       <thead>
-                        <tr style="text-align:center">
+                        <tr>
                           <th>Bil.</th>
                           <th>Nama Pelajar</th>
                           <th>Nombor Telefon</th>
-                          <th>Email</th>
+                          <th>Emel</th>
                           <th>Status</th>
-                          <th>Tindakan</th>
+                          <th style="text-align:center">Tindakan</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -152,56 +154,57 @@ include "../conn.php";
                       </select>
                     </div>
 
-                    <table id="example2" class="table table-bordered table-striped">
-                      <thead>
-                        <tr style="text-align:center">
-                          <th>Bil.</th>
-                          <th>Nama Pelajar</th>
-                          <th>Nombor Telefon</th>
-                          <th>Email</th>
-                          <th>Status</th>
-                          <th>Tindakan</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php
-                        $i = 1;
-                        $query = "SELECT * FROM student WHERE sv_id = '" . $sv_id . "' AND status = 'Tidak Aktif'";
-                        $result = mysqli_query($conn, $query);
-                        $num_rows = mysqli_num_rows($result);
-
-                        if ($row = mysqli_fetch_array($result) == null) {
-                          echo "<tr style='text-align:center'><td colspan='6'>Tiada Pelajar dibawah Penyeliaan Anda</td></tr>";
-                        } else {
+                    <div class="table-responsive">
+                      <table id="example2" class="table table-bordered table-striped">
+                        <thead>
+                          <tr>
+                            <th>Bil.</th>
+                            <th>Nama Pelajar</th>
+                            <th>Nombor Telefon</th>
+                            <th>Emel</th>
+                            <th>Status</th>
+                            <th style="text-align:center">Tindakan</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <?php
+                          $i = 1;
+                          $query = "SELECT * FROM student WHERE sv_id = '" . $sv_id . "' AND status = 'Tidak Aktif'";
                           $result = mysqli_query($conn, $query);
                           $num_rows = mysqli_num_rows($result);
-                          while ($row = mysqli_fetch_array($result)) {
-                            echo "<tr>";
-                            echo "<td>" . $i++ . "</td>";
-                            echo "<td>" . $row["name"] . "</td>";
-                            echo "<td>" . $row["phone_num"] . "</td>";
-                            echo "<td>" . $row["email"] . "</td>";
-                            echo "<td>" . $row["status"] . "</td>";
-                            $student_id = $row['student_id']; ?>
-                            <td style="text-align:center"><button type="button" class="btn btn-outline-info"><a href="studentView_sv.php?student_id=<?php echo $student_id; ?>"><i class="fa fa-search"></i></a></button>
-                            </td>
-                            </tr>
-                            </tr>
-                        <?php
+
+                          if ($row = mysqli_fetch_array($result) == null) {
+                            echo "<tr style='text-align:center'><td colspan='6'>Tiada Pelajar dibawah Penyeliaan Anda</td></tr>";
+                          } else {
+                            $result = mysqli_query($conn, $query);
+                            $num_rows = mysqli_num_rows($result);
+                            while ($row = mysqli_fetch_array($result)) {
+                              echo "<tr>";
+                              echo "<td>" . $i++ . "</td>";
+                              echo "<td>" . $row["name"] . "</td>";
+                              echo "<td>" . $row["phone_num"] . "</td>";
+                              echo "<td>" . $row["email"] . "</td>";
+                              echo "<td>" . $row["status"] . "</td>";
+                              $student_id = $row['student_id']; ?>
+                              <td style="text-align:center"><button type="button" class="btn btn-outline-info"><a href="studentView_sv.php?student_id=<?php echo $student_id; ?>"><i class="fa fa-search"></i></a></button>
+                              </td>
+                              </tr>
+                              </tr>
+                          <?php
+                            }
                           }
-                        }
-                        ?>
-                      </tbody>
-                    </table>
-                  </div>
-                </div> <!-- PELAJAR : TIDAK AKTIF -->
+                          ?>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div><!-- PELAJAR : TIDAK AKTIF -->
+
+                </div> 
               </div>
-            </div>
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
-        </div>
-        <!-- /.container-fluid -->
+              
+            </div><!-- /.card-body -->
+          </div><!-- /.card navy -->
+        </div><!-- /.container-fluid -->
       </section>
 
     </div>
