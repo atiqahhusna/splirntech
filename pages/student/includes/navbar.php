@@ -38,7 +38,28 @@
 	  <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right custom-dropdown">
 		<div class="dropdown-header">
 		  <div class="profile-info">
-			<img src="/splirnt/assets/img/profile.png" alt="Profile Image">
+      <?php
+			  $sql = "SELECT * FROM student WHERE student_id = '" . $_SESSION['id'] . "'";
+			  $result = mysqli_query($conn, $sql);
+
+			  if ($result) {
+				$row = mysqli_fetch_assoc($result);
+				if ($row) {
+          $profile_pic = $row["profile_pic"];
+				} else {
+				  echo "Name not found";
+				}
+			  } else {
+				echo "Error in SQL query: " . mysqli_error($conn);
+			  }
+			  ?>
+
+          <?php if(isset($profile_pic) && !empty($profile_pic)) { ?>
+              <img src="../upload/profile_pic/<?php echo $profile_pic; ?>" alt="Profile Image">
+          <?php } else { ?>
+              <img src="../../assets/img/profile.png" alt="Default Profile Picture" class="img-fluid img-thumbnail" style="max-width: 160px;">
+          <?php } ?>
+			
 			<span class="name">
 			          <?php echo strtoupper($_SESSION['name']); ?>
 
