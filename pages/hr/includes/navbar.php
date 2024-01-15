@@ -1,3 +1,4 @@
+
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -34,10 +35,24 @@
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right custom-dropdown">
             <div class="dropdown-header">
                 <div class="profile-info">
-                    <?php 
+                  <?php
+                      $sql = "SELECT profile_pic FROM hr WHERE id = '" . $_SESSION['id'] . "'";
+                      $result = mysqli_query($conn, $sql);
+
+                      if ($result) {
+                      $row = mysqli_fetch_assoc($result);
+                      if ($row) {
+                        $profile_pic = $row["profile_pic"];
+                      } else {
+                        echo "Name not found";
+                      }
+                      } else {
+                      echo "Error in SQL query: " . mysqli_error($conn);
+                      }
+                      
                         if(isset($profile_pic) && !empty($profile_pic)) { 
                     ?>
-                        <img src="../../upload/<?php echo $profile_pic; ?>" alt="Profile Image">
+                        <img src="../../upload/profile_pic/<?php echo $profile_pic; ?>" alt="Profile Image">
                     <?php 
                         } else { 
                     ?>

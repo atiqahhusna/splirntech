@@ -2,7 +2,7 @@
 // Start or resume the session
 session_start();
 
-include "../conn.php";
+include "../../conn.php";
 
 
 ?>
@@ -16,16 +16,16 @@ include "../conn.php";
   <title>SPLI RNTECH | Laman Utama</title>
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="../../../plugins/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <link rel="stylesheet" href="../../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
-  <link rel="stylesheet" href="../../plugins/jqvmap/jqvmap.min.css">
-  <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
-  <link rel="stylesheet" href="../../dist/css/alt/splicss.css">
-  <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
-  <link rel="stylesheet" href="../../plugins/fullcalendar/main.css">
-  <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="../../../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <link rel="stylesheet" href="../../../plugins/jqvmap/jqvmap.min.css">
+  <link rel="stylesheet" href="../../../dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="../../../dist/css/alt/splicss.css">
+  <link rel="stylesheet" href="../../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <link rel="stylesheet" href="../../../plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="../../../plugins/fullcalendar/main.css">
+  <link rel="stylesheet" href="../../../dist/css/adminlte.min.css">
 
   <style>
     /* Custom style for highlighted days */
@@ -48,8 +48,8 @@ include "../conn.php";
 
 
     <?php
-    include("includes/navbar.php");
-    include("includes/sidebar.php");
+    include("../includes/navbar.php");
+    include("../includes/sidebar.php");
     ?>
 
     <!-- Content Wrapper. Contains page content -->
@@ -203,44 +203,42 @@ include "../conn.php";
           </div>
         </div>
       </div>
-
-
     </div>
 
     <?php
-    include("includes/footer.php");
+    include("../includes/footer.php");
     ?>
 
     <aside class="control-sidebar control-sidebar-dark">
     </aside>
   </div>
 
-  <script src="../../plugins/jquery/jquery.min.js"></script>
-  <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
+  <script src="../../../plugins/jquery/jquery.min.js"></script>
+  <script src="../../../plugins/jquery-ui/jquery-ui.min.js"></script>
   <script>
     $.widget.bridge('uibutton', $.ui.button)
   </script>
-  <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="../../plugins/chart.js/Chart.min.js"></script>
-  <script src="../../plugins/sparklines/sparkline.js"></script>
-  <script src="../../plugins/jqvmap/jquery.vmap.min.js"></script>
-  <script src="../../plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-  <script src="../../plugins/jquery-knob/jquery.knob.min.js"></script>
-  <script src="../../plugins/moment/moment.min.js"></script>
-  <script src="../../plugins/daterangepicker/daterangepicker.js"></script>
-  <script src="../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-  <script src="../../plugins/summernote/summernote-bs4.min.js"></script>
-  <script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-  <script src="../../dist/js/adminlte.js"></script>
-  <script src="../../plugins/jquery/jquery.min.js"></script>
-  <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../../../plugins/chart.js/Chart.min.js"></script>
+  <script src="../../../plugins/sparklines/sparkline.js"></script>
+  <script src="../../../plugins/jqvmap/jquery.vmap.min.js"></script>
+  <script src="../../../plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+  <script src="../../../plugins/jquery-knob/jquery.knob.min.js"></script>
+  <script src="../../../plugins/moment/moment.min.js"></script>
+  <script src="../../../plugins/daterangepicker/daterangepicker.js"></script>
+  <script src="../../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+  <script src="../../../plugins/summernote/summernote-bs4.min.js"></script>
+  <script src="../../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+  <script src="../../../dist/js/adminlte.js"></script>
+  <script src="../../../plugins/jquery/jquery.min.js"></script>
+  <script src="../../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
-  <script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
-  <script src="../../dist/js/adminlte.min.js"></script>
-  <script src="../../plugins/fullcalendar/main.js"></script>
+  <script src="../../../plugins/bootstrap/js/bootstrap.min.js"></script>
+  <script src="../../../dist/js/adminlte.min.js"></script>
+  <script src="../../../plugins/fullcalendar/main.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script scr="../../splirntech/plugins/fullcalendar/locales/ms.js"></script>
+  <script src="../../../splirntech/plugins/fullcalendar/locales/ms.js"></script>
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -280,7 +278,7 @@ include "../conn.php";
         },
         editable: false,
         events: {
-          url: 'IV/event.php', // URL to fetch events
+          url: 'event.php', // URL to fetch events
           method: 'POST',
           extraParams: {}, // Additional parameters if needed
           failure: function() {

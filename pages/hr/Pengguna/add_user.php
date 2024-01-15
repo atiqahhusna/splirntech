@@ -158,9 +158,12 @@ include "../../conn.php";
                                                 </div>
                                             </div>
 
-                                            <div class="form-group">
-                                                <button type="submit" class="btn btn-dark" name="submit">Simpan</button>
+                                            <div class="form-group d-flex justify-content-end align-items-center">
+                                                <button type="button" class="btn btn-secondary mr-2" onclick="history.go(-1)">Kembali</button>
+                                                <button type="submit" class="btn btn-primary" name="submit">Simpan</button>
                                             </div>
+
+
                                         </div>
                                     </form>
                                 </div>

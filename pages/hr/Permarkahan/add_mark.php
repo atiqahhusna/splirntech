@@ -98,8 +98,8 @@ include "../../conn.php";
                                         </div>
                                     </div>
                                     <div class="card-footer">
-                                        <button type="submit" class="btn btn-info">Simpan</button>
-                                        <button type="reset" class="btn btn-danger float-right">Set Semula</button>
+                                        <a href="javascript:history.go(-1);" class="btn btn-secondary ml-2 float-right">Kembali</a>
+                                        <button type="submit" class="btn btn-primary float-right">Simpan</button>
                                     </div>
                                 </form>
                             </div>

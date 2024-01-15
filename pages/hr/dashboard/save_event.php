@@ -1,5 +1,5 @@
 <?php                
-require 'conn.php'; 
+require '../conn.php'; 
 $location = $_POST['location'];
 $interview_date = date("y-m-d", strtotime($_POST['interview_date'])); 
 $event_date_end = date("y-m-d", strtotime($_POST['event_date_end'])); 

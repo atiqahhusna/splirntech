@@ -41,9 +41,9 @@ if ($result->num_rows > 0) {
 	<div class="wrapper">
 
 		<!-- Loading indicator -->
-		<!-- <div class="preloader flex-column justify-content-center align-items-center">
+		<div class="preloader flex-column justify-content-center align-items-center">
 			<img src="/splirnt/assets/img/loading.png" alt="Loading..." class="spinning-image">
-		</div> -->
+		</div>
 
 
 		<?php
