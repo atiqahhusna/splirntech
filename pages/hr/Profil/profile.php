@@ -41,9 +41,9 @@ if ($result->num_rows > 0) {
 	<div class="wrapper">
 
 		<!-- Loading indicator -->
-		<div class="preloader flex-column justify-content-center align-items-center">
+		<!-- <div class="preloader flex-column justify-content-center align-items-center">
 			<img src="/splirnt/assets/img/loading.png" alt="Loading..." class="spinning-image">
-		</div>
+		</div> -->
 
 
 		<?php
@@ -79,7 +79,7 @@ if ($result->num_rows > 0) {
 								<!-- /.card-header -->
 								<div class="card-body">
 									<!-- <form id="form-edit" action="profile_edit_save.php" method="post" enctype="multipart/form-data" class="p-4"> -->
-									<form id="form-edit" action="profile_edit_save.php" method="post" enctype="multipart/form-data" class="p-4">
+									<form id="form-edit" action="profile_edit_save.php?id=<?php echo $_SESSION['id']; ?>" method="post" enctype="multipart/form-data" class="p-4">
 
 										<div class="container">
 											<div class="row justify-content-center">
@@ -87,7 +87,7 @@ if ($result->num_rows > 0) {
 													<div class="mb-3 text-center">
 														<?php if(isset($profile_pic) && !empty($profile_pic)) { ?>
 															<div class="mt-2">
-																<img src="../../upload/<?php echo $profile_pic; ?>" alt="Profile Picture" class="img-fluid img-thumbnail" style="max-width: 150px;">
+																<img src="../../upload/profile_pic/<?php echo $profile_pic; ?>" alt="Profile Picture" class="img-fluid img-thumbnail" style="max-width: 150px;">
 															</div>
 														<?php } else { ?>
 															<div class="mt-2">
@@ -106,7 +106,7 @@ if ($result->num_rows > 0) {
 														<label for="name" class="form-label"> Nama:</label>
 														<div class="input-group">
 															<span class="input-group-text"><i class="bi bi-person-fill"></i></span>
-															<input type="text" class="form-control" id="name" name="name" value="<?php echo $name ?>" <?php echo isset($_GET['edit']) ? '' : 'disabled' ?>>
+															<input type="text" class="form-control" id="name" name="name" value="<?php echo $name ?>" <?php echo isset($_GET['edit']) ? '' : 'readonly' ?>>
 														</div>
 													</div>
 
@@ -114,7 +114,7 @@ if ($result->num_rows > 0) {
 														<label for="email" class="form-label"> Emel Pengguna:</label>
 														<div class="input-group">
 															<span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
-															<input type="email" class="form-control" id="email" name="email" value="<?php echo $email ?>" <?php echo isset($_GET['edit']) ? '' : 'disabled' ?>>
+															<input type="email" class="form-control" id="email" name="email" value="<?php echo $email ?>" <?php echo isset($_GET['edit']) ? '' : 'readonly' ?>>
 														</div>
 													</div>
 
@@ -124,7 +124,7 @@ if ($result->num_rows > 0) {
 															<span class="input-group-text" id="togglePassword">
 																<i class="fas fa-eye"></i>
 															</span>
-															<input type="password" class="form-control" id="password" name="password" value="<?php echo $password ?>" <?php echo isset($_GET['edit']) ? '' : 'disabled' ?>>
+															<input type="password" class="form-control" id="password" name="password" value="<?php echo $password ?>" <?php echo isset($_GET['edit']) ? '' : 'readonly' ?>>
 														</div>
 													</div>
 
@@ -132,7 +132,7 @@ if ($result->num_rows > 0) {
 														<label for="phone_num" class="form-label">Nombor Telefon:</label>
 														<div class="input-group">
 															<span class="input-group-text"><i class="bi bi-telephone-fill"></i></span>
-															<input type="tel" class="form-control" id="phone_num" name="phone_num" value="<?php echo $phone_num ?>" <?php echo isset($_GET['edit']) ? '' : 'disabled' ?>>
+															<input type="tel" class="form-control" id="phone_num" name="phone_num" value="<?php echo $phone_num ?>" <?php echo isset($_GET['edit']) ? '' : 'readonly' ?>>
 														</div>
 													</div>
 
