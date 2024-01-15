@@ -11,7 +11,7 @@ include "../conn.php";
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>SPLI RN TECH | Senarai Pelajar</title>
+	<title>SPLI RNTECH | Senarai Pelajar</title>
 
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 	<link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
@@ -34,8 +34,6 @@ include "../conn.php";
 	<script src="../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 	<script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 	<script src="../../dist/js/adminlte.min.js"></script>
-	<script src="../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-	<script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
 
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -168,7 +166,7 @@ include "../conn.php";
 											<label for="type">Jenis Aduan</label><label style="color:red">*</label>
 											<select name="type" id="type" class="form-control" required>
 												<option value=""> -- Pilih Jenis Aduan -- </option>   
-												<option value="Maklumbalas"> Maklumbalas </option>
+												<option value="Maklum Balas"> Maklum Balas </option>
 												<option value="Aduan"> Aduan </option>
 											</select>
 										</p>

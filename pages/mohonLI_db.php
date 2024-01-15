@@ -13,7 +13,7 @@ include "conn.php";
 session_start();
 
     // $id = $_SESSION['id'];
-if (isset($_POST['submit'])) {
+// if (isset($_POST['submit'])) {
     $apply_date = $_POST['dateApply'];
     $student_name = $_POST['name'];
     $student_email = $_POST['email'];
@@ -26,8 +26,8 @@ if (isset($_POST['submit'])) {
     $course = $_POST['course'];
     $last_intern = $_POST['dateEnd'];
     $start_intern = $_POST['dateStart'];
-    $bankName = $_POST['bank_name'];
-    $bankAcc = $_POST['bank_acc'];
+    // $bankName = $_POST['bank_name'];
+    // $bankAcc = $_POST['bank_acc'];
 
 
     $post_id = $_GET['post_id']; // get post_id of the tawaran post
@@ -39,32 +39,29 @@ if (isset($_POST['submit'])) {
 
 
     // Check if the file input is set and not empty
-    if (isset($_FILES['resumeFile']) && isset($_FILES['uniFile']) && isset($_FILES['icFile']) &&
-        !empty($_FILES['resumeFile']['name']) && !empty($_FILES['uniFile']['name']) && !empty($_FILES['icFile']['name'])) {
+    if (isset($_FILES['resumeFile']) && isset($_FILES['uniFile']) &&
+        !empty($_FILES['resumeFile']['name']) && !empty($_FILES['uniFile']['name'])) {
 
-
-        // resume file name ---------------------------------------------------------- //
+        // -----------------------------get file name --------------------------------------- //
+        // resume file name//
         $resumeFileName = $_FILES['resumeFile']['name'];
         $resumeTempName = $_FILES['resumeFile']['tmp_name'];
 
-        // rename resume file --------
-        $newResumeFile = $student_name . "_resume_" . $resumeFileName;
-    
-
-        // university letter file name ---------------------------------------------------------- //
+        // university letter file name//
         $uniFileName = $_FILES['uniFile']['name'];
         $uniTempName = $_FILES['uniFile']['tmp_name'];
 
+        // ic file name//
+        // $icFileName = $_FILES['icFile']['name'];
+        // $icTempName = $_FILES['icFile']['tmp_name'];
+        
+        // ------------------- rename file attachment --------------------------------------- //
+        // rename resume file --------
+        $newResumeFile = $student_name . "_resume_" . $resumeFileName;
         // rename uni letter file --------
         $newUniFile = $student_name . "_uniLetter_" . $uniFileName;
-
-
-        // ic file name ---------------------------------------------------------- //
-        $icFileName = $_FILES['icFile']['name'];
-        $icTempName = $_FILES['icFile']['tmp_name'];
-
         // rename ic file --------
-        $newICFile = $student_name . "_IC_" . $icFileName;
+        // $newICFile = $student_name . "_IC_" . $icFileName;
         
         // ------------------------------------------------------------------------------------------------------------------------------------- //
 
@@ -84,24 +81,25 @@ if (isset($_POST['submit'])) {
         // directory path for each file attachment
         $uploadPathResume = $directoryPath . '/' . $newResumeFile;
         $uploadPathUni = $directoryPath . '/' . $newUniFile;
-        $uploadPathIC = $directoryPath . '/' . $newICFile;
+        // $uploadPathIC = $directoryPath . '/' . $newICFile;
 
         // echo "<br>directory path for file resume name:" . $uploadPathResume;
         // echo "<br>directory path for file uni letter name:" . $uploadPathUni;
         // echo "<br>directory path for file ic name:" . $uploadPathIC;
 
-        // Move the file attachment to the specified directory:- $uploadPathResume,  $uploadPathUni, $uploadPathIC
-        if (move_uploaded_file($resumeTempName, $uploadPathResume) && move_uploaded_file($uniTempName, $uploadPathUni) && move_uploaded_file($icTempName, $uploadPathIC)) {
+        // Move the file attachment to the specified directory:- $uploadPathResume,  $uploadPathUni, $uploadPathIC -------------------------------------------------------------- //
+        if (move_uploaded_file($resumeTempName, $uploadPathResume) && move_uploaded_file($uniTempName, $uploadPathUni)) {
             // Insert data into the student table
             $password = generatePassword();
-            $queryStudent = "INSERT INTO student (name, phone_num, email, password, address, sv_id, status, student_id, bank, account, slip_ic) VALUES (?,?,?,?,?,'SV000','Baru', 'IS000',?,?,?)";
+            $queryStudent = "INSERT INTO student (name, phone_num, email, password, address, sv_id, status, student_id) VALUES (?,?,?,?,?,'SV000','Baru', 'IS000')";
             $stmtStudent = $conn->prepare($queryStudent);
 
             // Bind parameters
-            $stmtStudent->bind_param("ssssssss", $student_name, $student_phone, $student_email, $password, $student_address, $bankName, $bankAcc, $newICFile);
+            $stmtStudent->bind_param("sssss", $student_name, $student_phone, $student_email, $password, $student_address);
             $stmtStudent->execute();
             $stmtStudent->close();
-
+            
+            //----- get student unique id to be insert into application_intern as a temporary student_id -----//
             $queryID = "SELECT * FROM student WHERE name = ? AND email = ?";
             $stmtID = $conn->prepare($queryID);
 
@@ -142,19 +140,20 @@ if (isset($_POST['submit'])) {
         } else {
         echo "Error uploading file.";
         }
-} else {
-    echo '<center><script> 
-            Swal.fire({
-                title: "Tidak Berjaya",
-                text: "Maklumat yang diisi perlulah lengkap dengan dokumen.",
-                icon: "error"
-            }).then(function() {
-                window.location.replace("../index.php"); 
-            }); </script></center>';
-}
+    }
+    else {
+        echo '<center><script> 
+                Swal.fire({
+                    title: "Tidak Berjaya",
+                    text: "Maklumat yang diisi perlulah lengkap dengan dokumen.",
+                    icon: "error"
+                }).then(function() {
+                    window.location.replace("../index.php"); 
+                }); </script></center>';
+    }
 
 $conn->close();
-}
+// }
 
 function generatePassword() {
     // Generate a random 6-digit number

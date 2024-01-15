@@ -19,6 +19,7 @@ if ($result->num_rows > 0) {
 		$email = $row['email'];
 		$phone_num = $row['phone_num'];
 		$password = $row['password'];
+		$profile_pic = $row['profile_pic'];
 	}
 }
 ?>
@@ -30,7 +31,7 @@ if ($result->num_rows > 0) {
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>SPLI RN TECH | Profil Pengguna</title>
+	<title>SPLI RNTECH | Profil Pengguna</title>
 
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 	<link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
@@ -87,6 +88,25 @@ if ($result->num_rows > 0) {
 								<!-- /.card-header -->
 								<div class="card-body">
 									<form id="form-edit" action="updateprofile_svDB.php" method="post" enctype="multipart/form-data" class="p-4">
+
+													<div class="mb-3 text-center">
+														<?php if(isset($profile_pic) && !empty($profile_pic)) { ?>
+															<div class="mt-2">
+																<img src="../upload/profile_pic/<?php echo $profile_pic; ?>" alt="Profile Picture" class="img-fluid img-thumbnail" style="max-width: 150px;">
+															</div>
+														<?php } else { ?>
+															<div class="mt-2">
+																<img src="../../assets/img/profile.png" alt="Default Profile Picture" class="img-fluid img-thumbnail" style="max-width: 160px;">
+															</div>
+														<?php } ?>
+														<?php if (isset($_GET['edit'])) { ?>
+															<div class="mt-3">
+																<label for="new_profile_pic" class="form-label">Muat Naik Gambar Profil:</label>
+																<input type="file" class="form-control" id="new_profile_pic" name="new_profile_pic">
+															</div>
+														<?php } ?>
+													</div>
+
 													<div class="mb-3">
 														<label for="name" class="form-label">Nama:</label>
 														<div class="input-group">

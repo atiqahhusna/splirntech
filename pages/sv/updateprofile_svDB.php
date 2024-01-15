@@ -24,6 +24,61 @@ $email = $_POST['email'];
 $phone_num = $_POST['phone_num'];
 $password = $_POST['password'];
 
+// Check if a new profile picture is being uploaded
+$new_profile_pic = $_FILES['new_profile_pic']['name']; // Assuming 'new_profile_pic' is the name of the file input field
+
+if ($new_profile_pic != '') {
+    // Process the uploaded file
+
+    $folderpic = "profile_pic";
+    $directoryPath = "../upload/" . $folderpic;
+
+    // Check if the directory doesn't exist
+    if (!is_dir($directoryPath)) {
+        // The directory doesn't exist, so create it
+        mkdir($directoryPath);
+    }
+
+    $target_file = $directoryPath . "/" . basename($_FILES['new_profile_pic']['name']);
+    $file_extension = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+    // Valid file extensions (you can modify this as needed)
+    $allowed_extensions = array("jpg", "jpeg", "png", "gif");
+
+    if (!in_array($file_extension, $allowed_extensions)) {
+        $error_message = "Invalid file format. Please upload a JPG, JPEG, PNG, or GIF file.";
+        echo '<script> 
+            Swal.fire({
+                title: "Error",
+                text: "' . $error_message . '",
+                icon: "error"
+            }).then(function() {
+                window.location.replace("profile_sv.php"); 
+            }); </script>';
+        exit();
+    }
+
+    if (move_uploaded_file($_FILES['new_profile_pic']['tmp_name'], $target_file)) {
+        // Update the profile picture field in the database
+        $sql_update_pic = "UPDATE `supervisor` SET `profile_pic` = ? WHERE `id` = ?";
+        $stmt_pic = $conn->prepare($sql_update_pic);
+        $stmt_pic->bind_param("si", $new_profile_pic, $id_edit);
+        $stmt_pic->execute();
+        $stmt_pic->close();
+    } else {
+        $error_message = "Error uploading file.";
+        echo '<script> 
+            Swal.fire({
+                title: "Error",
+                text: "' . $error_message . '",
+                icon: "error"
+            }).then(function() {
+                window.location.replace("profile_sv.php"); 
+            }); </script>';
+        exit();
+    }
+}
+
 // Check if any data has changed
 $sql_select = "SELECT * FROM `supervisor` WHERE `id` = ?";
 $stmt_select = $conn->prepare($sql_select);
