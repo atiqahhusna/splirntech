@@ -84,11 +84,10 @@ include "../../conn.php";
                                                 <thead>
                                                     <tr>
                                                         <th>Bil.</th>
-                                                        <th>Nama</th>
-                                                        <th>Tarikh Permohonan</th>
+                                                        <th width="23%">Nama</th>
+                                                        <th width="15%">Tarikh Permohonan</th>
+                                                        <th width="15%">Tempoh Latihan Industri</th>
                                                         <th>Universiti</th>
-                                                        <!-- <th>Markah</th> -->
-                                                        <th>Lampiran</th>
                                                         <th width="19%" style="text-align: center;">Tindakan</th>
                                                     </tr>
                                                 </thead>
@@ -107,20 +106,10 @@ include "../../conn.php";
                                                             <td><?php echo $bil++ ?></td>
                                                             <td><?php echo $myrow['name']; ?></td>
                                                             <td><?php echo date('d/m/Y', strtotime($myrow['apply_date'])); ?></td>
+                                                            <td><?php echo $myrow['tempoh_intern'];?>&nbsp bulan</td>
                                                             <td><?php echo $myrow['uni_name']; ?></td>
-                                                            <td>
-                                                                <?php
-                                                                $resumePath = $myrow['resume'];
-                                                                if (!empty($resumePath)) {
-                                                                    echo '<a href="../../upload/' . $resumePath . '" target="_blank">[Lampiran]</a>';
-                                                                } else {
-                                                                    echo 'N/A';
-                                                                }
-                                                                ?>
-                                                            </td>
                                                             <td class="text-center">
-                                                                <button class="btn btn-outline-primary btn-sm" style="margin:2px;" data-toggle="modal" data-target="#viewUserDataModal_<?php echo $myrow['id']; ?>" data-placement="center" title="Lihat Maklumat Pengguna" data-id="<?php echo $myrow['id']; ?>"><i style='font-size:20px' class='fas fa-eye'></i></button>
-                                                                <!-- <button class="btn btn-primary btn-sm" style="margin:2px;" data-toggle="modal" data-target="#viewUserDataModal" data-placement="center" title="Lihat Maklumat Pengguna" data-id="<?php echo $myrow['id']; ?>"><i style='font-size:20px' class='fas fa-eye'></i></button> -->
+                                                                <a href="view_student.php?id=<?php echo $myrow['studID']; ?>&notify=1" class="btn btn-outline-primary btn-sm" style="margin:2px;" data-toggle="tooltip" data-placement="top" title="Terima"><i style="font-size:20px" class='fas fa-eye'></i></a>
                                                                 <button class="btn btn-outline-primary btn-sm" style="margin:2px;" data-toggle="modal" data-target="#myModal_<?php echo $myrow['id']; ?>" data-placement="center" title="Temuduga" data-id="<?php echo $myrow['studID']; ?>"><i style='font-size:20px' class='fas fa-user-tie'></i></button>
                                                                 <a href="terimaStudent.php?id=<?php echo $myrow['studID']; ?>&notify=1" class="btn btn-outline-primary btn-sm" style="margin:2px;" data-toggle="tooltip" data-placement="top" title="Terima"><i style="font-size:20px" class='fas fa-check'></i></a>
                                                                 <a href="tolakStudent.php?id=<?php echo $myrow['studID']; ?>&notify=1" class="btn btn-outline-primary btn-sm" style="margin:2px;" data-toggle="tooltip" data-placement="top" title="Tolak"><i style="font-size:20px" class="fa">&#xf00d;</i></a>
@@ -205,7 +194,6 @@ include "../../conn.php";
                                                         <th>Nama</th>
                                                         <th>Universiti</th>
                                                         <th width="15%">Kursus</th>
-                                                        <th>Lampiran</th>
                                                         <th width="30%">Pilih Penyelia Latihan Industri</th>
                                                     </tr>
                                                 </thead>
@@ -230,16 +218,6 @@ include "../../conn.php";
                                                                 <td><?php echo $myrow['uni_name']; ?></td>
                                                                 <td><?php echo $myrow['course']; ?></td>
                                                                 <?php $studentID = $myrow['student_id']; ?>
-                                                                <td>
-                                                                    <?php
-                                                                    $resumePath = $myrow['resume'];
-                                                                    if (!empty($resumePath)) {
-                                                                        echo '<a href="../upload/' . $resumePath . '" target="_blank">[Lampiran]</a>';
-                                                                    } else {
-                                                                        echo 'N/A';
-                                                                    }
-                                                                    ?>
-                                                                </td>
                                                                 <td>
                                                                     <div id="supervisorDropdownContainer">
                                                                         <?php
@@ -413,7 +391,7 @@ include "../../conn.php";
                 </form>
             <?php
             }
-            ?>
+            ?>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
 
 
         </div>
@@ -440,6 +418,9 @@ include "../../conn.php";
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyFHS3hT4FQq6p3L/GDg6qjkA0rTl5o6v" crossorigin="anonymous"></script>
     <script src="../SenaraiPermohonan/permohonan.js"></script>
 
+
+
+    
     <script>
         $(function() {
             // Check if the DataTable for #example2 exists and destroy it
@@ -484,6 +465,7 @@ include "../../conn.php";
             }
         });
     </script>
+
 </body>
 
 </html>
