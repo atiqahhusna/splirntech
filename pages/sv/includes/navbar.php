@@ -49,16 +49,15 @@ $sv_id = $_POST['sv_id'];
 	  <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right custom-dropdown">
 		<div class="dropdown-header">
 		  <div class="profile-info">
-        <img src="/splirnt/assets/img/profile.png" alt="Profile Image">
-			<span class="name">
-			  <?php
-			  $sql = "SELECT name FROM supervisor WHERE sv_id = '$sv_id'";
+      <?php
+			  $sql = "SELECT * FROM supervisor WHERE sv_id = '$sv_id'";
 			  $result = mysqli_query($conn, $sql);
 
 			  if ($result) {
 				$row = mysqli_fetch_assoc($result);
 				if ($row) {
-				  echo strtoupper($row["name"]);
+				  $sv_name = $row["name"];
+          $profile_pic = $row["profile_pic"];
 				} else {
 				  echo "Name not found";
 				}
@@ -66,7 +65,14 @@ $sv_id = $_POST['sv_id'];
 				echo "Error in SQL query: " . mysqli_error($conn);
 			  }
 			  ?>
-			</span>
+
+          <?php if(isset($profile_pic) && !empty($profile_pic)) { ?>
+              <img src="../upload/profile_pic/<?php echo $profile_pic; ?>" alt="Profile Image">
+          <?php } else { ?>
+              <img src="../../assets/img/profile.png" alt="Default Profile Picture" class="img-fluid img-thumbnail" style="max-width: 160px;">
+          <?php } ?>  
+    
+			<span class="name"><?php echo strtoupper($sv_name); ?></span>
 		  </div>
 		</div>
 		<div class="dropdown-divider"></div>

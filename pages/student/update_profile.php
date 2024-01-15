@@ -91,7 +91,8 @@ if (
     $row['name'] === $name &&
     $row['email'] === $email &&
     $row['phone_num'] === $phone_num &&
-    $row['password'] === $password
+    $row['password'] === $password &&
+    $row['profile_pic'] !== $new_profile_pic
 ) {
     echo '<center><script> 
     Swal.fire({
