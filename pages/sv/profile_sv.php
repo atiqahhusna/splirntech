@@ -141,7 +141,7 @@ if ($result->num_rows > 0) {
 														</div>
 													</div>
 
-													<div class="text-center">
+													<div class="d-flex justify-content-end">
 														<?php if (isset($_GET['edit'])) { ?>
 															<button type="submit" class="btn btn-primary">Simpan</button>
 															<input type="hidden" id="id_edit" name="id_edit" value="<?php echo $id_edit; ?>">
