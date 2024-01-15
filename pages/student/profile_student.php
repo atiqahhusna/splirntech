@@ -19,6 +19,7 @@ if ($result->num_rows > 0) {
 		$email = $row['email'];
 		$phone_num = $row['phone_num'];
 		$password = $row['password'];
+		$profile_pic = $row['profile_pic'];
 	}
 }
 ?>
@@ -93,6 +94,25 @@ if ($result->num_rows > 0) {
 										<div class="container">
 											<div class="row justify-content-center">
 												<div class="col-md-12">
+
+													<div class="mb-3 text-center">
+														<?php if(isset($profile_pic) && !empty($profile_pic)) { ?>
+															<div class="mt-2">
+																<img src="../upload/profile_pic/<?php echo $profile_pic; ?>" alt="Profile Picture" class="img-fluid img-thumbnail" style="max-width: 150px;">
+															</div>
+														<?php } else { ?>
+															<div class="mt-2">
+																<img src="../../assets/img/profile.png" alt="Default Profile Picture" class="img-fluid img-thumbnail" style="max-width: 160px;">
+															</div>
+														<?php } ?>
+														<?php if (isset($_GET['edit'])) { ?>
+															<div class="mt-3">
+																<label for="new_profile_pic" class="form-label">Muat Naik Gambar Profil:</label>
+																<input type="file" class="form-control" id="new_profile_pic" name="new_profile_pic">
+															</div>
+														<?php } ?>
+													</div>
+													
 													<div class="mb-3">
 														<label for="name" class="form-label"> Nama:</label>
 														<div class="input-group">
