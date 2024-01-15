@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['profile_pic'] = $hrRow['profile_pic'];
 
 
-                header("Location: hr/dashboard_hr.php");
+                header("Location: hr/dashboard/dashboard_hr.php");
                 exit();
             }
             mysqli_stmt_close($hrStmt);
