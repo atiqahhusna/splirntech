@@ -91,15 +91,15 @@ if (
     $row['name'] === $name &&
     $row['email'] === $email &&
     $row['phone_num'] === $phone_num &&
-    $row['password'] === $password
+    $row['password'] === $password &&
+    $row['profile_pic'] !== $new_profile_pic
 ) {
     // No changes in data
 
     echo '<center><script> 
     Swal.fire({
         title: "Tiada Perubahan",
-        text: "Tiada perubahan pada profil anda.",
-        icon: "success"
+        text: "Tiada perubahan pada profil anda."
     }).then(function() {
         window.location.replace("profile_sv.php"); 
     }); </script></center>';
@@ -137,4 +137,4 @@ if ($stmt->execute()) {
 $stmt_select->close();
 $stmt->close();
 $conn->close();
-?>
+?>   
