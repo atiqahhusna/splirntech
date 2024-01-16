@@ -93,11 +93,15 @@ include "pages/conn.php";
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
+  <?php
+    $Date = gmdate('Y');
+  ?>
+
   <footer id="footer">
     <div class="container d-md-flex py-4">
       <div class="mx-auto text-center text-md-start"> <!-- Updated class here -->
         <div class="copyright">
-          &copy; Copyright <strong><span>RN Tech 2023</span></strong>. All Rights Reserved
+        <strong>Hak Cipta &copy; <?php echo $Date; ?><a href="#"> RN Technologies Sdn. Bhd</a>.</strong>
         </div>
       </div>
     </div>
