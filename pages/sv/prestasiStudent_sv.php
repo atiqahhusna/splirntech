@@ -222,16 +222,20 @@ $sv_id = $_POST['sv_id'];
                                             <tbody>
                                                 <?php
                                                 $i = 1;
-                                                $query = "SELECT * FROM feedback where person_name ='" . $_GET['studname'] . "'";
-                                                $result = mysqli_query($conn, $query);
+                                                // Check if 'studname' is set in $_GET
+                                                if (isset($_GET['studname'])) {
+                                                    $studname = $_GET['studname'];
+                                                    $query = "SELECT * FROM feedback where person_name ='" . $_GET['studname'] . "'";
+                                                    $result = mysqli_query($conn, $query);
 
-                                                while ($row = mysqli_fetch_array($result)) {
-                                                    echo "<tr>";
-                                                    echo "<td>" . $i++ . "</td>";
-                                                    echo "<td>" .  $row['description'] . "</td>";
-                                                    echo "<td>" .  $row['date'] . "</td>";
-                                                    echo "<td>" .  $row['time'] . "</td>";
-                                                    echo "<td>" .  $row['feedback_type'] . "</td>";
+                                                    while ($row = mysqli_fetch_array($result)) {
+                                                        echo "<tr>";
+                                                        echo "<td>" . $i++ . "</td>";
+                                                        echo "<td>" .  $row['description'] . "</td>";
+                                                        echo "<td>" .  $row['date'] . "</td>";
+                                                        echo "<td>" .  $row['time'] . "</td>";
+                                                        echo "<td>" .  $row['feedback_type'] . "</td>";
+                                                    }
                                                 }
                                                 ?>
                                             </tbody>

@@ -168,7 +168,7 @@ include "../conn.php";
                   <tbody>
                     <?php
                     $i = 1;
-                    $query = "SELECT * FROM student WHERE sv_id = '" . $sv_id . "' AND status='Aktif'";
+                    $query = "SELECT * FROM student WHERE sv_id = '" . $sv_id . "' AND status='Tidak Aktif'";
                     $result = mysqli_query($conn, $query);
                     $num_rows = mysqli_num_rows($result);
 
@@ -185,7 +185,7 @@ include "../conn.php";
                         echo "<td>" . $row["email"] . "</td>";
                         echo "<td>" . $row["status"] . "</td>";
                         $student_id = $row['student_id']; ?>
-                        <td style="text-align:center"><button type="button" class="btn btn-outline-info" data-toggle="tooltip" data-placement="top" title="Lihat"><a href="prestasiStudent_sv.php?student_id=<?php echo $student_id ?>&studname=<?php echo $row['name'] ?>"><i class="fa fa-search"></i></a></button>
+                        <td style="text-align:center"><button type="button" class="btn btn-outline-info" data-toggle="tooltip" data-placement="top" title="Lihat"><a href="studentView_sv.php?student_id=<?php echo $student_id ?>&studname=<?php echo $row['name'] ?>"><i class="fa fa-search"></i></a></button>
                         </td>
                         </tr>
                         </tr>
