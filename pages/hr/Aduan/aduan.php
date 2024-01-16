@@ -10,7 +10,7 @@ include "../../conn.php";
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>SPLI RN TECH | Aduan Maklum Balas</title>
+	<title>SPLI RNTECH | Aduan Maklum Balas</title>
 
 	<?php include "../includes/styles.php"; ?>
 
@@ -124,7 +124,6 @@ include "../../conn.php";
 																	<center>
 																		<a href="#" class="btn btn-outline-info btn-sm view-complaint" data-id="<?php echo $myrowAktif['id']; ?>" data-toggle="tooltip" data-placement="top" title="Sembunyi Aduan"><i class="far fa-eye-slash"></i></a>
 																		<button class="btn btn-outline-info btn-sm view-button" data-toggle="modal" data-target="#modalMaklumatAduan"><i class="fas fa-list"></i></button>
-																		<a href="#" class="btn btn-outline-info btn-sm delete-complaint" data-id="<?php echo $myrowAktif['id']; ?>" style="margin:5px;" data-toggle="tooltip" data-placement="top" title="Padam"><i class="fa">&#xf1f8;</i></a>
 																	</center>
 																</td>
 															</tr>

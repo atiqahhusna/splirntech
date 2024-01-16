@@ -49,8 +49,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				$_SESSION['id'] = $studentRow['student_id'];
                 $_SESSION['studid'] = $studentRow['id'];
                 $status = $studentRow['status'];
-                $emaildata = $studentRow['email'];
-                $passData = $studentRow['password'];
 
                 if ($status == "Aktif"){
                     header("Location: student/dashboard_student.php");
@@ -68,19 +66,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             exit();
                 }
                 
-            
-                
             }
             else {
                     echo '<center><script> 
                             Swal.fire({
                                 title: "Gagal",
-                                text: "Sila masukkan Emel dan Katalaluan yang betulStudent.",
+                                text: "Sila masukkan Emel dan Katalaluan yang betul.",
                                 icon: "error"
                             }).then(function() {
                                 window.location.replace("../index.php"); 
                             }); </script></center>';
-                            exit();
             }
             
             
@@ -103,21 +98,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['position'] = $supervisorRow['position'];
 				$_SESSION['id'] = $supervisorRow['id'];
                 $_SESSION['sv_id'] = $supervisorRow['sv_id'];
+                $status = $supervisorRow['status'];
 
-
-                header("Location: sv/dashboard_sv.php");
-                exit();
-            }
-            else {
+                if ($status == "Aktif"){
+                    header("Location: sv/dashboard_sv.php");
+                    exit();
+                }
+                else if($status == "Tidak Aktif"){
                     echo '<center><script> 
                             Swal.fire({
                                 title: "Gagal",
-                                text: "Sila masukkan Emel dan Katalaluan yang betulSV.",
+                                text: "Harap Maaf. Akaun anda telah dinyahaktif.",
                                 icon: "error"
                             }).then(function() {
                                 window.location.replace("../index.php"); 
                             }); </script></center>';
                             exit();
+                }
+            }
+            else {
+                    echo '<center><script> 
+                            Swal.fire({
+                                title: "Gagal",
+                                text: "Sila masukkan Emel dan Katalaluan yang betul.",
+                                icon: "error"
+                            }).then(function() {
+                                window.location.replace("../index.php"); 
+                            }); </script></center>';
             }
             mysqli_stmt_close($supervisorStmt);
         }
@@ -146,7 +153,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     echo '<center><script> 
                             Swal.fire({
                                 title: "Gagal",
-                                text: "Sila masukkan Emel dan Katalaluan yang betulHR.",
+                                text: "Sila masukkan Emel dan Katalaluan yang betul.",
                                 icon: "error"
                             }).then(function() {
                                 window.location.replace("../index.php"); 

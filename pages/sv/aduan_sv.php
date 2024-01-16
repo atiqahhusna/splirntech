@@ -223,7 +223,7 @@ include "../conn.php";
 								<tbody>
 									<?php
 									$i = 1;
-									$query = "SELECT * FROM feedback where pekerja_id ='" . $sv_id . "'";
+									$query = "SELECT * FROM feedback where pekerja_id ='" . $sv_id . "' AND (status = 'Lihat' OR status = 'Baru')";
 									$result = $conn->query($query);
 
 									if ($result->num_rows > 0) {
