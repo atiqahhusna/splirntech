@@ -101,7 +101,7 @@ include "../../conn.php";
 															<a href="#changePasswordModal" class="btn btn-outline-primary btn-sm change-password" data-toggle="modal" data-user-id="<?php echo $student_row['id']; ?>" data-user-type="student" data-toggle="tooltip" data-placement="top" title="Tukar Kata Laluan">
 																<i class="fas fa-user-lock"></i>
 															</a>
-															<a href="padamUser.php?id=<?php echo $student_row['id']; ?>&notify=1&category=student" class="btn btn-outline-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Padam Pengguna">
+															<a href="padamUser.php?id=<?php echo $student_row['id']; ?>&notify=1&category=student" class="btn btn-outline-primary btn-sm  btnpadamsv" data-toggle="tooltip" data-placement="top" title="Padam Pengguna">
 																<i class="fas fa-trash-alt"></i>
 															</a>
 															<a href="view_user_student.php?id=<?php echo $student_row['student_id']; ?>&notify=1" class="btn btn-outline-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Lihat Maklumat Pengguna">
