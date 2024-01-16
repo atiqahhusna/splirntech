@@ -14,6 +14,8 @@ include "../../conn.php";
 
 	<?php include "../includes/styles.php"; ?>
 
+	
+
 </head>
 </head>
 
@@ -184,6 +186,8 @@ include "../../conn.php";
 		<aside class="control-sidebar control-sidebar-dark">
 		</aside>
 	</div>
+
+
 	<script src="../../../plugins/jquery/jquery.min.js"></script>
 	<script src="../../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script src="../../../plugins/datatables/jquery.dataTables.min.js"></script>
@@ -197,13 +201,15 @@ include "../../conn.php";
 	<script src="../../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 	<script src="../../../dist/js/adminlte.min.js"></script>
 	<script src="../Pengguna/pengguna.js"></script>
-		<!-- Include jQuery -->
-		<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+	<link rel="stylesheet" href="@sweetalert2/themes/dark/dark.css">
+	<script src="sweetalert2/dist/sweetalert2.min.js"></script>
 
-		<!-- Include SweetAlert -->
-		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+			<!-- SWEEY ALERT -->
+	<link rel="stylesheet" href="../../plugins/sweetalert2/sweetalert2.min.css">
+	<link rel="stylesheet" href="../../plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
 
-
+	<script type="text/javascript" src="../../plugins/sweetalert2/sweetalert2.min.js"></script>
+	<script src="../../dist/js/demo.js"></script>
 
 
 
@@ -251,22 +257,6 @@ $('.btnpadamsv').click(function(e) {
 
 </script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
 	<script>
 		$(document).ready(function() {
 			// Function to show change password modal
