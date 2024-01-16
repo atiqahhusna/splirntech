@@ -188,7 +188,7 @@ if ($result->num_rows > 0) {
 
 			// Set the id_edit value in the form
 			var idEditField = document.getElementById("id_edit");
-			var idEditValue = /* Logic to get or set the id_edit value */ ;
+			// var idEditValue = /* Logic to get or set the id_edit value */ ;
 			idEditField.value = idEditValue;
 		}
 	</script>
