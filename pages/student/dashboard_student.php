@@ -382,6 +382,7 @@ if ($result->num_rows > 0) {
           // Display a popup message
           Swal.fire({
                 title: 'Selamat Datang!',
+                icon: 'warning',
                 text: 'Sila Kemaskini Maklumat Bank Anda.',
                 confirmButtonText: 'Kemaskini',
                 allowOutsideClick: false,
