@@ -113,7 +113,7 @@ if (isset($_GET['id'])) {
 														<label for="name" class="form-label">Nama:</label>
 														<div class="input-group">
 															<span class="input-group-text"><i class="bi bi-person-circle"></i></span>
-															<input type="text" class="form-control" id="name" name="name" value="<?php echo $name ?>" <?php echo isset($_GET['edit']) ? '' : 'disabled' ?>>
+															<input type="text" class="form-control" id="name" name="name" value="<?php echo $name ?>" disabled>
 														</div>
 													</div>
 
@@ -121,7 +121,7 @@ if (isset($_GET['id'])) {
 														<label for="email" class="form-label">Emel Pengguna:</label>
 														<div class="input-group">
 															<span class="input-group-text"><i class="bi bi-envelope"></i></span>
-															<input type="email" class="form-control" id="email" name="email" value="<?php echo $email ?>" <?php echo isset($_GET['edit']) ? '' : 'disabled' ?>>
+															<input type="email" class="form-control" id="email" name="email" value="<?php echo $email ?>" disabled>
 														</div>
 													</div>
 
@@ -129,7 +129,7 @@ if (isset($_GET['id'])) {
 														<label for="address" class="form-label">Alamat:</label>
 														<div class="input-group">
 															<span class="input-group-text"><i class="bi bi-house"></i></span>
-															<input type="address" class="form-control" id="address" name="address" value="<?php echo $address ?>" <?php echo isset($_GET['edit']) ? '' : 'disabled' ?>>
+															<input type="address" class="form-control" id="address" name="address" value="<?php echo $address ?>" disabled>
 														</div>
 													</div>
 
@@ -137,7 +137,7 @@ if (isset($_GET['id'])) {
 														<label for="phone_num" class="form-label">Nombor Telefon:</label>
 														<div class="input-group">
 															<span class="input-group-text"><i class="bi bi-phone"></i></span>
-															<input type="tel" class="form-control" id="phone_num" name="phone_num" value="<?php echo $phone_num ?>" <?php echo isset($_GET['edit']) ? '' : 'disabled' ?>>
+															<input type="tel" class="form-control" id="phone_num" name="phone_num" value="<?php echo $phone_num ?>" disabled>
 														</div>
 													</div>
 
@@ -145,7 +145,7 @@ if (isset($_GET['id'])) {
 														<label for="supervisor_name" class="form-label">Nama Penyelia:</label>
 														<div class="input-group">
 															<span class="input-group-text"><i class="bi bi-person-check"></i></span>
-															<input type="text" class="form-control" id="supervisor_name" name="supervisor_name" value="<?php echo $supervisor_name ?>" <?php echo isset($_GET['edit']) ? '' : 'disabled' ?>>
+															<input type="text" class="form-control" id="supervisor_name" name="supervisor_name" value="<?php echo $supervisor_name ?>" disabled>
 														</div>
 													</div>
 												</div>
@@ -157,7 +157,7 @@ if (isset($_GET['id'])) {
 														<label for="uni_name" class="form-label">Nama Universiti:</label>
 														<div class="input-group">
 															<span class="input-group-text"><i class="bi bi-building"></i></span>
-															<input type="text" class="form-control" id="uni_name" name="uni_name" value="<?php echo $uni_name ?>" <?php echo isset($_GET['edit']) ? '' : 'disabled' ?>>
+															<input type="text" class="form-control" id="uni_name" name="uni_name" value="<?php echo $uni_name ?>" disabled>
 														</div>
 													</div>
 
@@ -165,7 +165,7 @@ if (isset($_GET['id'])) {
 														<label for="uni_phone" class="form-label">Nombor Telefon Universiti:</label>
 														<div class="input-group">
 															<span class="input-group-text"><i class="bi bi-telephone-fill"></i></span>
-															<input type="tel" class="form-control" id="uni_phone" name="uni_phone" value="<?php echo $uni_phone ?>" <?php echo isset($_GET['edit']) ? '' : 'disabled' ?>>
+															<input type="tel" class="form-control" id="uni_phone" name="uni_phone" value="<?php echo $uni_phone ?>" disabled>
 														</div>
 													</div>
 
@@ -173,7 +173,7 @@ if (isset($_GET['id'])) {
 														<label for="course" class="form-label">Kursus:</label>
 														<div class="input-group">
 															<span class="input-group-text"><i class="bi bi-book-fill"></i></span>
-															<input type="text" class="form-control" id="course" name="course" value="<?php echo $course ?>" <?php echo isset($_GET['edit']) ? '' : 'disabled' ?>>
+															<input type="text" class="form-control" id="course" name="course" value="<?php echo $course ?>" disabled>
 														</div>
 													</div>
 
@@ -181,7 +181,7 @@ if (isset($_GET['id'])) {
 														<label for="resume" class="form-label">Resume:</label>
 														<div class="input-group">
 															<span class="input-group-text"><i class="bi bi-file-earmark-text-fill"></i></span>
-															<input type="text" class="form-control" id="resume" name="resume" value="<?php echo $resume ?>" <?php echo isset($_GET['edit']) ? '' : 'disabled' ?>>
+															<input type="text" class="form-control" id="resume" name="resume" value="<?php echo $resume ?>" disabled>
 															<?php
 															// Check if $resume is not empty
 															if (!empty($resume)) {
