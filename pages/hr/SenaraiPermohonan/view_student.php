@@ -115,7 +115,7 @@ if (isset($_GET['id'])) {
 														<label for="name" class="form-label">Nama:</label>
 														<div class="input-group">
 															<span class="input-group-text"><i class="bi bi-person-circle"></i></span>
-															<input type="text" class="form-control" id="name" name="name" value="<?php echo $name ?>" >
+															<input type="text" class="form-control" id="name" name="name" value="<?php echo $name ?>" readonly>
 														</div>
 													</div>
 
@@ -123,7 +123,7 @@ if (isset($_GET['id'])) {
 														<label for="email" class="form-label">Emel Pengguna:</label>
 														<div class="input-group">
 															<span class="input-group-text"><i class="bi bi-envelope"></i></span>
-															<input type="email" class="form-control" id="email" name="email" value="<?php echo $email ?>">
+															<input type="email" class="form-control" id="email" name="email" value="<?php echo $email ?>" readonly>
 														</div>
 													</div>
 
@@ -131,7 +131,7 @@ if (isset($_GET['id'])) {
 														<label for="address" class="form-label">Alamat:</label>
 														<div class="input-group">
 															<span class="input-group-text"><i class="bi bi-house"></i></span>
-															<input type="address" class="form-control" id="address" name="address" value="<?php echo $address ?>">
+															<input type="address" class="form-control" id="address" name="address" value="<?php echo $address ?>" readonly>
 														</div>
 													</div>
 
@@ -139,7 +139,7 @@ if (isset($_GET['id'])) {
 														<label for="phone_num" class="form-label">Nombor Telefon:</label>
 														<div class="input-group">
 															<span class="input-group-text"><i class="bi bi-phone"></i></span>
-															<input type="tel" class="form-control" id="phone_num" name="phone_num" value="<?php echo $phone_num ?>">
+															<input type="tel" class="form-control" id="phone_num" name="phone_num" value="<?php echo $phone_num ?>" readonly>
 														</div>
 													</div>
 
@@ -147,7 +147,7 @@ if (isset($_GET['id'])) {
 														<label for="supervisor_name" class="form-label">Nama Penyelia:</label>
 														<div class="input-group">
 															<span class="input-group-text"><i class="bi bi-person-check"></i></span>
-															<input type="text" class="form-control" id="supervisor_name" name="supervisor_name" value="<?php echo $supervisor_name ?>">
+															<input type="text" class="form-control" id="supervisor_name" name="supervisor_name" value="<?php echo $supervisor_name ?>" readonly>
 														</div>
 													</div>
 
@@ -155,7 +155,7 @@ if (isset($_GET['id'])) {
 														<label for="tempoh_LI" class="form-label">Tempoh Latihan Industri:</label>
 														<div class="input-group">
 															<span class="input-group-text"><i class="bi bi-person-check"></i></span>
-															<input type="text" class="form-control" id="tempoh_intern" name="tempoh_intern" value="<?php echo $tempoh_intern ?>">
+															<input type="text" class="form-control" id="tempoh_intern" name="tempoh_intern" value="<?php echo $tempoh_intern . ' bulan'; ?>" readonly>
 														</div>
 													</div>
 												</div>
@@ -167,7 +167,7 @@ if (isset($_GET['id'])) {
 														<label for="uni_name" class="form-label">Nama Universiti:</label>
 														<div class="input-group">
 															<span class="input-group-text"><i class="bi bi-building"></i></span>
-															<input type="text" class="form-control" id="uni_name" name="uni_name" value="<?php echo $uni_name ?>">
+															<input type="text" class="form-control" id="uni_name" name="uni_name" value="<?php echo $uni_name ?>" readonly>
 														</div>
 													</div>
 
@@ -175,7 +175,7 @@ if (isset($_GET['id'])) {
 														<label for="uni_phone" class="form-label">Nombor Telefon Universiti:</label>
 														<div class="input-group">
 															<span class="input-group-text"><i class="bi bi-telephone-fill"></i></span>
-															<input type="tel" class="form-control" id="uni_phone" name="uni_phone" value="<?php echo $uni_phone ?>">
+															<input type="tel" class="form-control" id="uni_phone" name="uni_phone" value="<?php echo $uni_phone ?>" readonly>
 														</div>
 													</div>
 
@@ -183,7 +183,7 @@ if (isset($_GET['id'])) {
 														<label for="course" class="form-label">Kursus:</label>
 														<div class="input-group">
 															<span class="input-group-text"><i class="bi bi-book-fill"></i></span>
-															<input type="text" class="form-control" id="course" name="course" value="<?php echo $course ?>">
+															<input type="text" class="form-control" id="course" name="course" value="<?php echo $course ?>" readonly>
 														</div>
 													</div>
 
@@ -191,7 +191,7 @@ if (isset($_GET['id'])) {
 														<label for="resume" class="form-label">Resume:</label>
 														<div class="input-group">
 															<span class="input-group-text"><i class="bi bi-file-earmark-text-fill"></i></span>
-															<input type="text" class="form-control" id="resume" name="resume" value="<?php echo $resume ?>">
+															<input type="text" class="form-control" id="resume" name="resume" value="<?php echo $resume ?>" readonly>
 															<?php
 															// Check if $resume is not empty
 															if (!empty($resume)) {
@@ -206,7 +206,7 @@ if (isset($_GET['id'])) {
 														<label for="resume" class="form-label">Surat Universiti:</label>
 														<div class="input-group">
 															<span class="input-group-text"><i class="bi bi-file-earmark-text-fill"></i></span>
-															<input type="text" class="form-control" id="uni_letter" name="uni_letter" value="<?php echo $uni_letter ?>">
+															<input type="text" class="form-control" id="uni_letter" name="uni_letter" value="<?php echo $uni_letter ?>" readonly>
 															<?php
 															// Check if $resume is not empty
 															if (!empty($resume)) {
@@ -224,7 +224,7 @@ if (isset($_GET['id'])) {
 																<label for="start_intern" class="form-label">Mula Latihan Industri:</label>
 																<div class="input-group">
 																	<span class="input-group-text"><i class="bi bi-calendar-check-fill"></i></span>
-																	<input type="date" class="form-control" id="start_intern" name="start_intern" value="<?php echo date('Y-m-d', strtotime($start_intern)); ?>" >
+																	<input type="date" class="form-control" id="start_intern" name="start_intern" value="<?php echo date('Y-m-d', strtotime($start_intern)); ?>" readonly>
 
 																</div>
 															</div>
@@ -232,7 +232,7 @@ if (isset($_GET['id'])) {
 																<label for="last_intern" class="form-label">Tamat Latihan Industri:</label>
 																<div class="input-group">
 																	<span class="input-group-text"><i class="bi bi-calendar-check-fill"></i></span>
-																	<input type="date" class="form-control" id="last_intern" name="last_intern" value="<?php echo date('Y-m-d', strtotime($last_intern)); ?>" min="<?php echo date('Y-m-d', strtotime($start_intern_formatted)); ?>">
+																	<input type="date" class="form-control" id="last_intern" name="last_intern" value="<?php echo date('Y-m-d', strtotime($last_intern)); ?>" min="<?php echo date('Y-m-d', strtotime($start_intern_formatted)); ?>" readonly>
 																</div>
 															</div>
 														</div>
