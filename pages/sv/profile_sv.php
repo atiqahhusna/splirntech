@@ -19,6 +19,7 @@ if ($result->num_rows > 0) {
 		$email = $row['email'];
 		$phone_num = $row['phone_num'];
 		$password = $row['password'];
+		$profile_pic = $row['profile_pic'];
 	}
 }
 ?>
@@ -30,7 +31,7 @@ if ($result->num_rows > 0) {
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>SPLI RN TECH | Profil Pengguna</title>
+	<title>SPLI RNTECH | Profil Pengguna</title>
 
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 	<link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
@@ -79,20 +80,35 @@ if ($result->num_rows > 0) {
 
 			<section class="content">
 				<div class="container-fluid">
-					<div class="row">
 						<div class="col-12">
-							<div class="card card-warning">
+							<div class="card card-navy">
 								<div class="card-header">
 									<h3 class="card-title">Maklumat Profil Penyelia</h3>
 								</div>
 								<!-- /.card-header -->
 								<div class="card-body">
 									<form id="form-edit" action="updateprofile_svDB.php" method="post" enctype="multipart/form-data" class="p-4">
-										<div class="container">
-											<div class="row justify-content-center">
-												<div class="col-md-12">
+
+													<div class="mb-3 text-center">
+														<?php if(isset($profile_pic) && !empty($profile_pic)) { ?>
+															<div class="mt-2">
+																<img src="../upload/profile_pic/<?php echo $profile_pic; ?>" alt="Profile Picture" class="img-fluid img-thumbnail" style="max-width: 150px;">
+															</div>
+														<?php } else { ?>
+															<div class="mt-2">
+																<img src="../../assets/img/profile.png" alt="Default Profile Picture" class="img-fluid img-thumbnail" style="max-width: 160px;">
+															</div>
+														<?php } ?>
+														<?php if (isset($_GET['edit'])) { ?>
+															<div class="mt-3">
+																<label for="new_profile_pic" class="form-label">Muat Naik Gambar Profil:</label>
+																<input type="file" class="form-control" id="new_profile_pic" name="new_profile_pic">
+															</div>
+														<?php } ?>
+													</div>
+
 													<div class="mb-3">
-														<label for="name" class="form-label"> Nama:</label>
+														<label for="name" class="form-label">Nama:</label>
 														<div class="input-group">
 															<span class="input-group-text"><i class="bi bi-person-fill"></i></span>
 															<input type="text" class="form-control" id="name" name="name" value="<?php echo $name ?>" <?php echo isset($_GET['edit']) ? '' : 'disabled' ?>>
@@ -100,7 +116,7 @@ if ($result->num_rows > 0) {
 													</div>
 
 													<div class="mb-3">
-														<label for="email" class="form-label"> Emel Pengguna:</label>
+														<label for="email" class="form-label">Emel Pengguna:</label>
 														<div class="input-group">
 															<span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
 															<input type="email" class="form-control" id="email" name="email" value="<?php echo $email ?>" <?php echo isset($_GET['edit']) ? '' : 'disabled' ?>>
@@ -125,24 +141,20 @@ if ($result->num_rows > 0) {
 														</div>
 													</div>
 
-													<div class="text-center">
+													<div class="d-flex justify-content-end">
 														<?php if (isset($_GET['edit'])) { ?>
-															<button type="submit" class="btn btn-warning">Simpan</button>
+															<button type="submit" class="btn btn-primary">Simpan</button>
 															<input type="hidden" id="id_edit" name="id_edit" value="<?php echo $id_edit; ?>">
 															<a href="javascript:history.back()" class="btn btn-secondary mx-2">Kembali</a>
 														<?php } else { ?>
 															<a href="?edit=true" class="btn btn-primary">Kemaskini</a>
 														<?php } ?>
 													</div>
-												</div>
-											</div>
-										</div>
 									</form>
 								</div>
 								<!-- /.card-body -->
 							</div>
 						</div>
-					</div>
 				</div>
 			</section>
 
@@ -176,7 +188,7 @@ if ($result->num_rows > 0) {
 
 			// Set the id_edit value in the form
 			var idEditField = document.getElementById("id_edit");
-			var idEditValue = /* Logic to get or set the id_edit value */ ;
+			// var idEditValue = /* Logic to get or set the id_edit value */ ;
 			idEditField.value = idEditValue;
 		}
 	</script>

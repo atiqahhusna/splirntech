@@ -16,7 +16,7 @@ $sv_id = $_POST['sv_id'];
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SPLI RN TECH | ADUAN</title>
+  <title>SPLI RNTECH | ADUAN</title>
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
@@ -97,19 +97,19 @@ $sv_id = $_POST['sv_id'];
                     <div class="form-group">
 
                       <p>
-                        <label for="name">Tugasan</label>
+                        <label for="name">Tugasan</label><label style="color:red">*</label>
                         <input type="name" class="form-control" name="tugasan" id="tugasan" value="<?php echo $row['task']; ?>">
                       <p>
-                        <label for="date">Tarikh</label>
+                        <label for="date">Tarikh</label><label style="color:red">*</label>
                         <input type="date" class="form-control" name="date" id="date" value="<?php echo $row['due_date']; ?>">
                       <p>
-                        <label for="status">Status*</label>&emsp;&emsp;&emsp;
-                        <input type="radio" name="status" id="status" value="on going" required>&emsp;In Progress&emsp;&emsp;
-                        <input type="radio" name="status" id="status" value="not yet" required>&emsp;Not Started&emsp;&emsp;
-                        <input type="radio" name="status" id="status" value="done" required>&emsp;Done&emsp;&emsp;
+                        <label for="status">Status</label><label style="color:red">*</label>&emsp;&emsp;&emsp;
+                        <input type="radio" name="status" id="status" value="on going" required>&emsp;Dalam Proses&emsp;&emsp;
+                        <input type="radio" name="status" id="status" value="not yet" required>&emsp;Belum Bermula&emsp;&emsp;
+                        <input type="radio" name="status" id="status" value="done" required>&emsp;Selesai&emsp;&emsp;
                       <p>
-                        <input type='submit' name='submit' value='KEMASKINI' class='btn btn-outline-info' onclick='return confirmUpdate()'>
-                        <button type='submit' name='submit' class='btn btn-danger'><a href="dashboard_sv.php" style="color:white">KEMBALI</a></button>
+                        <button type='submit' name='submit' class='btn btn-secondary' style="float:right"><a href="dashboard_sv.php" style="color:white">Kembali</a></button>
+                        <input type='submit' name='submit' value='Kemaskini' class='btn btn-primary' onclick='return confirmUpdate()' style="float:right; margin-right:5px">
                     </div>
                   </form>
                 </div>

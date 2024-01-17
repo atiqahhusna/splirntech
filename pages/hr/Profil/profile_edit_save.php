@@ -1,3 +1,15 @@
+<link rel="stylesheet" href="../../plugins/sweetalert2/sweetalert2.min.css">
+<link rel="stylesheet" href="../../plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+
+<script src="../../plugins/jquery/jquery.min.js"></script>
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../dist/js/adminlte.min.js"></script>
+<script type="text/javascript" src="../../plugins/sweetalert2/sweetalert2.min.js"></script>
+<script src="../../dist/js/demo.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
 <?php
 session_start();
 if (!isset($_SESSION['name']) || $_SESSION['name'] == '') {
@@ -8,7 +20,7 @@ if (!isset($_SESSION['name']) || $_SESSION['name'] == '') {
 include "../../conn.php";
 
 // Retrieve form data
-$id_edit = $_POST['id_edit']; // Assuming 'id_edit' is a field in your form
+$id_edit = $_SESSION['id']; // Assuming 'id_edit' is a field in your form
 $name = $_POST['name'];
 $email = $_POST['email'];
 $phone_num = $_POST['phone_num'];
@@ -19,8 +31,16 @@ $new_profile_pic = $_FILES['new_profile_pic']['name']; // Assuming 'new_profile_
 
 if ($new_profile_pic != '') {
     // Process the uploaded file
-    $target_directory = "../../upload/";
-    $target_file = $target_directory . basename($_FILES['new_profile_pic']['name']);
+    $folderpic = "profile_pic";
+    $directoryPath = "../../upload/" . $folderpic;
+
+    // Check if the directory doesn't exist
+    if (!is_dir($directoryPath)) {
+        // The directory doesn't exist, so create it
+        mkdir($directoryPath);
+    }
+
+    $target_file = $directoryPath . "/" . basename($_FILES['new_profile_pic']['name']);
     $file_extension = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
     // Valid file extensions (you can modify this as needed)
@@ -60,41 +80,64 @@ if ($new_profile_pic != '') {
     }
 }
 
-// Perform database update for other fields
-$sql_update = "UPDATE `hr` SET
-        `name` = ?,
-        `email` = ?,
-        `phone_num` = ?,
-        `password` = ?
-        WHERE `id` = ?";
+// Check if any data has changed
+$sql_select = "SELECT * FROM `hr` WHERE `id` = ?";
+$stmt_select = $conn->prepare($sql_select);
+$stmt_select->bind_param("i", $id_edit);
+$stmt_select->execute();
+$result = $stmt_select->get_result();
+$row = $result->fetch_assoc();
 
-$stmt = $conn->prepare($sql_update);
-$stmt->bind_param(
-    "ssssi",
-    $name,
-    $email,
-    $phone_num,
-    $password,
-    $id_edit
-);
-
-$stmt->execute();
-
-if ($stmt->affected_rows > 0) {
-    echo '<script> 
-        Swal.fire({
-            title: "Success",
-            text: "Profile updated successfully.",
-            icon: "success"
-        }).then(function() {
-            window.location.replace("profile.php"); 
-        }); </script>';
+if (
+    $row['name'] === $name &&
+    $row['email'] === $email &&
+    $row['phone_num'] === $phone_num &&
+    $row['password'] === $password &&
+    $row['profile_pic'] !== $new_profile_pic
+) {
+    // No changes in data
+    echo '<center><script> 
+    Swal.fire({
+        title: "Tiada Perubahan",
+        text: "Tiada perubahan pada profil anda.",
+        icon: "success"
+    }).then(function() {
+        window.location.replace("profile.php"); 
+    }); </script></center>';
     exit();
-} else {
-    $error_message = "Error updating data: " . $conn->error;
-    echo $error_message;
 }
 
+
+// Perform database update
+$sql_update = "UPDATE `hr` SET `name` = ?, `email` = ?, `phone_num` = ?, `password` = ? WHERE `id` = ?";
+
+$stmt = $conn->prepare($sql_update);
+$stmt->bind_param( "ssssi", $name, $email, $phone_num, $password, $id_edit);
+
+
+if ($stmt->execute()) {
+    echo '<center><script> 
+    Swal.fire({
+        title: "Berjaya",
+        text: "Profil anda berjaya dikemaskini.",
+        icon: "success"
+    }).then(function() {
+        window.location.replace("profile.php"); 
+    }); </script></center>';
+} else {
+
+    echo '<center><script> 
+    Swal.fire({
+        title: "Tidak Berjaya",
+        text: "Tidak berjaya dikemaskini.",
+        icon: "error"
+    }).then(function() {
+        window.location.replace("profile.php"); 
+    }); </script></center>';
+}
+
+// Close the database connection
+$stmt_select->close();
 $stmt->close();
 $conn->close();
 ?>

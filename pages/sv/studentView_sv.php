@@ -16,7 +16,7 @@ $sv_id = $_POST['sv_id'];
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SPLI RN TECH | Student</title>
+    <title>SPLI RNTECH | Student</title>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
@@ -98,7 +98,7 @@ $sv_id = $_POST['sv_id'];
                                                 <div class="card-text">
                                                     <p><strong>Nama Pelajar:</strong> <?php echo $row["name"]; ?></p>
                                                     <p><strong>Nombor Telefon:</strong> <?php echo $row["phone_num"]; ?></p>
-                                                    <p><strong>Email:</strong> <?php echo $row["email"]; ?></p>
+                                                    <p><strong>Emel:</strong> <?php echo $row["email"]; ?></p>
                                                     <p><strong>Alamat:</strong> <?php echo $row["address"]; ?></p>
                                                 </div>
                                             <?php
@@ -150,11 +150,10 @@ $sv_id = $_POST['sv_id'];
                             <div class="table-responsive">
                                 <table class="table table-bordered table-striped">
                                     <thead>
-                                        <tr style="text-align:center">
+                                        <tr>
                                             <th width="5%">Bil</th>
                                             <th width="50%">Minggu</th>
-                                            <th width="20%">Lampiran</th>
-                                            <th width="10%">Tindakan</th>
+                                            <th width="10%" style="text-align:center">Tindakan</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -174,22 +173,9 @@ $sv_id = $_POST['sv_id'];
                                                     <td>Minggu&ensp;&ensp;<?php echo $row["unique_week"];
                                                                             $unique_week = $row["unique_week"]; ?>
                                                     </td>
-                                                    <td>
-                                                        <?php
-
-                                                        if ($row["add_doc"] != null) {
-                                                            echo '<button type="button" class="btn"><a href="../upload/' . $row['add_doc'] . '" target="_blank">' . $row["add_doc"] . '</a></button>';
-                                                        } else {
-                                                            echo "Tiada Dokumen";
-                                                        }
-                                                        ?>
-                                                    </td>
                                                     <td style="text-align: center;">
                                                         <button type="button" class="btn btn-outline-info" data-toggle="tooltip" data-placement="top" title="Lihat">
                                                             <a href="studentActivityView_sv.php?student_id=<?php echo $student_id ?>&unique_week=<?php echo $unique_week ?>"><i class="fa fa-search"></i></a>
-                                                        </button>
-                                                        <button type="button" class="btn btn-outline-info" data-toggle="tooltip" data-placement="top" title="Laporan">
-                                                            <a href="laporan_sv.php?student_id=<?php echo $student_id ?>&unique_week=<?php echo $unique_week ?>" target="_blank"><i class="far fa-file-alt"></i></a>
                                                         </button>
                                                     </td>
                                                 </tr>
@@ -204,8 +190,8 @@ $sv_id = $_POST['sv_id'];
                             </div>
                             <!-- Back button -->
                             <p></p>
-                            <button type="button" class="btn btn-warning">
-                                <a href="studentlist_sv.php" style="text-decoration: none; color: #000000;">Kembali</a>
+                            <button type="button" class="btn btn-secondary" style="float:right">
+                                <a href="studentlist_sv.php" style="text-decoration: none; color:white;">Kembali</a>
                             </button>
                         </div><!-- /.card-body -->
                     </div><!-- /.card -->

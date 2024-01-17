@@ -1,5 +1,5 @@
 <?php                
-require 'conn.php'; 
+require '../conn.php'; 
 
 
 $display_query = "select ID,location,interview_date, interview_date_end from interview";             

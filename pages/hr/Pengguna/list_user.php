@@ -14,6 +14,8 @@ include "../../conn.php";
 
 	<?php include "../includes/styles.php"; ?>
 
+	
+
 </head>
 </head>
 
@@ -101,7 +103,7 @@ include "../../conn.php";
 															<a href="#changePasswordModal" class="btn btn-outline-primary btn-sm change-password" data-toggle="modal" data-user-id="<?php echo $student_row['id']; ?>" data-user-type="student" data-toggle="tooltip" data-placement="top" title="Tukar Kata Laluan">
 																<i class="fas fa-user-lock"></i>
 															</a>
-															<a href="padamUser.php?id=<?php echo $student_row['id']; ?>&notify=1&category=student" class="btn btn-outline-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Padam Pengguna">
+															<a href="padamUser.php?id=<?php echo $student_row['id']; ?>&notify=1&category=student" class="btn btn-outline-primary btn-sm  btnpadamsv" data-toggle="tooltip" data-placement="top" title="Padam Pengguna">
 																<i class="fas fa-trash-alt"></i>
 															</a>
 															<a href="view_user_student.php?id=<?php echo $student_row['student_id']; ?>&notify=1" class="btn btn-outline-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Lihat Maklumat Pengguna">
@@ -126,18 +128,10 @@ include "../../conn.php";
 													<td><?php echo $supervisor_row['email']; ?></td>
 													<td>Penyelia</td>
 													<td style="background-color: <?php echo $status_color; ?>"><?php echo $status; ?></td>
-													<td>
-														<center>
-															<a href="#changePasswordModal" class="btn btn-outline-primary btn-sm change-password" data-toggle="modal" data-user-id="<?php echo $supervisor_row['id']; ?>" data-user-type="supervisor" data-toggle="tooltip" data-placement="top" title="Tukar Kata Laluan">
-																<i class="fas fa-user-lock"></i>
-															</a>
-															<a href="padamUser.php?id=<?php echo $supervisor_row['id']; ?>&notify=1&category=supervisor" class="btn btn-outline-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Padam Pengguna">
-																<i class="fas fa-trash-alt"></i>
-															</a>
-															<a href="view_user_sv.php?id=<?php echo $supervisor_row['id']; ?>&notify=1" class="btn btn-outline-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Lihat Maklumat Pengguna">
-																<i class="fas fa-eye"></i>
-															</a>
-														</center>
+													<td style="text-align: center;">
+															<a href="#changePasswordModal" class="btn btn-outline-primary btn-sm change-password" data-toggle="modal" data-user-id="<?php echo $supervisor_row['id']; ?>" data-user-type="supervisor" data-toggle="tooltip" data-placement="top" title="Tukar Kata Laluan"><i class="fas fa-user-lock"></i></a>
+															<a href="padamUser.php?id=<?php echo $supervisor_row['id']; ?>&notify=1&category=supervisor" class="btn btn-outline-primary btn-sm btnpadamsv" data-toggle="tooltip" data-placement="top" title="Padam Pengguna"><i class="fas fa-trash-alt"></i></a>
+															<a href="view_user_sv.php?id=<?php echo $supervisor_row['id']; ?>&notify=1" class="btn btn-outline-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Lihat Maklumat Pengguna"><i class="fas fa-eye"></i></a>
 													</td>
 												</tr>
 											<?php
@@ -192,6 +186,8 @@ include "../../conn.php";
 		<aside class="control-sidebar control-sidebar-dark">
 		</aside>
 	</div>
+
+
 	<script src="../../../plugins/jquery/jquery.min.js"></script>
 	<script src="../../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script src="../../../plugins/datatables/jquery.dataTables.min.js"></script>
@@ -205,7 +201,61 @@ include "../../conn.php";
 	<script src="../../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 	<script src="../../../dist/js/adminlte.min.js"></script>
 	<script src="../Pengguna/pengguna.js"></script>
+	<link rel="stylesheet" href="@sweetalert2/themes/dark/dark.css">
+	<script src="sweetalert2/dist/sweetalert2.min.js"></script>
 
+			<!-- SWEEY ALERT -->
+	<link rel="stylesheet" href="../../plugins/sweetalert2/sweetalert2.min.css">
+	<link rel="stylesheet" href="../../plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+
+	<script type="text/javascript" src="../../plugins/sweetalert2/sweetalert2.min.js"></script>
+	<script src="../../dist/js/demo.js"></script>
+
+
+
+	<script>
+
+// Function to handle deletion
+$('.btnpadamsv').click(function(e) {
+    e.preventDefault();
+    var padamsvURL = $(this).attr('href');
+
+    Swal.fire({
+        title: 'Adakah anda pasti?',
+        text: 'Data akan di padam dari sistem!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya, Padam!',
+        cancelButtonText: 'Batal'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                type: 'GET',
+                url: padamsvURL, // Replace this URL with your delete endpoint
+                success: function(response) {
+                    Swal.fire({
+                        title: 'Dihapuskan!',
+                        text: 'Maklumat telah berjaya dipadam.',
+                        icon: 'success'
+                    }).then(() => {
+                        location.reload(); // Refresh the page after successful deletion
+                    });
+                },
+                error: function() {
+                    Swal.fire({
+                        title: 'Ralat!',
+                        text: 'Gagal memadam maklumat.',
+                        icon: 'error'
+                    });
+                }
+            });
+        }
+    });
+});
+
+</script>
 
 	<script>
 		$(document).ready(function() {

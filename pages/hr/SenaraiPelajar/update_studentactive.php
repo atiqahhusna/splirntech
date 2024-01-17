@@ -20,43 +20,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id_edit'])) {
    
     // Retrieve values from the form
     $user_id = $_POST['id_edit'];
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $phone_num = $_POST['phone_num'];
-    $address = $_POST['address'];
-    $start_intern_formatted= $_POST['start_intern'];
-    $last_intern_formatted= $_POST['last_intern'];
+    $start_intern_formatted = $_POST['start_intern'];
+    $last_intern_formatted = $_POST['last_intern'];
 
-    // Update student information in the database
-    $update_student_query = "UPDATE `student` SET `name`='$name', `email`='$email', `phone_num`='$phone_num', `address`='$address' WHERE student_id='" . $user_id . "'";
+    // Update internship information in the database
     $update_intern_query = "UPDATE `application_intern` SET `start_intern`='$start_intern_formatted', `last_intern`='$last_intern_formatted' WHERE `student_id`='$user_id'";
 
-    $stmtStudent = $conn->prepare($update_student_query);
     $stmtIntern = $conn->prepare($update_intern_query);
 
-    // Execute the statements
-    $successStudent = $stmtStudent->execute();
+    // Execute the statement
     $successIntern = $stmtIntern->execute();
 
-    // Close the statements
-    $stmtStudent->close();
+    // Close the statement
     $stmtIntern->close();
 
-    // Check if both updates were successful
-    if ($successStudent && $successIntern) {
-     
-
-
+    // Check if the update was successful
+    if ($successIntern) {
         echo '<center><script> 
             window.location.replace("viewlist_studentactive.php?id=' . $user_id .'"); </script></center>'; 
-
     } else {
-        '<center><script> 
+        echo '<center><script> 
             window.location.replace("viewlist_studentactive.php?id=' . $user_id .'"); </script></center>'; 
     }
-    
 } else {
-
     // Handle cases where the form data or ID is not properly received
     echo "Invalid request";
 }

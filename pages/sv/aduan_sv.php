@@ -11,7 +11,7 @@ include "../conn.php";
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>SPLI RN TECH | Senarai Pelajar</title>
+	<title>SPLI RNTECH | Senarai Pelajar</title>
 
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 	<link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
@@ -34,8 +34,23 @@ include "../conn.php";
 	<script src="../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 	<script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 	<script src="../../dist/js/adminlte.min.js"></script>
-	<script src="../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-	<script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="../../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <link rel="stylesheet" href="../../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <link rel="stylesheet" href="../../plugins/jqvmap/jqvmap.min.css">
+  <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <link rel="stylesheet" href="../../plugins/daterangepicker/daterangepicker.css">
+  <link rel="stylesheet" href="../../plugins/summernote/summernote-bs4.min.css">
+
+	<!-- SWEEY ALERT -->
+	<link rel="stylesheet" href="../../plugins/sweetalert2/sweetalert2.min.css">
+	<link rel="stylesheet" href="../../plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+
+	<script type="text/javascript" src="../../plugins/sweetalert2/sweetalert2.min.js"></script>
+	<script src="../../dist/js/demo.js"></script>
+
 
 </head>
 
@@ -82,7 +97,7 @@ include "../conn.php";
 
 			<section class="content">
 				<div class="container-fluid">
-					<div class="card card-warning">
+					<div class="card card-navy">
 						<div class="card-header">
 							<h3 class="card-title">Aduan Baru</h3>
 						</div>
@@ -110,14 +125,14 @@ include "../conn.php";
 						<!-- ./card-header -->
 						<div class="card-body">
 							<div class="table-responsive">
-								<form id="formID" method='post' action='addFeedback_svDB.php'>
+								<form id="formIDAduan" method='post' action='addFeedback_svDB.php' enctype="multipart/form-data">
 									<div class="form-group">
 										<p>
 											<label for="name">Pengadu</label>
 											<input class="form-control" name="pengadu" id="pengadu" value="<?php echo $svname; ?>" readonly>
 										</p>
 										<p>
-											<label for="date">Nama Pelajar*</label>
+											<label for="date">Nama Pelajar</label><label style="color:red">*</label>
 											<select name="studentName" id="studentName" class="form-control" required>
 												<option value=""> -- Pilih Nama Pelajar -- </option>
 												<?php
@@ -135,28 +150,31 @@ include "../conn.php";
 											$Date = gmdate('Y-m-d');
 											$currenttime = date('h:i A');
 											?>
-											<label for="aduan">Aduan*</label>
+											<label for="aduan">Aduan</label><label style="color:red">*</label>
 											<input class="form-control" name="aduan" id="aduan" placeholder="Aduan yang ingin dikenakan" required>
 										</p>
 										<p>
-											<label for="date">Tarikh Aduan*</label>
+											<label for="date">Tarikh Aduan</label>
 											<input type="form-control" class="form-control" value="<?php echo date('d/m/Y', strtotime($Date)); ?>" readonly>
 											<input type="hidden" name="date" id="date" value="<?php echo $Date; ?>">
 										</p>
 										<p>
-											<label for="masa">Masa Aduan*</label>
+											<label for="masa">Masa Aduan</label>
 											<input type="form-control" class="form-control" name="time" id="time" value="<?php echo $currenttime; ?>" placeholder="<?php echo $currenttime; ?>" readonly>
 										</p>
 										<p>
-											<label for="type">Jenis Aduan*</label>
+											<label for="type">Jenis Aduan</label><label style="color:red">*</label>
 											<select name="type" id="type" class="form-control" required>
-												<option value=""> -- Pilih Jenis Aduan -- </option>
-												<option value="Maklumbalas"> Maklumbalas </option>
+												<option value=""> -- Pilih Jenis Aduan -- </option>   
+												<option value="Maklum Balas"> Maklum Balas </option>
 												<option value="Aduan"> Aduan </option>
 											</select>
 										</p>
 										<p>
-											<input type='submit' name='submit' value='Simpan' class='btn btn-danger' onclick='return confirmUpdate()'>
+										<div  class="d-flex justify-content-end">
+											<button type='submit' id='btnSaveAduan' class='btn btn-primary' style="margin-right:5px;">Simpan</button>
+											<button type="button" id="btnClear" class="btn btn-secondary">Set Semula</button>
+										</div>
 										</p>
 									</div>
 								</form>
@@ -205,7 +223,7 @@ include "../conn.php";
 								<tbody>
 									<?php
 									$i = 1;
-									$query = "SELECT * FROM feedback where pekerja_id ='" . $sv_id . "'";
+									$query = "SELECT * FROM feedback where pekerja_id ='" . $sv_id . "' AND (status = 'Lihat' OR status = 'Baru')";
 									$result = $conn->query($query);
 
 									if ($result->num_rows > 0) {
@@ -252,8 +270,10 @@ include "../conn.php";
 
 
 	<!-- Page specific script -->
-	<script>
-		$(function() {
+
+<script>
+	
+	$(function() {
 			$("#example1").DataTable({
 				"responsive": true,
 				"lengthChange": false,
@@ -277,27 +297,85 @@ include "../conn.php";
 				table.page.len(entries).draw();
 			});
 		});
-		
-	</script>
+</script>
 
-	<!-- <script>
-$(document).ready(function() {
-    $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
-        "dom": 'Bfrtip',
-        "buttons": [
-            'excel', 'pdf'
-        ]
+<script>
+	$(document).ready(function () {
+    // Function to clear form fields
+    function clearForm() {
+        $('#formIDAduan')[0].reset();
+    }
+
+    // Attach the clearForm function to the "Clear Form" button click event
+    $('#btnClear').on('click', function () {
+		var form = $(this).parents('form'); // Get the form element
+
+        // Check for required fields
+        var requiredFields = form.find('[required]');
+        var isValid = true;
+
+		// Remove any existing error messages "Sila isi ruangan ini"
+		form.find('.error-message').remove();
+        clearForm();
     });
-}); -->
-	</script>
 
+    // Attach the form submission handling to the "Save" button click event
+    $('#btnSaveAduan').on('click', function (e) {
+        e.preventDefault();
+        var form = $(this).parents('form'); // Get the form element
+
+        // Check for required fields
+        var requiredFields = form.find('[required]');
+        var isValid = true;
+
+		// Remove any existing error messages=
+		form.find('.error-message').remove();
+
+        // print message on id studentName if the field is empty
+		if ($('#studentName').val().trim() === '') {
+			isValid = false;
+			$('#studentName').after('<span class="error-message" style="color:red">Sila pilih pelajar*</span>');
+		}
+
+		// print message on id aduan if the field is empty
+		if ($('#aduan').val().trim() === '') {
+			isValid = false;
+			$('#aduan').after('<span class="error-message" style="color:red">Sila isi aduan yang ingin dikenakan*</span>');
+		}
+
+		// print message on id type if the field is empty
+		if ($('#type').val().trim() === '') {
+			isValid = false;
+			$('#type').after('<span class="error-message" style="color:red">Sila pilih jenis aduan*</span>');
+		}
+
+        if (!isValid) {
+            return;
+        }else{
+		
+			// Proceed with the SweetAlert confirmation
+			Swal.fire({
+				title: 'Anda pasti mahu simpan?',
+				text: 'Perubahan akan disimpan!',
+				icon: 'question',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Ya, simpan!',
+				cancelButtonText: 'Batal'
+			}).then((result) => {
+				// Check if the user clicked "Ya, simpan!"
+				if (result.isConfirmed) {
+					$('#formIDAduan').submit(); // Submit the form
+				}
+			});
+		}
+
+       
+    });
+});
+
+</script>
 
 </body>
 

@@ -87,7 +87,7 @@ include "../../conn.php";
 														<th>No. Telefon</th>
 														<th>E-mel</th>
 														<th>Penyelia Industri</th>
-														<th width="11%"> Tindakan</th>
+														<th width="11%" style="text-align: center;"> Tindakan</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -103,7 +103,7 @@ include "../../conn.php";
 																<td><?php echo $myrowAktif['phone_num']; ?></td>
 																<td><?php echo $myrowAktif['email']; ?></td>
 																<td><?php echo empty($myrowAktif['supervisor_name']) ? 'Tiada Penyelia Industri' : $myrowAktif['supervisor_name']; ?></td>
-																<td>
+																<td style="text-align: center;">
 																	<a href="viewlist_studentactive.php?id=<?php echo $myrowAktif['student_id']; ?>&notify=1" class="btn btn-outline-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Lihat"><i class="fas fa-search"></i></a>
 																	<a href="nonactive_student.php?student_id=<?php echo $myrowAktif['student_id']; ?>&notify=1" class="btn btn-outline-primary btn-sm"  data-toggle="tooltip" data-placement="top" title="Tidak Aktif" id="btnnonactive"><i class="fas fa-times"></i></a>
 																	<a href="padam_student.php?student_id=<?php echo $myrowAktif['student_id']; ?>&notify=1" class="btn btn-outline-primary btn-sm"  data-toggle="tooltip" data-placement="top" title="Padam" id="btnpadam"><i class="fas fa-trash-alt"></i></a>
@@ -145,7 +145,7 @@ include "../../conn.php";
 														<th>No. Telefon</th>
 														<th>E-mel</th>
 														<th>Penyelia Industri</th>
-														<th width="11%"> Tindakan</th>
+														<th width="11%" style="text-align: center;"> Tindakan</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -162,7 +162,7 @@ include "../../conn.php";
 																<td><?php echo $myrowTidakAktif['email']; ?></td>
 																<td><?php echo empty($myrowTidakAktif['supervisor_name']) ? 'Tiada Penyelia Industri' : $myrowTidakAktif['supervisor_name']; ?></td>
 
-																<td>
+																<td style="text-align: center;">
 																	<a href="viewlist_studentnonactive.php?id=<?php echo $myrowTidakAktif['student_id']; ?>&notify=1" class="btn btn-outline-primary btn-sm"  data-toggle="tooltip" data-placement="top" title="Lihat"><i class="fas fa-search"></i></a>
 																	<a href="active_student.php?student_id=<?php echo $myrowTidakAktif['student_id']; ?>&notify=1" class="btn btn-outline-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Aktif" id="btnaktif"><i class="fas fa-check"></i></a>
 																    <a href="padam_student.php?student_id=<?php echo $myrowTidakAktif['student_id']; ?>&notify=1" class="btn btn-outline-primary btn-sm"  data-toggle="tooltip" data-placement="top" title="Padam" id="btnpadamtidakaktif"><i class="fas fa-trash-alt"></i></a>

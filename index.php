@@ -10,7 +10,7 @@ include "pages/conn.php";
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>SPLI RN Tech</title>
+  <title>SPLI RNTECH</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -44,7 +44,7 @@ include "pages/conn.php";
   <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
     <div class="container text-center text-md-left" data-aos="fade-up">
       <h1>SELAMAT DATANG KE</h1>
-      <h2>SISTEM PENGURUSAN LATIHAN INDUSTRI RN TECHNOLOGIES</h2>
+      <h2>SISTEM PENGURUSAN LATIHAN INDUSTRI RN TECHNOLOGIES SDN. BHD.</h2>
       <a href="pages/login.php" class="btn-get-started scrollto">Log Masuk</a>
     </div>
   </section><!-- End Hero -->
@@ -93,11 +93,15 @@ include "pages/conn.php";
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
+  <?php
+    $Date = gmdate('Y');
+  ?>
+
   <footer id="footer">
     <div class="container d-md-flex py-4">
       <div class="mx-auto text-center text-md-start"> <!-- Updated class here -->
         <div class="copyright">
-          &copy; Copyright <strong><span>RN Tech 2023</span></strong>. All Rights Reserved
+        <strong>Hak Cipta &copy; <?php echo $Date; ?><a href="#"> RN Technologies Sdn. Bhd</a>.</strong>
         </div>
       </div>
     </div>
