@@ -48,9 +48,8 @@ if ($result->num_rows > 0) {
   <link rel="stylesheet" href="../../plugins/sweetalert2/sweetalert2.min.css">
 <link rel="stylesheet" href="../../plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
 
-<script src="../../plugins/jquery/jquery.min.js"></script>
+<!-- <script src="../../plugins/jquery/jquery.min.js"></script> -->
 <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="../../dist/js/adminlte.min.js"></script>
 <script type="text/javascript" src="../../plugins/sweetalert2/sweetalert2.min.js"></script>
 <script src="../../dist/js/demo.js"></script>
 
@@ -378,12 +377,12 @@ if ($result->num_rows > 0) {
 
   <script>
       // Check if the login was successful
-      <?php if ($_SESSION['loginsuccess'] == true && $_SESSION['slip_ic'] == null && $_SESSION['bank_slip'] == null): ?>
+      <?php if ($_SESSION['slip_ic'] == null && $_SESSION['bank_slip'] == null): ?>
           // Display a popup message
           Swal.fire({
                 title: 'Selamat Datang!',
                 icon: 'warning',
-                text: 'Sila Kemaskini Maklumat Bank Anda.',
+                text: 'Sila Kemaskini Maklumat Anda.',
                 confirmButtonText: 'Kemaskini',
                 allowOutsideClick: false,
                 allowEscapeKey: false
@@ -490,7 +489,6 @@ if ($result->num_rows > 0) {
   <script src="../../plugins/summernote/summernote-bs4.min.js"></script>
   <script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
   <script src="../../dist/js/adminlte.js"></script>
-  <script src="../../dist/js/demo.js"></script>
   <script src="../../dist/js/pages/dashboard.js"></script>
   <script src="../../plugins/calendar/js/kalendar.js"></script>
 </body>
