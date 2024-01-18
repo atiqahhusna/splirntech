@@ -7,9 +7,9 @@ if (isset($_SESSION['name']) == '') {
   header("Location: ../login.php");
 }
 
-$sql = "SELECT * FROM `student` WHERE name = ?";
+$sql = "SELECT * FROM `student` WHERE student_id = ?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $_SESSION['name']);
+$stmt->bind_param("s", $_SESSION['id']);
 $stmt->execute();
 $result = $stmt->get_result();
 
@@ -377,7 +377,24 @@ if ($result->num_rows > 0) {
 
   <script>
       // Check if the login was successful
-      <?php if ($_SESSION['slip_ic'] == null && $_SESSION['bank_slip'] == null): ?>
+      <?php 
+
+      $checkFile = "SELECT * FROM student WHERE student_id = '" .$_SESSION['id']. "'";
+      $result = mysqli_query($conn, $checkFile);
+
+      if ($result) {
+      $row = mysqli_fetch_assoc($result);
+      if ($row) {
+        $slip_ic = $row['slip_ic'];
+        $bank_slip = $row['bank_slip'];
+      } else {
+        echo "Name not found";
+      }
+      } else {
+      echo "Error in SQL query: " . mysqli_error($conn);
+      }
+      
+      if ($slip_ic == null && $bank_slip == null): ?>
           // Display a popup message
           Swal.fire({
                 title: 'Selamat Datang!',

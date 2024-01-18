@@ -7,6 +7,9 @@
 <script type="text/javascript" src="../../plugins/sweetalert2/sweetalert2.min.js"></script>
 <script src="../../dist/js/demo.js"></script>
 
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
 <?php
 // Start or resume the session
 session_start();
@@ -97,6 +100,7 @@ if ($stmt->execute()) {
                 });
             });
             </script></center>';
+            exit();
         }
     } elseif ($aduan_count >= 6) {
         // Send email for being removed from the internship
@@ -136,8 +140,18 @@ if ($stmt->execute()) {
                 }).then(function() {
                     window.location.replace("aduan_sv.php"); 
                 }); </script></center>';
+                exit();
         }
     }
+
+    echo '<center><script> 
+                Swal.fire({
+                    title: "Berjaya",
+                    text: "aduan berjaya dihantar.",
+                    icon: "success"
+                }).then(function() {
+                    window.location.replace("aduan_sv.php"); 
+                }); </script></center>';
 } else {
     echo '<center><script> 
     Swal.fire({

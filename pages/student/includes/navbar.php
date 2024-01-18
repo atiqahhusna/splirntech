@@ -46,6 +46,7 @@
 				$row = mysqli_fetch_assoc($result);
 				if ($row) {
           $profile_pic = $row["profile_pic"];
+          $student_name = $row['name'];
 				} else {
 				  echo "Name not found";
 				}
@@ -60,8 +61,7 @@
               <img src="../../assets/img/profile.png" alt="Default Profile Picture" class="img-fluid img-thumbnail" style="max-width: 160px;">
           <?php } ?>
 			
-			<span class="name">
-			          <?php echo strtoupper($_SESSION['name']); ?>
+          <span class="name"><?php echo strtoupper($student_name); ?></span>
 
 			</span>
 		  </div>
