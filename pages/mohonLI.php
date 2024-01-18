@@ -196,7 +196,7 @@ $(document).ready(function () {
             // Proceed with the SweetAlert confirmation
             Swal.fire({
                 title: 'Anda pasti mahu simpan?',
-                text: 'Perubahan akan disimpan!',
+                text: 'Permohonan anda akan dihantar!',
                 icon: 'question',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
