@@ -213,67 +213,6 @@ $(document).ready(function () {
 
     });
 });
-
-
-
-// 	$(document).ready(function () {
-
-//     // Attach the form submission handling to the "Save" button click event
-//     $('#hantarSubmit').on('click', function (e) {
-//         e.preventDefault();
-//         var form = $(this).parents('form'); // Get the form element
-
-//         // Check for required fields
-//         var requiredFields = form.find('[required]');
-//         var isValid = true;
-
-// 		// Remove any existing error messages=
-// 		form.find('.error-message').remove();
-
-//         requiredFields.each(function () {
-//             if ($(this).val().trim() === '') {
-//                 isValid = false;
-//                 $(this).after('<span class="error-message" style="color:red">Sila isi ruangan ini*</span>');
-//             }
-//         });
-
-//         if ($('#resumeFile').val().trim() === ''){
-//                 isValid = false;
-//                 $('#resumeFile').after('<span class="error-message" style="color:red">Sila masukkan Lampiran*</span>');
-//         }
-        
-//         if ($('#uniFile').val().trim() === ''){
-//                 isValid = false;
-//                 $('#uniFile').after('<span class="error-message" style="color:red">Sila masukkan Lampiran*</span>');
-//         }
-
-//         if (!isValid) {
-//             return;
-//         }
-//         else{
-
-// 			// Proceed with the SweetAlert confirmation
-// 			Swal.fire({
-// 				title: 'Anda pasti mahu simpan?',
-// 				text: 'Perubahan akan disimpan!',
-// 				icon: 'question',
-// 				showCancelButton: true,
-// 				confirmButtonColor: '#3085d6',
-// 				cancelButtonColor: '#d33',
-// 				confirmButtonText: 'Ya, simpan!',
-// 				cancelButtonText: 'Batal'
-// 			}).then((result) => {
-// 				// Check if the user clicked "Ya, simpan!"
-// 				if (result.isConfirmed) {
-// 					$('#formMohon').submit(); // Submit the form
-// 				}
-// 			});
-// 		}
-
-       
-//     });
-// });
-
 </script>
 
 <style>
