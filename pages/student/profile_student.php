@@ -20,6 +20,8 @@ if ($result->num_rows > 0) {
 		$phone_num = $row['phone_num'];
 		$password = $row['password'];
 		$profile_pic = $row['profile_pic'];
+		$slip_ic = $row['slip_ic'];
+		$bank_slip = $row['bank_slip'];
 	}
 }
 ?>
@@ -43,6 +45,17 @@ if ($result->num_rows > 0) {
 	<link rel="stylesheet" href="../../dist/css/alt/splicss.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+	<!-- Sweet Alert -->
+	<link rel="stylesheet" href="../plugins/sweetalert2/sweetalert2.min.css">
+	<link rel="stylesheet" href="../plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+
+	<script src="../plugins/jquery/jquery.min.js"></script>
+	<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="../dist/js/adminlte.min.js"></script>
+	<script type="text/javascript" src="../plugins/sweetalert2/sweetalert2.min.js"></script>
+	<script src="../dist/js/demo.js"></script>
+
 
 
 </head>
@@ -89,11 +102,7 @@ if ($result->num_rows > 0) {
 								</div>
 								<!-- /.card-header -->
 								<div class="card-body">
-									<form id="form-edit" action="update_profile.php" method="post"
-										enctype="multipart/form-data" class="p-4">
-										<div class="container">
-											<div class="row justify-content-center">
-												<div class="col-md-12">
+									<form id="form-edit" action="update_profile.php" method="post" enctype="multipart/form-data" class="p-4">
 
 													<div class="mb-3 text-center">
 														<?php if(isset($profile_pic) && !empty($profile_pic)) { ?>
@@ -145,8 +154,7 @@ if ($result->num_rows > 0) {
 													</div>
 
 													<div class="mb-3">
-														<label for="phone_num" class="form-label">Nombor
-															Telefon:</label>
+														<label for="phone_num" class="form-label">Nombor Telefon:</label>
 														<div class="input-group">
 															<span class="input-group-text"><i
 																	class="bi bi-telephone-fill"></i></span>
@@ -154,26 +162,36 @@ if ($result->num_rows > 0) {
 																name="phone_num" value="<?php echo $phone_num ?>" <?php echo isset($_GET['edit']) ? '' : 'disabled' ?>>
 														</div>
 													</div>
-
-													<div>
-														<?php if (isset($_GET['edit'])) { ?>
-															<div style="text-align: right; margin-right:0px;">
-																<button type="submit"
-																	class="btn btn-primary">Simpan</button>
-																<input type="hidden" id="id_edit" name="id_edit"
-																	value="<?php echo $id_edit ?>">
-																<a href="javascript:history.back()"
-																	class="btn btn-secondary">Kembali</a>
-															</div>
-														<?php } else { ?>
-															<div style="text-align: right; margin-right:0px;">
-																<a href="?edit=true" class="btn btn-primary">Kemaskini</a>
-															</div>
-														<?php } ?>
+													
+													<div class="mb-3">
+														<label for="phone_num" class="form-label">Salinan No. Kad Pengenalan:</label>
+														<div class="input-group">
+															<span class="input-group-text"><i class="fas fa-file-pdf"></i></span>
+															<input type="text" class="form-control" value="<?php echo $slip_ic; ?>" readonly>
+															<input type="file" class="form-control" id="icFileUpload" name="icFile" <?php echo isset($_GET['edit']) ? '' : 'disabled' ?>>
+														</div>
 													</div>
-												</div>
-											</div>
-										</div>
+
+													<div class="mb-3">
+														<label for="phone_num" class="form-label">Salinan Bank Akaun:</label>
+														<div class="input-group">
+															<span class="input-group-text"><i class="fas fa-file-pdf"></i></span>
+															<input type="text" class="form-control" value="<?php echo $bank_slip; ?>" readonly>
+															<input type="file" class="form-control" id="bankFileUpload" name="bankFile" <?php echo isset($_GET['edit']) ? '' : 'disabled' ?>>
+														</div>
+													</div>
+
+													<?php if (isset($_GET['edit'])) { ?>
+														<div style="text-align: right; margin-right:0px;">
+															<button type="submit" id="btnSimpan" class="btn btn-primary">Simpan</button>
+															<input type="hidden" id="id_edit" name="id_edit" value="<?php echo $id_edit ?>">
+															<a href="javascript:history.back()" class="btn btn-secondary">Kembali</a>
+														</div>
+													<?php } else { ?>
+														<div style="text-align: right; margin-right:0px;">
+															<a href="?edit=true" class="btn btn-primary">Kemaskini</a>
+														</div>
+													<?php } ?>
 									</form>
 								</div>
 								<!-- /.card-body -->
@@ -192,6 +210,7 @@ if ($result->num_rows > 0) {
 		<aside class="control-sidebar control-sidebar-dark">
 		</aside>
 	</div>
+
 	<script>
 		function enableEdit() {
 			var inputs = document.getElementsByTagName("input");
@@ -232,6 +251,64 @@ if ($result->num_rows > 0) {
 			}
 		});
 	</script>
+	<script>
+		$(document).ready(function () {
+
+			// Attach the form submission handling to the "Save" button click event
+			$('#btnSimpan').on('click', function (e) {
+				e.preventDefault();
+				var form = $('#form-edit'); // Get the form element
+
+				// Check for required fields
+				var requiredFields = form.find('[required]');
+				var isValid = true;
+
+				// Remove any existing error messages
+				form.find('.error-message').remove();
+
+				requiredFields.each(function () {
+					if ($(this).val().trim() === '') {
+						isValid = false;
+						$(this).after('<span class="error-message" style="color:red">Sila isi ruangan ini*</span>');
+					}
+				});
+
+				if ($('#icFile').val().trim() === '') {
+					isValid = false;
+					$('#icFile').after('<span class="error-message" style="color:red">Sila masukkan Lampiran*</span>');
+				}
+
+				if ($('#bankFile').val().trim() === '') {
+					isValid = false;
+					$('#bankFile').after('<span class="error-message" style="color:red">Sila masukkan Lampiran*</span>');
+				}
+
+				if (!isValid) {
+					return;
+				}
+				
+				else {
+					// Proceed with the SweetAlert confirmation
+					Swal.fire({
+						title: 'Anda pasti mahu simpan?',
+						text: 'Perubahan akan disimpan!',
+						icon: 'question',
+						showCancelButton: true,
+						confirmButtonColor: '#3085d6',
+						cancelButtonColor: '#d33',
+						confirmButtonText: 'Ya, simpan!',
+						cancelButtonText: 'Batal'
+					}).then((result) => {
+						// Check if the user clicked "Ya, simpan!"
+						if (result.isConfirmed) {
+							form.submit(); // Submit the form
+						}
+					});
+				}
+
+			});
+		});
+		</script>
 
 	<script src="../../plugins/jquery/jquery.min.js"></script>
 	<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>

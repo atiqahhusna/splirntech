@@ -125,7 +125,7 @@ include "../../conn.php";
                                         <div class="tab-pane fade" id="temuduga" role="tabpanel" aria-labelledby="temuduga-tab">
                                             <?php
                                             $i = 1;
-                                            $queryAktif = "SELECT interview.ID, interview.student_id, student.name AS name, interview.interview_date, interview.interview_time, interview.location, student.id AS studID
+                                            $queryAktif = "SELECT interview.ID, interview.student_id, student.name AS name, interview.interview_date, interview.interview_time, interview.location, interview.interview_link, student.id AS studID
                                                 FROM interview
                                                 JOIN student ON interview.student_id = student.id
                                                 WHERE interview.status='Temuduga'";
@@ -142,9 +142,10 @@ include "../../conn.php";
                                                         <tr>
                                                             <th width="3%">Bil.</th>
                                                             <th>Nama</th>
-                                                            <th>Date</th>
-                                                            <th>Time</th>
-                                                            <th>Location</th>
+                                                            <th>Tarkih</th>
+                                                            <th>Masa</th>
+                                                            <th>Lokasi</th>
+                                                            <th>Link Temuduga</th>
                                                             <th width="15%">Tindakan</th>
                                                         </tr>
                                                     </thead>
@@ -159,10 +160,20 @@ include "../../conn.php";
                                                                     <td><?php echo date('d/m/Y', strtotime($myrowAktif['interview_date'])); ?></td>
                                                                     <td><?php echo date('h:i A', strtotime($myrowAktif['interview_time'])); ?></td>
                                                                     <td><?php echo $myrowAktif['location']; ?></td>
+                                                                    <?php
+                                                                    if ($myrowAktif['interview_link'] != null){?>
+                                                                    <td><?php echo $myrowAktif['interview_link']; ?></td>
+                                                                    <?php 
+                                                                    }
+                                                                    else if($myrowAktif['interview_link'] == null){ ?>
+                                                                        <td>Tiada</td>
+                                                                        <?php
+                                                                    }
+                                                                    ?>
                                                                     <td>
-                                                                        <a href="update_interview.php?id=<?php echo $myrowAktif['ID']; ?>" class="btn btn-primary btn-sm" style="margin:2px;" data-toggle="tooltip" data-placement="top" title="Kemaskini"><i class="fas fa-edit" style="font-size: 20px;"></i></a>
-                                                                        <a href="terimaStudent.php?id=<?php echo $myrowAktif['studID']; ?>&notify=1" class="btn btn-success btn-sm" style="margin:2px;" data-toggle="tooltip" data-placement="top" title="Terima"><i class="fas fa-check" style="font-size: 20px;"></i></a>
-                                                                        <a href="tolakStudent.php?id=<?php echo $myrowAktif['studID']; ?>&notify=1" class="btn btn-danger btn-sm" style="margin:2px;" data-toggle="tooltip" data-placement="top" title="Tolak"><i class="fas fa-times" style="font-size: 20px;"></i></a>
+                                                                        <a href="update_interview.php?id=<?php echo $myrowAktif['ID']; ?>" class="btn btn-outline-primary btn-sm" style="margin:2px;" data-toggle="tooltip" data-placement="top" title="Kemaskini"><i class="fas fa-edit" style="font-size: 20px;"></i></a>
+                                                                        <a href="terimaStudent.php?id=<?php echo $myrowAktif['studID']; ?>&notify=1" class="btn btn-outline-primary btn-sm" style="margin:2px;" data-toggle="tooltip" data-placement="top" title="Terima"><i class="fas fa-check" style="font-size: 20px;"></i></a>
+                                                                        <a href="tolakStudent.php?id=<?php echo $myrowAktif['studID']; ?>&notify=1" class="btn btn-outline-primary btn-sm" style="margin:2px;" data-toggle="tooltip" data-placement="top" title="Tolak"><i class="fas fa-times" style="font-size: 20px;"></i></a>
                                                                     </td>
                                                                 </tr>
                                                             <?php

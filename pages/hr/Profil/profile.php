@@ -60,7 +60,7 @@ if ($result->num_rows > 0) {
 						</div><!-- /.col -->
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="../dashboard_hr.php">Laman Utama</a></li>
+								<li class="breadcrumb-item"><a href="../dashboard/dashboard_hr.php">Laman Utama</a></li>
 								<li class="breadcrumb-item active">Profil Pengguna</li>
 							</ol>
 						</div>
@@ -81,8 +81,7 @@ if ($result->num_rows > 0) {
 									<!-- <form id="form-edit" action="profile_edit_save.php" method="post" enctype="multipart/form-data" class="p-4"> -->
 									<form id="form-edit" action="profile_edit_save.php?id=<?php echo $_SESSION['id']; ?>" method="post" enctype="multipart/form-data" class="p-4">
 
-										<div class="container">
-											<div class="row justify-content-center">
+										
 												<div class="col-md-12">
 													<div class="mb-3 text-center">
 														<?php if(isset($profile_pic) && !empty($profile_pic)) { ?>
@@ -147,8 +146,6 @@ if ($result->num_rows > 0) {
 													</div>
 
 												</div>
-											</div>
-										</div>
 									</form>
 								</div>
 								<!-- /.card-body -->

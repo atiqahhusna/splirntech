@@ -28,21 +28,24 @@ $password = $_POST['password'];
 $new_profile_pic = $_FILES['new_profile_pic']['name']; // Assuming 'new_profile_pic' is the name of the file input field
 
 if ($new_profile_pic != '') {
-    // Process the uploaded file
 
+    // Folder name ---------------------------------------------------------------------------
+    // Profile Folder Name & Directory Path
     $folderpic = "profile_pic";
-    $directoryPath = "../upload/" . $folderpic;
+    $PicPath = "../upload/" . $folderpic;
 
-    // Check if the directory doesn't exist
-    if (!is_dir($directoryPath)) {
-        // The directory doesn't exist, so create it
-        mkdir($directoryPath);
+    // Check if the folder exists in the Upload folder ---------------------------------------
+    // Check Profile Folder
+    if (!is_dir($PicPath)) {
+        mkdir($PicPath);
     }
 
-    $target_file = $directoryPath . "/" . basename($_FILES['new_profile_pic']['name']);
+    // Set file path with folder path --------------------------------------------------------
+    // set profile path
+    $target_file = $PicPath . "/" . basename($_FILES['new_profile_pic']['name']);
     $file_extension = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-    // Valid file extensions (you can modify this as needed)
+    // Valid file extensions (you can modify this as needed) ---------------------------------
     $allowed_extensions = array("jpg", "jpeg", "png", "gif");
 
     if (!in_array($file_extension, $allowed_extensions)) {
@@ -55,10 +58,12 @@ if ($new_profile_pic != '') {
             }).then(function() {
                 window.location.replace("profile_student.php"); 
             }); </script>';
-        exit();
     }
 
+    // Move the profile picture and file into folder based on directory path ------------------
+
     if (move_uploaded_file($_FILES['new_profile_pic']['tmp_name'], $target_file)) {
+
         // Update the profile picture field in the database
         $sql_update_pic = "UPDATE `student` SET `profile_pic` = ? WHERE `id` = ?";
         $stmt_pic = $conn->prepare($sql_update_pic);
@@ -75,8 +80,60 @@ if ($new_profile_pic != '') {
             }).then(function() {
                 window.location.replace("profile_student.php"); 
             }); </script>';
+    }
+}
+
+if(isset($_FILES['icFile']) && isset($_FILES['bankFile']) && !empty($_FILES['icFile']['name']) && !empty($_FILES['bankFile']['name'])){
+// Set name for IC File and Bank File ----------------------------------------------------
+    // IC file name//
+    $icFileName = $_FILES['icFile']['name'];
+    $icTempName = $_FILES['icFile']['tmp_name'];
+
+    // Bank file name//
+    $bankFileName = $_FILES['bankFile']['name'];
+    $bankTempName = $_FILES['bankFile']['tmp_name'];
+
+    // Rename file ---------------------------------------------------------------------------
+    $newICFile = $name . "_Slip IC_" . $icFileName;
+    $newBankFile = $name . "_Slip Bank_" . $bankFileName;
+
+    // Folder name ---------------------------------------------------------------------------
+    // folder name for new application
+    $folderName = 'studentfile';
+    $FilePath = "../upload/" . $folderName;
+
+    // Check if the folder exists in the Upload folder ---------------------------------------
+    // Check File Folder
+    if (!is_dir($FilePath)) {
+        mkdir($FilePath);
+    }
+
+    // Set file path with folder path -------------------------------------------------------=
+    //Set file path
+    $uploadPathIC = $FilePath . '/' . $newICFile;
+    $uploadPathBank = $FilePath . '/' . $newBankFile;
+
+    if (move_uploaded_file($icTempName, $uploadPathIC) && move_uploaded_file($bankTempName, $uploadPathBank)) {
+
+        // Update the profile picture field in the database
+        $sql_update_pic = "UPDATE `student` SET bank_slip = ?, slip_ic = ? WHERE `id` = ?";
+        $stmt_pic = $conn->prepare($sql_update_pic);
+        $stmt_pic->bind_param("ssi", $newBankFile, $newICFile, $unique_id);
+        $stmt_pic->execute();
+        $stmt_pic->close();
+    } else {
+        $error_message = "Error uploading file.";
+        echo '<script> 
+            Swal.fire({
+                title: "Error",
+                text: "' . $error_message . '",
+                icon: "error"
+            }).then(function() {
+                window.location.replace("profile_student.php"); 
+            }); </script>';
         exit();
     }
+
 }
 
 // Check if any data has changed

@@ -50,7 +50,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['studid'] = $studentRow['id'];
                 $_SESSION['bank_slip'] = $studentRow['bank_slip'];
                 $_SESSION['slip_ic'] = $studentRow['slip_ic'];
-                $_SESSION['loginsuccess'] = true;
                 $status = $studentRow['status'];
 
                 if ($status == "Aktif"){

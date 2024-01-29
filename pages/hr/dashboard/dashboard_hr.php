@@ -81,7 +81,7 @@ include "../../conn.php";
                 <div class="inner">
                   <h3>
                     <?php
-                    $namesm2 = mysqli_query($conn, "SELECT * FROM `application_intern` WHERE `status`= 'Baru' ");
+                    $namesm2 = mysqli_query($conn, "SELECT * FROM `application_intern` WHERE `status` = 'Baru'");
                     $numm2 = mysqli_num_rows($namesm2);
                     $myrowm2 = mysqli_fetch_array($namesm2);
                     print $numm2;
@@ -103,7 +103,7 @@ include "../../conn.php";
                 <div class="inner">
                   <h3>
                     <?php
-                    $namesm2 = mysqli_query($conn, "SELECT * FROM `student` WHERE `status`= 'Aktif' ");
+                    $namesm2 = mysqli_query($conn, "SELECT * FROM `student` WHERE `status`= 'Aktif'");
                     $numm2 = mysqli_num_rows($namesm2);
                     $myrowm2 = mysqli_fetch_array($namesm2);
                     print $numm2;
@@ -290,6 +290,14 @@ include "../../conn.php";
           if (info.event.start) {
             var el = info.el;
             el.style.backgroundColor = 'lightgreen';
+
+            // var loc = info.event.extendedProps.location;
+
+            // if (loc === 'Online Meeting') {
+            //   el.style.backgroundColor = 'lightcoral';
+            // } else {
+            //   el.style.backgroundColor = 'lightgreen';
+            // }
           }
         }
       });

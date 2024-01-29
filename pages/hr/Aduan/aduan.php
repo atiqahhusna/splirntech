@@ -122,8 +122,8 @@ include "../../conn.php";
 																<td><?php echo date('d/m/Y', strtotime($myrowAktif['date'])); ?></td>
 																<td>
 																	<center>
-																		<a href="#" class="btn btn-outline-info btn-sm view-complaint" data-id="<?php echo $myrowAktif['id']; ?>" data-toggle="tooltip" data-placement="top" title="Sembunyi Aduan"><i class="far fa-eye-slash"></i></a>
-																		<button class="btn btn-outline-info btn-sm view-button" data-toggle="modal" data-target="#modalMaklumatAduan"><i class="fas fa-list"></i></button>
+																		<a href="#" class="btn btn-outline-primary btn-sm view-complaint" data-id="<?php echo $myrowAktif['id']; ?>" data-toggle="tooltip" data-placement="top" title="Sembunyi Aduan"><i class="far fa-eye-slash"></i></a>
+																		<button class="btn btn-outline-primary btn-sm view-button" data-toggle="modal" data-target="#modalMaklumatAduan"><i class="fas fa-list"></i></button>
 																	</center>
 																</td>
 															</tr>
@@ -196,10 +196,10 @@ include "../../conn.php";
 																<td><?php echo date('d/m/Y', strtotime($myrowAktif['date'])); ?></td>
 																<td>
 																	<center>
-																		<button class="btn btn-outline-info btn-sm view-button" data-toggle="modal" data-target="#modalMaklumatAduan">
+																		<button class="btn btn-outline-primary btn-sm view-button" data-toggle="modal" data-target="#modalMaklumatAduan">
 																			<i class="fas fa-list"></i>
 																		</button>
-																		<a href="#" class="btn btn-outline-info btn-sm delete-complaint" data-id="<?php echo $myrowAktif['id']; ?>" style="margin:5px;" data-toggle="tooltip" data-placement="top" title="Padam"><i class="fa">&#xf1f8;</i></a>
+																		<a href="#" class="btn btn-outline-primary btn-sm delete-complaint" data-id="<?php echo $myrowAktif['id']; ?>" style="margin:5px;" data-toggle="tooltip" data-placement="top" title="Padam"><i class="fa">&#xf1f8;</i></a>
 																	</center>
 																</td>
 															</tr>
@@ -257,7 +257,7 @@ include "../../conn.php";
 						</form>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
 					</div>
 				</div>
 			</div>
